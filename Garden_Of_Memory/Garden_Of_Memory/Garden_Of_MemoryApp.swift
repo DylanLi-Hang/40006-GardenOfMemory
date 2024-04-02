@@ -6,16 +6,19 @@
 //
 
 import SwiftUI
+import SwiftData
 
 @main
 struct Garden_Of_MemoryApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+//            ContentView()
+            DisplayConversationView()
+                .modelContainer(for: ChatEntry.self)
         }
 
-        ImmersiveSpace(id: "ImmersiveSpace") {
-            ImmersiveView()
-        }.immersionStyle(selection: .constant(.full), in: .full)
+//        ImmersiveSpace(id: "ImmersiveSpace") {
+//            ImmersiveView()
+//        }.immersionStyle(selection: .constant(.full), in: .full)
     }
 }
