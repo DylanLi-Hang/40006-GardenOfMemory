@@ -11,45 +11,46 @@ import RealityKitContent
 
 struct ContentView: View {
 
-    @State private var showImmersiveSpace = false
-    @State private var immersiveSpaceIsShown = false
-
     @Environment(\.openImmersiveSpace) var openImmersiveSpace
     @Environment(\.dismissImmersiveSpace) var dismissImmersiveSpace
+    
 
     var body: some View {
-        VStack {
-            Model3D(named: "Scene", bundle: realityKitContentBundle)
-                .padding(.bottom, 50)
 
-            Text("Hello, world!")
+        VStack(alignment: .center, content: {
+            Text("Welcome to the Garden of Memory.")
+            Text("Choose your avatar.")
 
-            Toggle("Show ImmersiveSpace", isOn: $showImmersiveSpace)
-                .font(.title)
-                .frame(width: 360)
-                .padding(24)
-                .glassBackgroundEffect()
-        }
-        .padding()
-        .onChange(of: showImmersiveSpace) { _, newValue in
-            Task {
-                if newValue {
-                    switch await openImmersiveSpace(id: "ImmersiveSpace") {
-                    case .opened:
-                        immersiveSpaceIsShown = true
-                    case .error, .userCancelled:
-                        fallthrough
-                    @unknown default:
-                        immersiveSpaceIsShown = false
-                        showImmersiveSpace = false
+            HStack(content: {
+                Button{
+                    Task{
+                        print("tapped")
+//                        await openImmersiveSpace(id: "")
                     }
-                } else if immersiveSpaceIsShown {
-                    await dismissImmersiveSpace()
-                    immersiveSpaceIsShown = false
+                } label: {
+                    Image("AvatarCat")
+                        .resizable()
+                        .clipShape(Circle())
+                        .frame(width: 300, height: 300)
                 }
-            }
+                Button{
+                    Task{
+                        print("tapped")
+                        await openImmersiveSpace(id: "WaterDrop")
+                    }
+                } label: {
+                    Image("WaterDrop")
+                        .resizable()
+                        .clipShape(Circle())
+                        .frame(width: 300, height: 300)
+                }
+            })
+        })
+            .font(.extraLargeTitle2)
+            .padding(100)
+            .glassBackgroundEffect()
+            .buttonStyle(PlainButtonStyle())
         }
-    }
 }
 
 #Preview(windowStyle: .automatic) {

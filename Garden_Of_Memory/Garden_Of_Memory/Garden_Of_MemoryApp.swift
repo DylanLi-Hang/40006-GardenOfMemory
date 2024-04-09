@@ -12,10 +12,10 @@ struct Garden_Of_MemoryApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+        }.windowStyle(.plain)
+        
+        ImmersiveSpace(id: "WaterDrop") {
+            WaterView()
         }
-
-        ImmersiveSpace(id: "ImmersiveSpace") {
-            ImmersiveView()
-        }.immersionStyle(selection: .constant(.full), in: .full)
     }
 }
