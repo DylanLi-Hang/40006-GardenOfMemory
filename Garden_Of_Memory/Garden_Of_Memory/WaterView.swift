@@ -118,7 +118,7 @@ struct WaterView: View {
     @State var particles = ParticleEmitterComponent()
 
     @StateObject var speechRecognizer = SpeechRecognizer()
-
+    
     let timer = Timer.publish(every: 1.0, on: .main, in: .common).autoconnect()
     @State private var count:Int = 1
 
@@ -139,17 +139,17 @@ struct WaterView: View {
                 characterEntity.addChild(immersiveEntity)
                 content.add(characterEntity)
                 
-                if let sceneAttachment = attachments.entity(for: "StartConversingButton") {
-                    immersiveEntity.addChild(sceneAttachment)
-                    sceneAttachment.position += SIMD3(0, 0.2, 0)
+                if let sceneAttachment1 = attachments.entity(for: "StartConversingButton") {
+                    immersiveEntity.addChild(sceneAttachment1)
+                    sceneAttachment1.position += SIMD3(0, 0.2, 0)
                 }
-                
             } catch {
                 print("Error in RealityView's make: \(error)")
             }
         } update: { content, _ in
             // Update the RealityKit content when SwiftUI state changes
         } attachments: {
+            // Attachment 1
             Attachment(id: "StartConversingButton") {
                 Button("Start Conversing") {
                     speechRecognizer.startTranscribing()
@@ -196,6 +196,7 @@ struct WaterView: View {
         )
     }
 
+
     //WaterDrop firework particles
     func pSystem() -> ParticleEmitterComponent {
         particles.emitterShape = .sphere
@@ -211,6 +212,7 @@ struct WaterView: View {
         currentTransform.rotation = rotation * currentTransform.rotation
         entity.transform = currentTransform
     }
+    
 }
 
 #Preview {

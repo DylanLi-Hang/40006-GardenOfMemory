@@ -187,10 +187,27 @@ actor SpeechRecognizer: ObservableObject {
                             // Extract the text from the SFSpeechRecognitionResult
                             let transcriptionText = result.bestTranscription.formattedString
                             
+//                            // CALL CHATGPT API
+//                            Task {
+//                                do {
+//                                    try await OpenAIService.shared.sendPromptToChatGPT(message: transcriptionText)
+//                                } catch {
+//                                    print(error.localizedDescription)
+//                                }
+//                            }
+                            
                             // CALL CHATGPT API
                             Task {
                                 do {
-                                    try await OpenAIService.shared.sendPromptToChatGPT(message: transcriptionText)
+                                    try await OpenAIService.shared.sendPromptToChatGPT(message: transcriptionText) { result in
+                                        switch result {
+                                        case .success(let dataString):
+                                            // Handle the received dataString, such as updating UI or further processing
+                                            print("Received Data from API:", dataString)
+                                        case .failure(let error):
+                                            print("Error from API:", error.localizedDescription)
+                                        }
+                                    }
                                 } catch {
                                     print(error.localizedDescription)
                                 }
