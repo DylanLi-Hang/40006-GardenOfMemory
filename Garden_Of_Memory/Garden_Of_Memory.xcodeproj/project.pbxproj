@@ -15,6 +15,7 @@
 		3B99F02B2BB43A4900322E0E /* ImageBasedLighting.skybox in Resources */ = {isa = PBXBuildFile; fileRef = 3B99F02A2BB43A4900322E0E /* ImageBasedLighting.skybox */; };
 		3B99F02D2BB43A4B00322E0E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3B99F02C2BB43A4B00322E0E /* Assets.xcassets */; };
 		3B99F0302BB43A4B00322E0E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3B99F02F2BB43A4B00322E0E /* Preview Assets.xcassets */; };
+		6593EF762BC6625E00CF644C /* SpeechRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6593EF752BC6625E00CF644C /* SpeechRecognizer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		3B99F02C2BB43A4B00322E0E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3B99F02F2BB43A4B00322E0E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		3B99F0312BB43A4B00322E0E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6593EF752BC6625E00CF644C /* SpeechRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechRecognizer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +68,7 @@
 				3B99F0262BB43A4900322E0E /* ContentView.swift */,
 				3B99F0282BB43A4900322E0E /* ImmersiveView.swift */,
 				0D54D1582BC567B100B84E78 /* WaterView.swift */,
+				6593EF752BC6625E00CF644C /* SpeechRecognizer.swift */,
 				3B99F02A2BB43A4900322E0E /* ImageBasedLighting.skybox */,
 				3B99F02C2BB43A4B00322E0E /* Assets.xcassets */,
 				3B99F0312BB43A4B00322E0E /* Info.plist */,
@@ -164,6 +167,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6593EF762BC6625E00CF644C /* SpeechRecognizer.swift in Sources */,
 				0D54D1592BC567B100B84E78 /* WaterView.swift in Sources */,
 				3B99F0272BB43A4900322E0E /* ContentView.swift in Sources */,
 				3B99F0252BB43A4900322E0E /* Garden_Of_MemoryApp.swift in Sources */,
@@ -301,7 +305,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Garden_Of_Memory/Preview Content\"";
-				DEVELOPMENT_TEAM = 268K47U323;
+				DEVELOPMENT_TEAM = 8CXPW395VQ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "$(TARGET_NAME)/Info.plist";
@@ -310,7 +314,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "-0006.Garden-Of-Memory";
+				PRODUCT_BUNDLE_IDENTIFIER = au.uts.edu.gracesolibun.gardenofmemory;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "xros xrsimulator";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -327,7 +331,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Garden_Of_Memory/Preview Content\"";
-				DEVELOPMENT_TEAM = 268K47U323;
+				DEVELOPMENT_TEAM = 8CXPW395VQ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "$(TARGET_NAME)/Info.plist";
@@ -336,7 +340,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "-0006.Garden-Of-Memory";
+				PRODUCT_BUNDLE_IDENTIFIER = au.uts.edu.gracesolibun.gardenofmemory;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "xros xrsimulator";
 				SWIFT_EMIT_LOC_STRINGS = YES;
