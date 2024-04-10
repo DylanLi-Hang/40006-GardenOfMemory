@@ -39,6 +39,11 @@ actor SpeechRecognizer: ObservableObject {
     private var silenceTimer: Timer?
     
     private let conversationManager = ConversationManager()
+    
+    private let openaiservice = OpenAIService()
+    
+//    // Create an instance of ResponseViewModel
+//    let responseViewModel = ResponseViewModel()
         
     /**
      Initializes a new speech recognizer. If this is the first time you've used the class, it
@@ -199,7 +204,8 @@ actor SpeechRecognizer: ObservableObject {
                             // CALL CHATGPT API
                             Task {
                                 do {
-                                    try await OpenAIService.shared.sendPromptToChatGPT(message: transcriptionText) { result in
+//                                    try await OpenAIService.shared.sendPromptToChatGPT(message: transcriptionText) { result in
+                                    try await self.openaiservice.sendPromptToChatGPT(message: transcriptionText) { result in
                                         switch result {
                                         case .success(let dataString):
                                             // Handle the received dataString, such as updating UI or further processing
