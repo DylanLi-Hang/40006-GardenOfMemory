@@ -194,12 +194,6 @@ struct WaterView: View {
                 }
             })
         )
-
-//        // Add "start conversation" button below the water-droplet avatar
-//        Button("Start Conversing") {
-//            speechRecognizer.startTranscribing()
-//        }
-//        .padding()
     }
 
     //WaterDrop firework particles
