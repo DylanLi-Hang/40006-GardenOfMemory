@@ -187,14 +187,14 @@ actor SpeechRecognizer: ObservableObject {
                             // Extract the text from the SFSpeechRecognitionResult
                             let transcriptionText = result.bestTranscription.formattedString
                             
-                            // CALL CHATGPT API
-                            Task {
-                                do {
-                                    try await OpenAIService.shared.sendPromptToChatGPT(message: transcriptionText)
-                                } catch {
-                                    print(error.localizedDescription)
-                                }
-                            }
+//                            // CALL CHATGPT API
+//                            Task {
+//                                do {
+//                                    try await OpenAIService.shared.sendPromptToChatGPT(message: transcriptionText)
+//                                } catch {
+//                                    print(error.localizedDescription)
+//                                }
+//                            }
                             
                         } else {
                             print("isFinal = false, will not be calling ChatGPT's API")
@@ -222,7 +222,7 @@ actor SpeechRecognizer: ObservableObject {
         
         // Simulate processing time
         DispatchQueue.global().asyncAfter(deadline: .now() + 3) { // waits another 3 seconds to make isFinal = true, in turn calling ChatGPT's API
-            completion(true) // Assume end of conversation after 3 seconds 
+            completion(true) // Assume end of conversation after 3 seconds
         }
     }
 
