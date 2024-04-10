@@ -132,14 +132,30 @@ struct WaterView: View {
     }()
 
     var body: some View {
-        RealityView { content in
+        RealityView { content, attachments in
             // Add the initial RealityKit content
             do {
                 let immersiveEntity = try await Entity(named: "Immersive", in: realityKitContentBundle)
                 characterEntity.addChild(immersiveEntity)
                 content.add(characterEntity)
+                
+                if let sceneAttachment = attachments.entity(for: "StartConversingButton") {
+                    immersiveEntity.addChild(sceneAttachment)
+                    sceneAttachment.position += SIMD3(0, 0.2, 0)
+                }
+                
             } catch {
                 print("Error in RealityView's make: \(error)")
+            }
+        } update: { content, _ in
+            // Update the RealityKit content when SwiftUI state changes
+        } attachments: {
+            Attachment(id: "StartConversingButton") {
+                Button("Start Conversing") {
+                    speechRecognizer.startTranscribing()
+                }
+                .padding()
+                .glassBackgroundEffect()
             }
         }
         .gesture(TapGesture()
