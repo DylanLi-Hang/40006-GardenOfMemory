@@ -119,6 +119,10 @@ struct WaterView: View {
 
     @StateObject var speechRecognizer = SpeechRecognizer()
     
+    @State private var receivedData: String = ""
+    
+    
+
     let timer = Timer.publish(every: 1.0, on: .main, in: .common).autoconnect()
     @State private var count:Int = 1
 
@@ -143,6 +147,12 @@ struct WaterView: View {
                     immersiveEntity.addChild(sceneAttachment1)
                     sceneAttachment1.position += SIMD3(0, 0.2, 0)
                 }
+                
+                if let sceneAttachment2 = attachments.entity(for: "DisplayResponse") {
+                    immersiveEntity.addChild(sceneAttachment2)
+                    sceneAttachment2.position += SIMD3(0, 0.5, 0)
+                }
+                
             } catch {
                 print("Error in RealityView's make: \(error)")
             }
@@ -156,6 +166,16 @@ struct WaterView: View {
                 }
                 .padding()
                 .glassBackgroundEffect()
+            }
+            
+            // Attachment 2
+            Attachment(id: "DisplayResponse") {
+                Text("Response:")
+                Text(receivedData)
+                    .onAppear {
+                        // Call your API and update receivedData on response
+                        fetchDataFromAPI()
+                    }
             }
         }
         .gesture(TapGesture()
@@ -213,6 +233,20 @@ struct WaterView: View {
         entity.transform = currentTransform
     }
     
+    // Fetch data from ChatGPT's response to display in frontend
+    func fetchDataFromAPI() {
+        OpenAIService.shared.fetchResponseFromChatGPT(dataString: "") { result in
+            switch result {
+            case .success(let dataString):
+                DispatchQueue.main.async {
+                    receivedData = dataString
+                }
+            case .failure(let error):
+                print("Error fetching data:", error.localizedDescription)
+            }
+        }
+    }
+
 }
 
 #Preview {
