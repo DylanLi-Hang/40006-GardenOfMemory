@@ -21,6 +21,7 @@
 		65E4F98F2BC6B66500CECC11 /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65E4F98E2BC6B66500CECC11 /* Secrets.swift */; };
 		65E4F9912BC6FC2300CECC11 /* ResponseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65E4F9902BC6FC2300CECC11 /* ResponseViewModel.swift */; };
 		65E4F9932BC72EAF00CECC11 /* GlobalVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65E4F9922BC72EAF00CECC11 /* GlobalVariables.swift */; };
+		FC6ED9A32BC792E1006B2363 /* CatImmersiveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC6ED9A22BC792E1006B2363 /* CatImmersiveView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		65E4F98E2BC6B66500CECC11 /* Secrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
 		65E4F9902BC6FC2300CECC11 /* ResponseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseViewModel.swift; sourceTree = "<group>"; };
 		65E4F9922BC72EAF00CECC11 /* GlobalVariables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalVariables.swift; sourceTree = "<group>"; };
+		FC6ED9A22BC792E1006B2363 /* CatImmersiveView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CatImmersiveView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +80,7 @@
 				3B99F0262BB43A4900322E0E /* ContentView.swift */,
 				3B99F0282BB43A4900322E0E /* ImmersiveView.swift */,
 				0D54D1582BC567B100B84E78 /* WaterView.swift */,
+				FC6ED9A22BC792E1006B2363 /* CatImmersiveView.swift */,
 				6593EF752BC6625E00CF644C /* SpeechRecognizer.swift */,
 				6593EF772BC663FE00CF644C /* ConversationManager.swift */,
 				65E4F98C2BC6B32E00CECC11 /* OpenAIService.swift */,
@@ -182,6 +185,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FC6ED9A32BC792E1006B2363 /* CatImmersiveView.swift in Sources */,
 				65E4F98D2BC6B32E00CECC11 /* OpenAIService.swift in Sources */,
 				65E4F98F2BC6B66500CECC11 /* Secrets.swift in Sources */,
 				6593EF762BC6625E00CF644C /* SpeechRecognizer.swift in Sources */,
@@ -325,7 +329,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Garden_Of_Memory/Preview Content\"";
-				DEVELOPMENT_TEAM = 8CXPW395VQ;
+				DEVELOPMENT_TEAM = DG38X7YP5S;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "$(TARGET_NAME)/Info.plist";
@@ -336,7 +340,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = au.uts.edu.gracesolibun.gardenofmemory;
+				PRODUCT_BUNDLE_IDENTIFIER = au.uts.edu.gardenofmemory;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "xros xrsimulator";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -353,7 +357,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Garden_Of_Memory/Preview Content\"";
-				DEVELOPMENT_TEAM = 8CXPW395VQ;
+				DEVELOPMENT_TEAM = DG38X7YP5S;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "$(TARGET_NAME)/Info.plist";
@@ -364,7 +368,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = au.uts.edu.gracesolibun.gardenofmemory;
+				PRODUCT_BUNDLE_IDENTIFIER = au.uts.edu.gardenofmemory;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "xros xrsimulator";
 				SWIFT_EMIT_LOC_STRINGS = YES;

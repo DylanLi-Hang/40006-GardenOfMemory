@@ -40,7 +40,7 @@
       [
         "AF09ED6F-1707-48FD-8720-65B998362C09",
         "Root",
-        "Sphere_Right"
+        "Sphere_Left"
       ],
       {
         "isExpanded" : true,
@@ -57,7 +57,28 @@
       [
         "AF09ED6F-1707-48FD-8720-65B998362C09",
         "Root",
-        "Sphere_Left"
+        "Sphere_Right"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      }
+    ]
+  },
+  "B3837902-5761-40F0-9643-75D7AFA14515" : {
+    "objectMetadataList" : [
+      [
+        "B3837902-5761-40F0-9643-75D7AFA14515",
+        "Root",
+        "Toon_Cat_FREE"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "B3837902-5761-40F0-9643-75D7AFA14515",
+        "Root"
       ],
       {
         "isExpanded" : true,

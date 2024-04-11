@@ -26,7 +26,7 @@ struct ContentView: View {
                 Button{
                     Task{
                         print("tapped")
-//                        await openImmersiveSpace(id: "")
+                        await openImmersiveSpace(id: "CatCat")
                     }
                 } label: {
                     Image("AvatarCat")
