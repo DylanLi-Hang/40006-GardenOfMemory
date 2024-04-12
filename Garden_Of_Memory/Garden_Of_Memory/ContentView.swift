@@ -14,18 +14,19 @@ struct ContentView: View {
     @Environment(\.openImmersiveSpace) var openImmersiveSpace
     @Environment(\.dismissImmersiveSpace) var dismissImmersiveSpace
     
+    @StateObject var speechRecognizer = SpeechRecognizer()
 
     var body: some View {
 
         VStack(alignment: .center, content: {
             Text("Welcome to the Garden of Memory.")
             Text("Choose your avatar.")
-
+    
             HStack(content: {
                 Button{
                     Task{
                         print("tapped")
-//                        await openImmersiveSpace(id: "")
+                        await openImmersiveSpace(id: "CatCat")
                     }
                 } label: {
                     Image("AvatarCat")

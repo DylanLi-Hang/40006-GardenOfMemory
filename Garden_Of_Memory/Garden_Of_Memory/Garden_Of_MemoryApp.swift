@@ -17,5 +17,10 @@ struct Garden_Of_MemoryApp: App {
         ImmersiveSpace(id: "WaterDrop") {
             WaterView()
         }
+        
+        ImmersiveSpace(id: "CatCat") {
+            CatImmersiveView()
+        }
+        
     }
 }

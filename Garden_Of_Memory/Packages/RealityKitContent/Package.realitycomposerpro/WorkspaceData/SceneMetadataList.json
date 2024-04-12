@@ -23,6 +23,27 @@
       }
     ]
   },
+  "638D3911-F403-4EA4-A913-761096C695F8" : {
+    "objectMetadataList" : [
+      [
+        "638D3911-F403-4EA4-A913-761096C695F8",
+        "Root"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "638D3911-F403-4EA4-A913-761096C695F8",
+        "Root",
+        "Terrarium_1"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      }
+    ]
+  },
   "66168B71-AB05-424E-8B6C-D33D6E61B08F" : {
     "objectMetadataList" : [
       [
@@ -40,7 +61,7 @@
       [
         "AF09ED6F-1707-48FD-8720-65B998362C09",
         "Root",
-        "Sphere_Right"
+        "Sphere_Left"
       ],
       {
         "isExpanded" : true,
@@ -57,7 +78,28 @@
       [
         "AF09ED6F-1707-48FD-8720-65B998362C09",
         "Root",
-        "Sphere_Left"
+        "Sphere_Right"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      }
+    ]
+  },
+  "B3837902-5761-40F0-9643-75D7AFA14515" : {
+    "objectMetadataList" : [
+      [
+        "B3837902-5761-40F0-9643-75D7AFA14515",
+        "Root",
+        "Toon_Cat_FREE"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "B3837902-5761-40F0-9643-75D7AFA14515",
+        "Root"
       ],
       {
         "isExpanded" : true,

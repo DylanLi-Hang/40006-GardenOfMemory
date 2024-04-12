@@ -15,6 +15,13 @@
 		3B99F02B2BB43A4900322E0E /* ImageBasedLighting.skybox in Resources */ = {isa = PBXBuildFile; fileRef = 3B99F02A2BB43A4900322E0E /* ImageBasedLighting.skybox */; };
 		3B99F02D2BB43A4B00322E0E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3B99F02C2BB43A4B00322E0E /* Assets.xcassets */; };
 		3B99F0302BB43A4B00322E0E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3B99F02F2BB43A4B00322E0E /* Preview Assets.xcassets */; };
+		6593EF762BC6625E00CF644C /* SpeechRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6593EF752BC6625E00CF644C /* SpeechRecognizer.swift */; };
+		6593EF782BC663FE00CF644C /* ConversationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6593EF772BC663FE00CF644C /* ConversationManager.swift */; };
+		65E4F98D2BC6B32E00CECC11 /* OpenAIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65E4F98C2BC6B32E00CECC11 /* OpenAIService.swift */; };
+		65E4F98F2BC6B66500CECC11 /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65E4F98E2BC6B66500CECC11 /* Secrets.swift */; };
+		65E4F9912BC6FC2300CECC11 /* ResponseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65E4F9902BC6FC2300CECC11 /* ResponseViewModel.swift */; };
+		65E4F9932BC72EAF00CECC11 /* GlobalVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65E4F9922BC72EAF00CECC11 /* GlobalVariables.swift */; };
+		FC6ED9A32BC792E1006B2363 /* CatImmersiveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC6ED9A22BC792E1006B2363 /* CatImmersiveView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +35,13 @@
 		3B99F02C2BB43A4B00322E0E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3B99F02F2BB43A4B00322E0E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		3B99F0312BB43A4B00322E0E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6593EF752BC6625E00CF644C /* SpeechRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechRecognizer.swift; sourceTree = "<group>"; };
+		6593EF772BC663FE00CF644C /* ConversationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationManager.swift; sourceTree = "<group>"; };
+		65E4F98C2BC6B32E00CECC11 /* OpenAIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenAIService.swift; sourceTree = "<group>"; };
+		65E4F98E2BC6B66500CECC11 /* Secrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
+		65E4F9902BC6FC2300CECC11 /* ResponseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseViewModel.swift; sourceTree = "<group>"; };
+		65E4F9922BC72EAF00CECC11 /* GlobalVariables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalVariables.swift; sourceTree = "<group>"; };
+		FC6ED9A22BC792E1006B2363 /* CatImmersiveView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CatImmersiveView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +80,13 @@
 				3B99F0262BB43A4900322E0E /* ContentView.swift */,
 				3B99F0282BB43A4900322E0E /* ImmersiveView.swift */,
 				0D54D1582BC567B100B84E78 /* WaterView.swift */,
+				FC6ED9A22BC792E1006B2363 /* CatImmersiveView.swift */,
+				6593EF752BC6625E00CF644C /* SpeechRecognizer.swift */,
+				6593EF772BC663FE00CF644C /* ConversationManager.swift */,
+				65E4F98C2BC6B32E00CECC11 /* OpenAIService.swift */,
+				65E4F98E2BC6B66500CECC11 /* Secrets.swift */,
+				65E4F9902BC6FC2300CECC11 /* ResponseViewModel.swift */,
+				65E4F9922BC72EAF00CECC11 /* GlobalVariables.swift */,
 				3B99F02A2BB43A4900322E0E /* ImageBasedLighting.skybox */,
 				3B99F02C2BB43A4B00322E0E /* Assets.xcassets */,
 				3B99F0312BB43A4B00322E0E /* Info.plist */,
@@ -164,9 +185,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FC6ED9A32BC792E1006B2363 /* CatImmersiveView.swift in Sources */,
+				65E4F98D2BC6B32E00CECC11 /* OpenAIService.swift in Sources */,
+				65E4F98F2BC6B66500CECC11 /* Secrets.swift in Sources */,
+				6593EF762BC6625E00CF644C /* SpeechRecognizer.swift in Sources */,
+				65E4F9912BC6FC2300CECC11 /* ResponseViewModel.swift in Sources */,
+				65E4F9932BC72EAF00CECC11 /* GlobalVariables.swift in Sources */,
 				0D54D1592BC567B100B84E78 /* WaterView.swift in Sources */,
 				3B99F0272BB43A4900322E0E /* ContentView.swift in Sources */,
 				3B99F0252BB43A4900322E0E /* Garden_Of_MemoryApp.swift in Sources */,
+				6593EF782BC663FE00CF644C /* ConversationManager.swift in Sources */,
 				3B99F0292BB43A4900322E0E /* ImmersiveView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -301,16 +329,18 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Garden_Of_Memory/Preview Content\"";
-				DEVELOPMENT_TEAM = 268K47U323;
+				DEVELOPMENT_TEAM = 4GACPD5P2V;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "$(TARGET_NAME)/Info.plist";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "We need access to the microphone to enable speech recognition.";
+				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "So we can process your conversation in real-time.";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "-0006.Garden-Of-Memory";
+				PRODUCT_BUNDLE_IDENTIFIER = "-";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "xros xrsimulator";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -327,16 +357,18 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Garden_Of_Memory/Preview Content\"";
-				DEVELOPMENT_TEAM = 268K47U323;
+				DEVELOPMENT_TEAM = 4GACPD5P2V;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "$(TARGET_NAME)/Info.plist";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "We need access to the microphone to enable speech recognition.";
+				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "So we can process your conversation in real-time.";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "-0006.Garden-Of-Memory";
+				PRODUCT_BUNDLE_IDENTIFIER = "-";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "xros xrsimulator";
 				SWIFT_EMIT_LOC_STRINGS = YES;
