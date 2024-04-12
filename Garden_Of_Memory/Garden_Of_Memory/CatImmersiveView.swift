@@ -25,11 +25,10 @@ struct CatImmersiveView: View {
     
     @State var floorEntity: Entity = {
         let floorAnchor = AnchorEntity(.plane(.horizontal, classification: .table, minimumBounds: SIMD2<Float>(0.3, 0.3)))
-        let planeMesh = MeshResource.generatePlane(width: 0.5, depth: 0.5, cornerRadius: 0.1)
-        let planeEntity = ModelEntity(mesh: planeMesh, materials: [SimpleMaterial()])
-        let planeEntity = ModelEntity(mesh: planeMesh)
-        planeEntity.name = "table"
-        floorAnchor.addChild(planeEntity)
+//        let planeMesh = MeshResource.generatePlane(width: 0.5, depth: 0.5, cornerRadius: 0.1)
+//        let planeEntity = ModelEntity(mesh: planeMesh, materials: [SimpleMaterial()])
+//        planeEntity.name = "table"
+//        floorAnchor.addChild(planeEntity)
         return floorAnchor
     }()
     
@@ -53,7 +52,7 @@ struct CatImmersiveView: View {
                 floorEntity.addChild(scene)
                 content.add(planeEntity)
                 content.add(floorEntity)
-                content.add(groundEntity)
+//                content.add(groundEntity)
 //                content.add(scene)
                 
                 setupCat(rootEntity: scene)

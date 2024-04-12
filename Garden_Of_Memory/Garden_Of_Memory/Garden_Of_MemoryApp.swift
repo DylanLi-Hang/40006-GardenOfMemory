@@ -22,6 +22,5 @@ struct Garden_Of_MemoryApp: App {
             CatImmersiveView()
         }
         
-        
     }
 }
