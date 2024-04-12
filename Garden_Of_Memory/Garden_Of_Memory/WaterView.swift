@@ -18,21 +18,28 @@ struct WaterView: View {
     @State private var count:Int = 1
 
     @State private var waterDrop: Entity? = nil
-    @State var characterEntity: Entity = {
-        let headAnchor = AnchorEntity(.head)
-        headAnchor.position = [0.70, -0.35, -1]
-        let radians = -30 * Float.pi / 180
-        WaterView.rotateEntityAroundYAxis(entity: headAnchor, angle: radians)
-        return headAnchor
-    }()
+//    @State var characterEntity: Entity = {
+//        let headAnchor = AnchorEntity(.head)
+//        headAnchor.position = [0.70, -0.35, -1]
+//        let radians = -30 * Float.pi / 180
+//        WaterView.rotateEntityAroundYAxis(entity: headAnchor, angle: radians)
+//        return headAnchor
+//    }()
+    
+    
+    //var fred: Entity?
     
     var body: some View {
         RealityView { content in
             // Add the initial RealityKit content
             do {
                 let immersiveEntity = try await Entity(named: "Immersive", in: realityKitContentBundle)
-                characterEntity.addChild(immersiveEntity)
-                content.add(characterEntity)
+//                characterEntity.addChild(immersiveEntity)
+//                fred = immersiveEntity.children.first(where: { each in
+//                    each.name == "FFF"
+//                })
+                
+                content.add(immersiveEntity)
             } catch {
                 print("Error in RealityView's make: \(error)")
             }
@@ -46,11 +53,12 @@ struct WaterView: View {
                     value.entity.components.remove(ParticleEmitterComponent.self)
                     value.entity.components[ParticleEmitterComponent.self] = pSystem()
                     var transform = value.entity.transform
-                    transform.translation += SIMD3(0.70, -0.15, -1)
-                    let radians = -30 * Float.pi / 180
-                    transform.rotation = simd_quatf(angle: radians, axis: SIMD3<Float>(0,1,0))
+                    transform.translation += SIMD3(0, 0.2, 0)
+//                    transform.translation = SIMD3(0.1, 0, 0)
+//                    let radians = -30 * Float.pi / 180
+//                    transform.rotation = simd_quatf(angle: radians, axis: SIMD3<Float>(0,1,0))
                     value.entity.move(to: transform, relativeTo: nil, duration: 1, timingFunction: .easeInOut)
-                    if(transform.translation.y > 0.3){
+                    if(transform.translation.y > 1.51){
                         upAnimation = true
                         downAnimation = false
                     }
@@ -61,11 +69,12 @@ struct WaterView: View {
                     value.entity.components.remove(ParticleEmitterComponent.self)
                     value.entity.components[ParticleEmitterComponent.self] = pSystem()
                     var transform = value.entity.transform
-                    transform.translation += SIMD3(0.70, -0.55, -1)
-                    let radians = -30 * Float.pi / 180
-                    transform.rotation = simd_quatf(angle: radians, axis: SIMD3<Float>(0,1,0))
+                    transform.translation += SIMD3(0, -0.2, 0)
+//                    transform.translation = SIMD3(-0.1, 0, 0)
+//                    let radians = -30 * Float.pi / 180
+//                    transform.rotation = simd_quatf(angle: radians, axis: SIMD3<Float>(0,1,0))
                     value.entity.move(to: transform, relativeTo: nil, duration: 1, timingFunction: .easeInOut)
-                    if(transform.translation.y < -0.3){
+                    if(transform.translation.y < 1.49){
                         upAnimation = false
                         downAnimation = true
                     }
@@ -83,13 +92,13 @@ struct WaterView: View {
         return particles
     }
 
-    //Avatar looking at user
-    static func rotateEntityAroundYAxis(entity: Entity, angle: Float){
-        var currentTransform = entity.transform
-        let rotation = simd_quatf(angle: angle, axis: [0, 1, 0])
-        currentTransform.rotation = rotation * currentTransform.rotation
-        entity.transform = currentTransform
-        }
+//    //Avatar looking at user
+//    static func rotateEntityAroundYAxis(entity: Entity, angle: Float){
+//        var currentTransform = entity.transform
+//        let rotation = simd_quatf(angle: angle, axis: [0, 1, 0])
+//        currentTransform.rotation = rotation * currentTransform.rotation
+//        entity.transform = currentTransform
+//        }
 }
 
 #Preview {

@@ -10,6 +10,8 @@ import SwiftUI
 @main
 struct Garden_Of_MemoryApp: App {
     var body: some Scene {
+        @State var immersionMode: ImmersionStyle = .progressive
+        
         WindowGroup {
             ContentView()
         }.windowStyle(.plain)
@@ -17,5 +19,10 @@ struct Garden_Of_MemoryApp: App {
         ImmersiveSpace(id: "WaterDrop") {
             WaterView()
         }
+        
+        ImmersiveSpace(id: "FullTerrarium"){
+            ImmersiveTerrariumView()
+        }
+        .immersionStyle(selection: $immersionMode, in: .progressive)
     }
 }
