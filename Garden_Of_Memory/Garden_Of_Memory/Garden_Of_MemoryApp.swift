@@ -21,7 +21,6 @@ struct Garden_Of_MemoryApp: App {
         
         ImmersiveSpace(id: "WaterDrop") {
             WaterView()
-//            ContentView()
         }
         
         ImmersiveSpace(id: "FullTerrarium"){
