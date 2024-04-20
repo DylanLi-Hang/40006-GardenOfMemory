@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftData
 
 @main
 struct Garden_Of_MemoryApp: App {
@@ -14,10 +15,13 @@ struct Garden_Of_MemoryApp: App {
         
         WindowGroup {
             ContentView()
+//            DisplayConversationView()
+//                 .modelContainer(for: ChatEntry.self)
         }.windowStyle(.plain)
         
         ImmersiveSpace(id: "WaterDrop") {
             WaterView()
+//            ContentView()
         }
         
         ImmersiveSpace(id: "FullTerrarium"){
