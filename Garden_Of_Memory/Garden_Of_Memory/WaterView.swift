@@ -558,32 +558,28 @@ struct WaterView: View {
     @State private var count:Int = 1
 
     @State private var waterDrop: Entity? = nil
-    @State var characterEntity: Entity = {
-        let headAnchor = AnchorEntity(.head)
-        headAnchor.position = [0.70, -0.35, -1]
-        let radians = -30 * Float.pi / 180
-        WaterView.rotateEntityAroundYAxis(entity: headAnchor, angle: radians)
-        return headAnchor
-    }()
-
+//    @State var characterEntity: Entity = {
+//        let headAnchor = AnchorEntity(.head)
+//        headAnchor.position = [0.70, -0.35, -1]
+//        let radians = -30 * Float.pi / 180
+//        WaterView.rotateEntityAroundYAxis(entity: headAnchor, angle: radians)
+//        return headAnchor
+//    }()
+    
+    
+    //var fred: Entity?
+    
     var body: some View {
         RealityView { content, attachments in
             // Add the initial RealityKit content
             do {
                 let immersiveEntity = try await Entity(named: "Immersive", in: realityKitContentBundle)
-                characterEntity.addChild(immersiveEntity)
-                content.add(characterEntity)
+//                characterEntity.addChild(immersiveEntity)
+//                fred = immersiveEntity.children.first(where: { each in
+//                    each.name == "FFF"
+//                })
                 
-                if let sceneAttachment1 = attachments.entity(for: "StartConversingButton") {
-                    immersiveEntity.addChild(sceneAttachment1)
-                    sceneAttachment1.position += SIMD3(0, 0.2, 0)
-                }
-                
-                if let sceneAttachment2 = attachments.entity(for: "DisplayResponse") {
-                    immersiveEntity.addChild(sceneAttachment2)
-                    sceneAttachment2.position += SIMD3(0, 0.5, 0)
-                }
-                
+                content.add(immersiveEntity)
             } catch {
                 print("Error in RealityView's make: \(error)")
             }
@@ -654,11 +650,12 @@ struct WaterView: View {
                     value.entity.components.remove(ParticleEmitterComponent.self)
                     value.entity.components[ParticleEmitterComponent.self] = pSystem()
                     var transform = value.entity.transform
-                    transform.translation += SIMD3(0.70, -0.15, -1)
-                    let radians = -30 * Float.pi / 180
-                    transform.rotation = simd_quatf(angle: radians, axis: SIMD3<Float>(0,1,0))
+                    transform.translation += SIMD3(0, 0.2, 0)
+//                    transform.translation = SIMD3(0.1, 0, 0)
+//                    let radians = -30 * Float.pi / 180
+//                    transform.rotation = simd_quatf(angle: radians, axis: SIMD3<Float>(0,1,0))
                     value.entity.move(to: transform, relativeTo: nil, duration: 1, timingFunction: .easeInOut)
-                    if(transform.translation.y > 0.3){
+                    if(transform.translation.y > 1.51){
                         upAnimation = true
                         downAnimation = false
                     }
@@ -669,11 +666,12 @@ struct WaterView: View {
                     value.entity.components.remove(ParticleEmitterComponent.self)
                     value.entity.components[ParticleEmitterComponent.self] = pSystem()
                     var transform = value.entity.transform
-                    transform.translation += SIMD3(0.70, -0.55, -1)
-                    let radians = -30 * Float.pi / 180
-                    transform.rotation = simd_quatf(angle: radians, axis: SIMD3<Float>(0,1,0))
+                    transform.translation += SIMD3(0, -0.2, 0)
+//                    transform.translation = SIMD3(-0.1, 0, 0)
+//                    let radians = -30 * Float.pi / 180
+//                    transform.rotation = simd_quatf(angle: radians, axis: SIMD3<Float>(0,1,0))
                     value.entity.move(to: transform, relativeTo: nil, duration: 1, timingFunction: .easeInOut)
-                    if(transform.translation.y < -0.3){
+                    if(transform.translation.y < 1.49){
                         upAnimation = false
                         downAnimation = true
                     }
@@ -692,166 +690,13 @@ struct WaterView: View {
         return particles
     }
 
-    //Avatar looking at user
-    static func rotateEntityAroundYAxis(entity: Entity, angle: Float){
-        var currentTransform = entity.transform
-        let rotation = simd_quatf(angle: angle, axis: [0, 1, 0])
-        currentTransform.rotation = rotation * currentTransform.rotation
-        entity.transform = currentTransform
-    }
-    
-    
-    
-    
-    
-//    // Fetch data from ChatGPT's response to display in frontend
-//    func fetchDataFromAPI() {
-//        print("Fetching data from ChatGPT API IN FRONTEND...")
-//        OpenAIService.shared.fetchResponseFromChatGPT(dataString: "") { result in
-//            switch result {
-//            case .success(let dataString):
-//                print("!! (FRONTEND) Data fetched successfully. !!")
-//                print("!! (FRONTEND) dataString: !!", dataString)
-//                
-//                globalVariable.append(dataString)
-//                print("!! (FRONTEND) globalVariable: !!", globalVariable)
-//                
-////                DispatchQueue.main.async {
-////                    globalVariable.append(dataString)
-////                    print("!! (FRONTEND) globalVariable: !!", globalVariable)
-////                }
-//            case .failure(let error):
-//                print("Error fetching data:", error.localizedDescription)
-//            }
+//    //Avatar looking at user
+//    static func rotateEntityAroundYAxis(entity: Entity, angle: Float){
+//        var currentTransform = entity.transform
+//        let rotation = simd_quatf(angle: angle, axis: [0, 1, 0])
+//        currentTransform.rotation = rotation * currentTransform.rotation
+//        entity.transform = currentTransform
 //        }
-//    }
-    
-    
-    
-    
-    
-//    // Fetch data from ChatGPT's response to display in frontend
-//    func fetchDataFromAPI(dataString: String, completion: @escaping (Result<String, Error>) -> Void) {
-//        print("Fetching data from ChatGPT API IN FRONTEND...")
-//        
-//        OpenAIService.shared.fetchResponseFromChatGPT(dataString: dataString) { result in
-//            switch result {
-//            case .success(let dataString):
-//                // Data fetched successfully, pass it to the completion handler
-//                completion(.success(dataString))
-//                
-//                print("!! (FRONTEND) Data fetched successfully. !!")
-//                print("!! (FRONTEND) dataString: !!", dataString)
-//                
-//                globalVariable.append(dataString)
-//                print("!! (FRONTEND) globalVariable: !!", globalVariable)
-//            case .failure(let error):
-//                // Error occurred while fetching data, pass the error to the completion handler
-//                completion(.failure(error))
-//            }
-//        }
-//    }
-    
-    
-    
-    
-    
-//    // Fetch data from ChatGPT's response to display in frontend
-//    func fetchDataFromAPI() {
-//        print("Fetching data from ChatGPT API IN FRONTEND...")
-//        
-//        let dataString = OpenAIService.shared.fetchResponseFromChatGPT
-//        print("!! (FRONTEND) Data fetched successfully. !!")
-//        print("!! (FRONTEND) dataString: !!", dataString)
-//        
-//        let globalVariable = dataString
-//        print("!! (FRONTEND) globalVariable: !!", globalVariable)
-//                
-////        OpenAIService.shared.fetchResponseFromChatGPT(dataString: dataString) { result in
-////            switch result {
-////            case .success(let dataString):
-////                // Data fetched successfully, pass it to the completion handler
-////                completion(.success(dataString))
-////                
-////                print("!! (FRONTEND) Data fetched successfully. !!")
-////                print("!! (FRONTEND) dataString: !!", dataString)
-////                
-////                globalVariable.append(dataString)
-////                print("!! (FRONTEND) globalVariable: !!", globalVariable)
-////            case .failure(let error):
-////                // Error occurred while fetching data, pass the error to the completion handler
-////                completion(.failure(error))
-////            }
-////        }
-//    }
-    
-    
-    
-    
-    
-//    // Function to fetch data from API
-//    func fetchDataFromAPI() {
-//        print("Fetching data from ChatGPT API IN FRONTEND...")
-//        
-//        // Call the backend function
-//        OpenAIService.shared.fetchResponseFromChatGPT { result in
-//            switch result {
-//            case .success(let dataString):
-//                print("!! (FRONTEND) Data fetched successfully. !!")
-//                print("!! (FRONTEND) dataString: !!", dataString)
-//                // Assign fetched data to globalVariable or use it as needed
-//                globalVariable = dataString
-//                print("!! (FRONTEND) globalVariable: !!", globalVariable)
-//            case .failure(let error):
-//                // Handle error
-//                print("Error fetching data: \(error)")
-//            }
-//        }
-//    }
-    
-    
-    
-//    // Function to fetch data from API
-//    func fetchDataFromAPI() {
-//        print("Fetching data from ChatGPT API IN FRONTEND...")
-//        
-////        self.openaiservice.fetchResponseFromChatGPT
-//        
-////        print("!!! (FRONTEND) globalVariable: !!!", globalVariable)
-//        
-//        // Call the backend function
-//        let globalVariable = openaiservice.fetchResponseFromChatGPT
-//        
-//        print("!!! (FRONTEND) globalVariable: !!!", globalVariable)
-////        {
-////            print("!!! (FRONTEND) globalVariable: !!!", globalVariable)
-////        }
-//    }
-    
-    
-    
-//    // Function to fetch data from API
-//    func fetchDataFromAPI() {
-//        print("Fetching data from ChatGPT API IN FRONTEND...")
-//        
-//        // Call the backend function
-//        let globalVariable = openaiservice.fetchResponseFromChatGPT()
-//        
-//        print("!!! (FRONTEND) globalVariable: !!!", globalVariable)
-//    }
-
-
-    
-    
-            
-//    // Function to access savedContent and append it to globalVariable
-//    func appendToGlobal() {
-//        let savedContent = responseViewModel.savedContent
-//        print("DEBUG!! responseViewModel.savedContent: ", savedContent)
-//        globalVariable += savedContent + "\n" // Append savedContent to globalVariable with a newline
-//        print("Global Variable:", globalVariable)
-//    }
-
 }
 
 #Preview {
