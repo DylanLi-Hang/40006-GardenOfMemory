@@ -1,7 +1,8 @@
 {
   "advancedEditorSelectedIdentifier" : "ProjectBrowser",
   "openSceneRelativePaths" : [
-    "Immersive.usda"
+    "Immersive.usda",
+    "WaterAnimation.usda"
   ],
   "recentIdentifiers" : {
     "AF09ED6F-1707-48FD-8720-65B998362C09" : [
@@ -9,6 +10,30 @@
     ]
   },
   "sceneCameraHistory" : {
+    "549D2E12-3E81-48FB-8E20-AFE009576E99" : [
+      {
+        "date" : 735312738.066666,
+        "title" : "Untitled",
+        "transform" : [
+          1,
+          0,
+          -0,
+          0,
+          -0,
+          0.8660249,
+          -0.5000008,
+          0,
+          0,
+          0.5000008,
+          0.8660249,
+          0,
+          0,
+          2.8725023,
+          3.1686723,
+          1
+        ]
+      }
+    ],
     "AF09ED6F-1707-48FD-8720-65B998362C09" : [
       {
         "date" : 734592251.098538,
@@ -231,5 +256,6 @@
         ]
       }
     ]
-  }
+  },
+  "selectedSceneRelativePath" : "WaterAnimation.usda"
 }
