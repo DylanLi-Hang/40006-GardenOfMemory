@@ -1,10 +1,3 @@
-//
-//  ContentView.swift
-//  Garden_Of_Memory
-//
-//  Created by Denni O on 3/27/24.
-//
-
 import SwiftUI
 import RealityKit
 import RealityKitContent

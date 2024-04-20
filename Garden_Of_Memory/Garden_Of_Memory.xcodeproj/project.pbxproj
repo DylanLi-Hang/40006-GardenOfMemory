@@ -27,6 +27,17 @@
 		FC33B0C32BBB90A8002D4DF8 /* TestInsertDummyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC33B0C22BBB90A8002D4DF8 /* TestInsertDummyView.swift */; };
 		FC33B0C52BBB9863002D4DF8 /* PreviewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC33B0C42BBB9863002D4DF8 /* PreviewContainer.swift */; };
 		FC6ED9A32BC792E1006B2363 /* CatImmersiveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC6ED9A22BC792E1006B2363 /* CatImmersiveView.swift */; };
+		FCDBE2202BD3B2C800E00301 /* SwiftSpeechCombine in Frameworks */ = {isa = PBXBuildFile; productRef = FCDBE21F2BD3B2C800E00301 /* SwiftSpeechCombine */; };
+		FCDBE2222BD3B2C800E00301 /* SwiftSpeechRecognizer in Frameworks */ = {isa = PBXBuildFile; productRef = FCDBE2212BD3B2C800E00301 /* SwiftSpeechRecognizer */; };
+		FCDBE2242BD3B2C800E00301 /* SwiftSpeechRecognizerDependency in Frameworks */ = {isa = PBXBuildFile; productRef = FCDBE2232BD3B2C800E00301 /* SwiftSpeechRecognizerDependency */; };
+		FCDBE2272BD3B2D400E00301 /* OpenAIKit in Frameworks */ = {isa = PBXBuildFile; productRef = FCDBE2262BD3B2D400E00301 /* OpenAIKit */; };
+		FCDBE2292BD3B30600E00301 /* SimpleSpeechRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCDBE2282BD3B30600E00301 /* SimpleSpeechRecognizer.swift */; };
+		FCDBE22B2BD3B35A00E00301 /* SpeechRecognizerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCDBE22A2BD3B35A00E00301 /* SpeechRecognizerViewModel.swift */; };
+		FCDBE22D2BD3B38000E00301 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCDBE22C2BD3B38000E00301 /* ViewModel.swift */; };
+		FCDBE2322BD3B39300E00301 /* APIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCDBE22E2BD3B39300E00301 /* APIKey.swift */; };
+		FCDBE2332BD3B39300E00301 /* GenerativeAI-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FCDBE22F2BD3B39300E00301 /* GenerativeAI-Info.plist */; };
+		FCDBE2342BD3B39300E00301 /* OpenAI-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FCDBE2302BD3B39300E00301 /* OpenAI-Info.plist */; };
+		FCDBE2372BD3B4DF00E00301 /* GoogleGenerativeAI in Frameworks */ = {isa = PBXBuildFile; productRef = FCDBE2362BD3B4DF00E00301 /* GoogleGenerativeAI */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +63,12 @@
 		FC33B0C22BBB90A8002D4DF8 /* TestInsertDummyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestInsertDummyView.swift; sourceTree = "<group>"; };
 		FC33B0C42BBB9863002D4DF8 /* PreviewContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewContainer.swift; sourceTree = "<group>"; };
 		FC6ED9A22BC792E1006B2363 /* CatImmersiveView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CatImmersiveView.swift; sourceTree = "<group>"; };
+		FCDBE2282BD3B30600E00301 /* SimpleSpeechRecognizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleSpeechRecognizer.swift; sourceTree = "<group>"; };
+		FCDBE22A2BD3B35A00E00301 /* SpeechRecognizerViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpeechRecognizerViewModel.swift; sourceTree = "<group>"; };
+		FCDBE22C2BD3B38000E00301 /* ViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
+		FCDBE22E2BD3B39300E00301 /* APIKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIKey.swift; sourceTree = "<group>"; };
+		FCDBE22F2BD3B39300E00301 /* GenerativeAI-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GenerativeAI-Info.plist"; sourceTree = "<group>"; };
+		FCDBE2302BD3B39300E00301 /* OpenAI-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "OpenAI-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,7 +76,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FCDBE2202BD3B2C800E00301 /* SwiftSpeechCombine in Frameworks */,
 				3B99F0232BB43A4900322E0E /* RealityKitContent in Frameworks */,
+				FCDBE2272BD3B2D400E00301 /* OpenAIKit in Frameworks */,
+				FCDBE2372BD3B4DF00E00301 /* GoogleGenerativeAI in Frameworks */,
+				FCDBE2222BD3B2C800E00301 /* SwiftSpeechRecognizer in Frameworks */,
+				FCDBE2242BD3B2C800E00301 /* SwiftSpeechRecognizerDependency in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -94,6 +116,7 @@
 				FCDBE21B2BD3B18500E00301 /* ServiceModel */,
 				3B99F02A2BB43A4900322E0E /* ImageBasedLighting.skybox */,
 				3B99F02C2BB43A4B00322E0E /* Assets.xcassets */,
+				FCDBE2312BD3B39300E00301 /* Keys */,
 				3B99F0312BB43A4B00322E0E /* Info.plist */,
 				3B99F02E2BB43A4B00322E0E /* Preview Content */,
 			);
@@ -119,6 +142,7 @@
 		FC33B0B92BBB89F1002D4DF8 /* DataModel */ = {
 			isa = PBXGroup;
 			children = (
+				FCDBE22C2BD3B38000E00301 /* ViewModel.swift */,
 				FC33B0B72BBB8977002D4DF8 /* Avatar.swift */,
 				FC33B0BC2BBB8B66002D4DF8 /* ChatEntry.swift */,
 				FC33B0C42BBB9863002D4DF8 /* PreviewContainer.swift */,
@@ -149,6 +173,8 @@
 		FCDBE21B2BD3B18500E00301 /* ServiceModel */ = {
 			isa = PBXGroup;
 			children = (
+				FCDBE22A2BD3B35A00E00301 /* SpeechRecognizerViewModel.swift */,
+				FCDBE2282BD3B30600E00301 /* SimpleSpeechRecognizer.swift */,
 				65E4F9922BC72EAF00CECC11 /* GlobalVariables.swift */,
 				6593EF752BC6625E00CF644C /* SpeechRecognizer.swift */,
 				6593EF772BC663FE00CF644C /* ConversationManager.swift */,
@@ -156,6 +182,16 @@
 				65E4F98E2BC6B66500CECC11 /* Secrets.swift */,
 			);
 			path = ServiceModel;
+			sourceTree = "<group>";
+		};
+		FCDBE2312BD3B39300E00301 /* Keys */ = {
+			isa = PBXGroup;
+			children = (
+				FCDBE22E2BD3B39300E00301 /* APIKey.swift */,
+				FCDBE22F2BD3B39300E00301 /* GenerativeAI-Info.plist */,
+				FCDBE2302BD3B39300E00301 /* OpenAI-Info.plist */,
+			);
+			path = Keys;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -176,6 +212,11 @@
 			name = Garden_Of_Memory;
 			packageProductDependencies = (
 				3B99F0222BB43A4900322E0E /* RealityKitContent */,
+				FCDBE21F2BD3B2C800E00301 /* SwiftSpeechCombine */,
+				FCDBE2212BD3B2C800E00301 /* SwiftSpeechRecognizer */,
+				FCDBE2232BD3B2C800E00301 /* SwiftSpeechRecognizerDependency */,
+				FCDBE2262BD3B2D400E00301 /* OpenAIKit */,
+				FCDBE2362BD3B4DF00E00301 /* GoogleGenerativeAI */,
 			);
 			productName = Garden_Of_Memory;
 			productReference = 3B99F01D2BB43A4900322E0E /* Garden_Of_Memory.app */;
@@ -205,6 +246,11 @@
 				Base,
 			);
 			mainGroup = 3B99F0142BB43A4900322E0E;
+			packageReferences = (
+				FCDBE21E2BD3B2C800E00301 /* XCRemoteSwiftPackageReference "swift-speech-recognizer" */,
+				FCDBE2252BD3B2D400E00301 /* XCRemoteSwiftPackageReference "OpenAIKit" */,
+				FCDBE2352BD3B4DF00E00301 /* XCRemoteSwiftPackageReference "generative-ai-swift" */,
+			);
 			productRefGroup = 3B99F01E2BB43A4900322E0E /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -221,7 +267,9 @@
 			files = (
 				3B99F02D2BB43A4B00322E0E /* Assets.xcassets in Resources */,
 				3B99F0302BB43A4B00322E0E /* Preview Assets.xcassets in Resources */,
+				FCDBE2332BD3B39300E00301 /* GenerativeAI-Info.plist in Resources */,
 				3B99F02B2BB43A4900322E0E /* ImageBasedLighting.skybox in Resources */,
+				FCDBE2342BD3B39300E00301 /* OpenAI-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -234,15 +282,19 @@
 			files = (
 				FC33B0BD2BBB8B66002D4DF8 /* ChatEntry.swift in Sources */,
 				FC33B0BF2BBB8F47002D4DF8 /* DisplayConversationView.swift in Sources */,
+				FCDBE22B2BD3B35A00E00301 /* SpeechRecognizerViewModel.swift in Sources */,
 				FC6ED9A32BC792E1006B2363 /* CatImmersiveView.swift in Sources */,
 				65E4F98D2BC6B32E00CECC11 /* OpenAIService.swift in Sources */,
+				FCDBE2292BD3B30600E00301 /* SimpleSpeechRecognizer.swift in Sources */,
 				65E4F98F2BC6B66500CECC11 /* Secrets.swift in Sources */,
 				6593EF762BC6625E00CF644C /* SpeechRecognizer.swift in Sources */,
 				65E4F9932BC72EAF00CECC11 /* GlobalVariables.swift in Sources */,
 				0D54D1592BC567B100B84E78 /* WaterView.swift in Sources */,
 				3B99F0272BB43A4900322E0E /* ContentView.swift in Sources */,
+				FCDBE22D2BD3B38000E00301 /* ViewModel.swift in Sources */,
 				FC33B0C32BBB90A8002D4DF8 /* TestInsertDummyView.swift in Sources */,
 				FC33B0C52BBB9863002D4DF8 /* PreviewContainer.swift in Sources */,
+				FCDBE2322BD3B39300E00301 /* APIKey.swift in Sources */,
 				FC33B0C12BBB8FBC002D4DF8 /* TestView.swift in Sources */,
 				0D20A0292BC6CA9D00899274 /* ImmersiveTerrariumView.swift in Sources */,
 				3B99F0252BB43A4900322E0E /* Garden_Of_MemoryApp.swift in Sources */,
@@ -452,10 +504,62 @@
 		};
 /* End XCConfigurationList section */
 
+/* Begin XCRemoteSwiftPackageReference section */
+		FCDBE21E2BD3B2C800E00301 /* XCRemoteSwiftPackageReference "swift-speech-recognizer" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/renaudjenny/swift-speech-recognizer";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+		FCDBE2252BD3B2D400E00301 /* XCRemoteSwiftPackageReference "OpenAIKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/OpenDive/OpenAIKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.1;
+			};
+		};
+		FCDBE2352BD3B4DF00E00301 /* XCRemoteSwiftPackageReference "generative-ai-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/google/generative-ai-swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.4.11;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
 /* Begin XCSwiftPackageProductDependency section */
 		3B99F0222BB43A4900322E0E /* RealityKitContent */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = RealityKitContent;
+		};
+		FCDBE21F2BD3B2C800E00301 /* SwiftSpeechCombine */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FCDBE21E2BD3B2C800E00301 /* XCRemoteSwiftPackageReference "swift-speech-recognizer" */;
+			productName = SwiftSpeechCombine;
+		};
+		FCDBE2212BD3B2C800E00301 /* SwiftSpeechRecognizer */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FCDBE21E2BD3B2C800E00301 /* XCRemoteSwiftPackageReference "swift-speech-recognizer" */;
+			productName = SwiftSpeechRecognizer;
+		};
+		FCDBE2232BD3B2C800E00301 /* SwiftSpeechRecognizerDependency */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FCDBE21E2BD3B2C800E00301 /* XCRemoteSwiftPackageReference "swift-speech-recognizer" */;
+			productName = SwiftSpeechRecognizerDependency;
+		};
+		FCDBE2262BD3B2D400E00301 /* OpenAIKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FCDBE2252BD3B2D400E00301 /* XCRemoteSwiftPackageReference "OpenAIKit" */;
+			productName = OpenAIKit;
+		};
+		FCDBE2362BD3B4DF00E00301 /* GoogleGenerativeAI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FCDBE2352BD3B4DF00E00301 /* XCRemoteSwiftPackageReference "generative-ai-swift" */;
+			productName = GoogleGenerativeAI;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

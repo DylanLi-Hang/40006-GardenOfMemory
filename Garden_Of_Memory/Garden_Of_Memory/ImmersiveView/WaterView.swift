@@ -14,14 +14,9 @@ struct WaterView: View {
     @State public var downAnimation = true
     @State var particles = ParticleEmitterComponent()
 
-    @StateObject var speechRecognizer = SpeechRecognizer()
-    
-    @State private var receivedData: String = ""
-    
-    @State var globalVariable: String = ""
-    private let openaiservice = OpenAIService()
-    
-    let timer = Timer.publish(every: 10.0, on: .main, in: .common).autoconnect()
+    let viewModel = ViewModel.shared
+    @ObservedObject var speechViewModel: SpeechRecognitionViewModel = SpeechRecognitionViewModel()
+
     @State private var count:Int = 1
 
     @State private var waterDrop: Entity? = nil
@@ -31,6 +26,20 @@ struct WaterView: View {
                 let immersiveEntity = try await Entity(named: "Immersive", in: realityKitContentBundle)
                 
                 content.add(immersiveEntity)
+                
+                if let sceneAttachment = attachments.entity(for: "StartConversingButton") {
+                    if let water_drop = immersiveEntity.findEntity(named: "water_drop") {
+                        sceneAttachment.position = water_drop.position + [0, 0.2, 0]
+                        water_drop.addChild(sceneAttachment, preservingWorldTransform: true)
+                    }
+                }
+                
+                if let sceneAttachment = attachments.entity(for: "DisplayResponse") {
+                    if let water_drop = immersiveEntity.findEntity(named: "water_drop") {
+                        sceneAttachment.position = water_drop.position + [0, -0.2, 0]
+                        water_drop.addChild(sceneAttachment, preservingWorldTransform: true)
+                    }
+                }
             } catch {
                 print("Error in RealityView's make: \(error)")
             }
@@ -40,7 +49,7 @@ struct WaterView: View {
             // Attachment 1
             Attachment(id: "StartConversingButton") {
                 Button("Start Conversing") {
-                    speechRecognizer.startTranscribing()
+                    speechViewModel.startRecognition()
                 }
                 .padding()
                 .glassBackgroundEffect()
@@ -48,19 +57,17 @@ struct WaterView: View {
             
             // Attachment 2
             Attachment(id: "DisplayResponse") {
-                Text("Response:")
-                Text(globalVariable)
+                HStack{
+                    Text("Response:")
+                    if viewModel.status == .responding {
+                        Text(speechViewModel.responseText)
+                    } else {
+                        Text(speechViewModel.messages.last?.content ?? "No messages yet")
+                    }
+                }.frame(width: 1000)
+                .glassBackgroundEffect()
+                
             }
-        }
-        .onReceive(timer) { _ in // Observe changes to savedContent
-            globalVariable.append(GlobalVariables.dataString)
-            
-            print("(FRONTEND) Timer received")
-            print("(FRONTEND) Current content in responseViewModel:", globalVariable)
-        }
-        .onAppear {
-            // Start the timer when the view appears
-            timer
         }
         .gesture(TapGesture()
             .targetedToAnyEntity()
