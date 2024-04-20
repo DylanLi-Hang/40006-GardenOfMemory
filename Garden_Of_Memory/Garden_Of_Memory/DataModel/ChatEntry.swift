@@ -17,6 +17,7 @@
  */
 import Foundation
 import SwiftData
+import OpenAIKit
 
 @Model
 class ChatEntry {
@@ -25,6 +26,7 @@ class ChatEntry {
     var mood: Int // Scale 1 - 10
     var messages: [[String: String]]
     var tags: [String]
+    var chatMessages: [ChatMessage]
     
     init(date: Date, mood: Int, messages: [[String: String]], tags: [String], name: String?) {
         self.date = date
@@ -32,6 +34,7 @@ class ChatEntry {
         self.messages = messages
         self.tags = tags
         self.name = name
+        self.chatMessages = []
     }
     
     func getStringDate() -> String {

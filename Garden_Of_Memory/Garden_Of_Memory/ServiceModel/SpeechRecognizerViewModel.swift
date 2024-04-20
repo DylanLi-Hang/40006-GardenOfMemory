@@ -7,6 +7,7 @@
 
 
 import Foundation
+import SwiftData
 import Combine
 //import Speech
 import SwiftSpeechRecognizer
@@ -37,11 +38,18 @@ class SpeechRecognitionViewModel: ObservableObject {
             organizationId: "",
             apiKey: APIKey.openai
         )
+        let geminiConfig = GenerationConfig(
+          maxOutputTokens: 5000
+        )
         self.openAI = OpenAI(config)
-        self.gemini = GenerativeModel(name: "gemini-1.0-pro", apiKey: APIKey.default)
-        self.messages.append(ChatMessage(role: .system, content: "You are a helpful assistant."))
+        
+        let systemInstruction = ModelContent(role: "system", parts: [.text(Prompt.systemInitPrompt)])
+        
+        self.gemini = GenerativeModel(name: "gemini-1.0-pro", apiKey: APIKey.default, generationConfig: geminiConfig)
+        
+        self.messages.append(ChatMessage(role: .system, content: Prompt.systemInitPrompt))
         if viewModel.aimodel == .gemini {
-            self.chat = gemini.startChat()
+            self.chat = gemini.startChat(history: [systemInstruction])
         }
     }
     
@@ -131,5 +139,17 @@ class SpeechRecognitionViewModel: ObservableObject {
             print("Error processing text: \(error)")
         }
     }
-
+    
+    func addChatMessageToEntry(_ chatMessage: ChatMessage) {
+        let container = ModelContainer()
+        let chatEntry = container.chatEntries.first { $0.date == Date() } ?? ChatEntry(date: Date(), mood: 0, messages: [], tags: [], name: nil)
+        
+        chatEntry.chatMessages.append(chatMessage)
+        
+        do {
+            try container.save()
+        } catch {
+            print("Failed to save chat entry: \(error)")
+        }
+    }
 }
