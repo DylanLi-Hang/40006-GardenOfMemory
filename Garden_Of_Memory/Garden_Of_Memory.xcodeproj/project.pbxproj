@@ -39,6 +39,7 @@
 		FCDBE2342BD3B39300E00301 /* OpenAI-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FCDBE2302BD3B39300E00301 /* OpenAI-Info.plist */; };
 		FCDBE2372BD3B4DF00E00301 /* GoogleGenerativeAI in Frameworks */ = {isa = PBXBuildFile; productRef = FCDBE2362BD3B4DF00E00301 /* GoogleGenerativeAI */; };
 		FCDE671B2BD3D9B300AB2492 /* prompt.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCDE671A2BD3D9B300AB2492 /* prompt.swift */; };
+		FCDE671F2BD52B9600AB2492 /* AnimationTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCDE671E2BD52B9600AB2492 /* AnimationTestView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -71,6 +72,7 @@
 		FCDBE22F2BD3B39300E00301 /* GenerativeAI-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GenerativeAI-Info.plist"; sourceTree = "<group>"; };
 		FCDBE2302BD3B39300E00301 /* OpenAI-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "OpenAI-Info.plist"; sourceTree = "<group>"; };
 		FCDE671A2BD3D9B300AB2492 /* prompt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = prompt.swift; sourceTree = "<group>"; };
+		FCDE671E2BD52B9600AB2492 /* AnimationTestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationTestView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -169,6 +171,7 @@
 				FC33B0BE2BBB8F47002D4DF8 /* ListConversationView.swift */,
 				FC33B0C02BBB8FBC002D4DF8 /* ConversationView.swift */,
 				FC33B0C22BBB90A8002D4DF8 /* TestInsertDummyView.swift */,
+				FCDE671E2BD52B9600AB2492 /* AnimationTestView.swift */,
 			);
 			path = TestView;
 			sourceTree = "<group>";
@@ -286,6 +289,7 @@
 				FC33B0BD2BBB8B66002D4DF8 /* ChatEntry.swift in Sources */,
 				FC33B0BF2BBB8F47002D4DF8 /* ListConversationView.swift in Sources */,
 				FCDE671B2BD3D9B300AB2492 /* prompt.swift in Sources */,
+				FCDE671F2BD52B9600AB2492 /* AnimationTestView.swift in Sources */,
 				FCDBE22B2BD3B35A00E00301 /* SpeechRecognizerViewModel.swift in Sources */,
 				FC6ED9A32BC792E1006B2363 /* CatImmersiveView.swift in Sources */,
 				65E4F98D2BC6B32E00CECC11 /* OpenAIService.swift in Sources */,
