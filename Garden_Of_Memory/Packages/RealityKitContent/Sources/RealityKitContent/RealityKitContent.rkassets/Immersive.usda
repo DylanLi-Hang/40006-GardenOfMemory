@@ -7,7 +7,7 @@
 
 def Xform "Root"
 {
-    reorder nameChildren = ["_PlainMaterial", "assistant", "cat", "water_drop", "cube"]
+    reorder nameChildren = ["_PlainMaterial", "assistant", "cat", "water_drop", "water_drop_idle", "cube"]
     def "_PlainMaterial" (
         active = false
         references = @_PlainMaterial.usda@
@@ -681,6 +681,147 @@ def Xform "Root"
                     bool useEndColor = 1
                     bool useEndColorRange = 0
                     bool useStartColorRange = 0
+                }
+            }
+        }
+    }
+
+    def "water_drop_idle" (
+        active = true
+        references = @Idle.usdz@
+    )
+    {
+        quatf xformOp:orient = (1, 0, 0, 0)
+        float3 xformOp:scale = (0.1, 0.1, 0.1)
+        float3 xformOp:translate = (0, 1.5, -1)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        over "Meshes"
+        {
+            quatf xformOp:orient = (1, 0, 0, 0)
+            float3 xformOp:scale = (1, 1, 1)
+            float3 xformOp:translate = (0, 0, 0)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            over "Sketchfab_model"
+            {
+                quatf xformOp:orient = (1, 0, 0, 0)
+                float3 xformOp:scale = (1, 1, 1)
+                float3 xformOp:translate = (0, 0, 0)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+                over "_f200c4c2cc5428e918e9a353aec110b_fbx"
+                {
+                    quatf xformOp:orient = (1, 0, 0, 0)
+                    float3 xformOp:scale = (1, 1, 1)
+                    float3 xformOp:translate = (0, 0, 0)
+                    uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+                    over "RootNode"
+                    {
+                        over "WaterL"
+                        {
+                            over "WaterBody1L" (
+                                prepend apiSchemas = ["MaterialBindingAPI"]
+                            )
+                            {
+                                rel material:binding = </Root/water_drop/Materials/WaterBody1> (
+                                    bindMaterialAs = "weakerThanDescendants"
+                                )
+                            }
+
+                            over "WaterBody2L" (
+                                prepend apiSchemas = ["MaterialBindingAPI"]
+                            )
+                            {
+                                rel material:binding = </Root/water_drop/Materials/WaterBody2> (
+                                    bindMaterialAs = "weakerThanDescendants"
+                                )
+                            }
+
+                            over "WaterEyesL" (
+                                prepend apiSchemas = ["MaterialBindingAPI"]
+                            )
+                            {
+                                rel material:binding = </Root/water_drop/Materials/Eyes> (
+                                    bindMaterialAs = "weakerThanDescendants"
+                                )
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        def RealityKitComponent "VFXEmitter"
+        {
+            uniform token info:id = "RealityKit.VFXEmitter"
+
+            def RealityKitStruct "currentState"
+            {
+                token birthLocation = "Volume"
+                int64 burstCount = 10
+                token emitterShape = "Sphere"
+                bool isEmitting = 1
+                bool isLocal = 0
+                bool isLocalFields = 1
+                bool isSpawningEnabled = 1
+                bool loops = 1
+                float particleSpeed = 0.04
+                float radialAmount = 6.283
+                float3 shapeSize = (0.1, 0.1, 0.1)
+
+                def RealityKitStruct "mainEmitter"
+                {
+                    float birthRate = 50
+                    float4 endColorA = (0.0013006331, 0.032195132, 1, 1)
+                    bool isLightingEnabled = 1
+                    float noiseStrength = 0
+                    token opacityOverLife = "GradualFadeInOut"
+                    double particleLifeSpan = 5
+                    float particleMass = 1
+                    float particleSize = 0.01
+                    float sizeMultiplierAtEndOfLifespanPower = 1
+                    float4 startColorA = (0.0005860779, 0.9098139, 0.20240569, 1)
+                    bool useEndColor = 1
+                    bool useEndColorRange = 0
+                    bool useStartColorRange = 0
+                    float vortexStrength = 0.1
+                }
+
+                def RealityKitStruct "spawnedEmitter"
+                {
+                    float4 endColorA = (0.38069552, 0.8956577, 0.9242537, 1)
+                    token opacityOverLife = "GradualFadeInOut"
+                    float particleSize = 0.01
+                    float4 startColorA = (0.57212776, 0.88493764, 0.42807367, 1)
+                    bool useEndColor = 1
+                    bool useEndColorRange = 0
+                    bool useStartColorRange = 0
+                }
+            }
+        }
+
+        def RealityKitComponent "InputTarget"
+        {
+            uniform token info:id = "RealityKit.InputTarget"
+        }
+
+        def RealityKitComponent "Collider"
+        {
+            uint group = 1
+            uniform token info:id = "RealityKit.Collider"
+            uint mask = 4294967295
+            token type = "Default"
+
+            def RealityKitStruct "Shape"
+            {
+                float3 extent = (0.7727562, 1.3114347, 0.7549004)
+                token shapeType = "Box"
+
+                def RealityKitStruct "pose"
+                {
+                    float3 position = (0.0000015497208, 0.004485607, 0.0028974414)
                 }
             }
         }
