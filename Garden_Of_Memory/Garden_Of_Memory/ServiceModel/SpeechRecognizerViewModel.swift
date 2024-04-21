@@ -17,6 +17,7 @@ import GoogleGenerativeAI
 class SpeechRecognitionViewModel: ObservableObject {
     
     @Published var recognizedText = ""
+    @Published var recognizationStatus = false
     @Published var isAuthorized = false
     
     @Published var messages: [ChatMessage] = []
@@ -55,22 +56,37 @@ class SpeechRecognitionViewModel: ObservableObject {
         }
     }
     
-    func startRecognition() {
-        speechRecognizer = SimpleSpeechRecognizer(
-            authorizationStatusChanged: { newAuthorizationStatus in
-                print("Authorization status changed: \(newAuthorizationStatus)")
-            },
-            speechRecognitionStatusChanged: { newRecognitionStatus in
-                print("Recognition status changed: \(newRecognitionStatus)")
-            },
-            utteranceChanged: { newUtterance in
-                print("Recognized utterance changed: \(newUtterance)")
-                DispatchQueue.main.async {
-                    self.updateRecognizedText(newUtterance)
+    func changeRecognitionStatus() {
+        if (speechRecognizer == nil) {
+            speechRecognizer = SimpleSpeechRecognizer(
+                authorizationStatusChanged: { newAuthorizationStatus in
+                    print("Authorization status changed: \(newAuthorizationStatus)")
+                },
+                speechRecognitionStatusChanged: { newRecognitionStatus in
+                    print("Recognition status changed: \(newRecognitionStatus)")
+                    DispatchQueue.main.async {
+                        if newRecognitionStatus == .stopped {
+                            self.recognizationStatus = false
+                            self.viewModel.status = .idle
+                        } else if newRecognitionStatus == .recording {
+                            self.recognizationStatus = true
+                            self.viewModel.status = .listening
+                        }
+                    }
+                },
+                utteranceChanged: { newUtterance in
+                    print("Recognized utterance changed: \(newUtterance)")
+                    DispatchQueue.main.async {
+                        self.updateRecognizedText(newUtterance)
+                    }
                 }
-            }
-        )
-        speechRecognizer?.start()
+            )
+        }
+        if (speechRecognizer != nil && self.recognizationStatus == true) {
+            speechRecognizer?.stop()
+        } else if (speechRecognizer != nil && self.recognizationStatus == false) {
+            speechRecognizer?.start()
+        }
     }
     
     private func updateRecognizedText(_ newUtterance: String) {

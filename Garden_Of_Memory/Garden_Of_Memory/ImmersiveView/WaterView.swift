@@ -53,11 +53,20 @@ struct WaterView: View {
         } attachments: {
             // Attachment 1
             Attachment(id: "StartConversingButton") {
-                Button("Start Conversing") {
-                    speechViewModel.startRecognition()
+                if speechViewModel.recognizationStatus == false {
+                    Button("Start Conversing") {
+                        speechViewModel.changeRecognitionStatus()
+                    }
+                    .padding()
+                    .glassBackgroundEffect()
+                } else {
+                    Button("Stop Conversing") {
+                        speechViewModel.changeRecognitionStatus()
+                    }
+                    .padding()
+                    .glassBackgroundEffect()
                 }
-                .padding()
-                .glassBackgroundEffect()
+                
             }
             
             // Attachment 2

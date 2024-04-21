@@ -51,4 +51,8 @@ struct SimpleSpeechRecognizer {
             speechRecognizer.stopRecording()
         }
     }
+    
+    func stop() {
+        speechRecognizer.stopRecording()
+    }
 }

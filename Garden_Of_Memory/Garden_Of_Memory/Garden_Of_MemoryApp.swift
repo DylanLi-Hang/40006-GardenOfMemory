@@ -5,7 +5,7 @@ import SwiftData
 struct Garden_Of_MemoryApp: App {
     var body: some Scene {
         @State var immersionMode: ImmersionStyle = .progressive
-//        let previewContainer = PreviewContainer([ChatEntry.self])
+        let previewContainer = PreviewContainer([ChatEntry.self])
         
         WindowGroup {
             ContentView()
