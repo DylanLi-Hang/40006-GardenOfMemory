@@ -8,7 +8,7 @@
 import SwiftUI
 import SwiftData
 
-struct TestView: View {
+struct ConversationView: View {
     var chatEntry: ChatEntry
     let dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
@@ -22,12 +22,18 @@ struct TestView: View {
             VStack(alignment: .leading, spacing: 10) {
                 Text("Date: \(chatEntry.date, formatter: dateFormatter)")
                 Text("Mood: \(chatEntry.mood)")
-                Text("Mood: \(chatEntry.name ?? "No Name")")
+                Text("Name: \(chatEntry.name ?? "No Name")")
                 
-                Text("Messages:")
-                ForEach(chatEntry.messages.indices, id: \.self) { index in
-                    ForEach(chatEntry.messages[index].keys.sorted(), id: \.self) { key in
-                        Text("    \(key): \(chatEntry.messages[index][key] ?? "")")
+//                Text("Messages:")
+//                ForEach(chatEntry.messages.indices, id: \.self) { index in
+//                    ForEach(chatEntry.messages[index].keys.sorted(), id: \.self) { key in
+//                        Text("    \(key): \(chatEntry.messages[index][key] ?? "")")
+//                    }
+//                }
+                
+                ForEach(chatEntry.chatMessages) { chatMessage in
+                    if chatMessage.role != .system {
+                        Text("    \(chatMessage.role.rawValue): \(chatMessage.content ?? "")")
                     }
                 }
                 
@@ -43,7 +49,7 @@ struct TestView: View {
 
 struct TestView_Previews: PreviewProvider {
     static var previews: some View {
-        TestView(chatEntry: generateDummyChat())
+        ConversationView(chatEntry: generateDummyChat())
     }
     
     static func generateDummyChat() -> ChatEntry {

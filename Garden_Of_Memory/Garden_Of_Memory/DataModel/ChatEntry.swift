@@ -26,7 +26,7 @@ class ChatEntry {
     var mood: Int // Scale 1 - 10
     var messages: [[String: String]]
     var tags: [String]
-//    var chatMessages: [ChatMessage]
+    var chatMessages: [ChatMessage] = []
     
     init(date: Date, mood: Int, messages: [[String: String]] = [], tags: [String] = [], name: String = "") {
         self.date = date
@@ -34,16 +34,7 @@ class ChatEntry {
         self.messages = messages
         self.tags = tags
         self.name = name
-//        self.chatMessages = []
     }
-    
-//    func appendChatMessage(chatMessage: ChatMessage) {
-//        chatMessages.append(chatMessage)
-//    }
-    
-//    func replaceChatMessages(chatMessages: [ChatMessage]) {
-//        self.chatMessages = chatMessages
-//    }
     
     func getStringDate() -> String {
         let dateFormatter = DateFormatter()
@@ -71,4 +62,9 @@ func generateDummyChat() -> ChatEntry {
 
     
     return ChatEntry(date: date, mood: mood, messages: messages, tags: tags, name: generateRandomString(length: 10))
+}
+
+func today() -> Date {
+    let calendar = Calendar.current
+    return calendar.startOfDay(for: Date())
 }

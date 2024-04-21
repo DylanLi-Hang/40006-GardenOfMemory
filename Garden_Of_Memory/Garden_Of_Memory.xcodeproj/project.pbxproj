@@ -22,8 +22,8 @@
 		65E4F9932BC72EAF00CECC11 /* GlobalVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65E4F9922BC72EAF00CECC11 /* GlobalVariables.swift */; };
 		FC33B0B82BBB8977002D4DF8 /* Avatar.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC33B0B72BBB8977002D4DF8 /* Avatar.swift */; };
 		FC33B0BD2BBB8B66002D4DF8 /* ChatEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC33B0BC2BBB8B66002D4DF8 /* ChatEntry.swift */; };
-		FC33B0BF2BBB8F47002D4DF8 /* DisplayConversationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC33B0BE2BBB8F47002D4DF8 /* DisplayConversationView.swift */; };
-		FC33B0C12BBB8FBC002D4DF8 /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC33B0C02BBB8FBC002D4DF8 /* TestView.swift */; };
+		FC33B0BF2BBB8F47002D4DF8 /* ListConversationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC33B0BE2BBB8F47002D4DF8 /* ListConversationView.swift */; };
+		FC33B0C12BBB8FBC002D4DF8 /* ConversationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC33B0C02BBB8FBC002D4DF8 /* ConversationView.swift */; };
 		FC33B0C32BBB90A8002D4DF8 /* TestInsertDummyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC33B0C22BBB90A8002D4DF8 /* TestInsertDummyView.swift */; };
 		FC33B0C52BBB9863002D4DF8 /* PreviewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC33B0C42BBB9863002D4DF8 /* PreviewContainer.swift */; };
 		FC6ED9A32BC792E1006B2363 /* CatImmersiveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC6ED9A22BC792E1006B2363 /* CatImmersiveView.swift */; };
@@ -59,8 +59,8 @@
 		65E4F9922BC72EAF00CECC11 /* GlobalVariables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalVariables.swift; sourceTree = "<group>"; };
 		FC33B0B72BBB8977002D4DF8 /* Avatar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Avatar.swift; sourceTree = "<group>"; };
 		FC33B0BC2BBB8B66002D4DF8 /* ChatEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatEntry.swift; sourceTree = "<group>"; };
-		FC33B0BE2BBB8F47002D4DF8 /* DisplayConversationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayConversationView.swift; sourceTree = "<group>"; };
-		FC33B0C02BBB8FBC002D4DF8 /* TestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
+		FC33B0BE2BBB8F47002D4DF8 /* ListConversationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListConversationView.swift; sourceTree = "<group>"; };
+		FC33B0C02BBB8FBC002D4DF8 /* ConversationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationView.swift; sourceTree = "<group>"; };
 		FC33B0C22BBB90A8002D4DF8 /* TestInsertDummyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestInsertDummyView.swift; sourceTree = "<group>"; };
 		FC33B0C42BBB9863002D4DF8 /* PreviewContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewContainer.swift; sourceTree = "<group>"; };
 		FC6ED9A22BC792E1006B2363 /* CatImmersiveView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CatImmersiveView.swift; sourceTree = "<group>"; };
@@ -166,8 +166,8 @@
 		FCDBE21A2BD3B0A400E00301 /* TestView */ = {
 			isa = PBXGroup;
 			children = (
-				FC33B0C02BBB8FBC002D4DF8 /* TestView.swift */,
-				FC33B0BE2BBB8F47002D4DF8 /* DisplayConversationView.swift */,
+				FC33B0BE2BBB8F47002D4DF8 /* ListConversationView.swift */,
+				FC33B0C02BBB8FBC002D4DF8 /* ConversationView.swift */,
 				FC33B0C22BBB90A8002D4DF8 /* TestInsertDummyView.swift */,
 			);
 			path = TestView;
@@ -284,7 +284,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FC33B0BD2BBB8B66002D4DF8 /* ChatEntry.swift in Sources */,
-				FC33B0BF2BBB8F47002D4DF8 /* DisplayConversationView.swift in Sources */,
+				FC33B0BF2BBB8F47002D4DF8 /* ListConversationView.swift in Sources */,
 				FCDE671B2BD3D9B300AB2492 /* prompt.swift in Sources */,
 				FCDBE22B2BD3B35A00E00301 /* SpeechRecognizerViewModel.swift in Sources */,
 				FC6ED9A32BC792E1006B2363 /* CatImmersiveView.swift in Sources */,
@@ -299,7 +299,7 @@
 				FC33B0C32BBB90A8002D4DF8 /* TestInsertDummyView.swift in Sources */,
 				FC33B0C52BBB9863002D4DF8 /* PreviewContainer.swift in Sources */,
 				FCDBE2322BD3B39300E00301 /* APIKey.swift in Sources */,
-				FC33B0C12BBB8FBC002D4DF8 /* TestView.swift in Sources */,
+				FC33B0C12BBB8FBC002D4DF8 /* ConversationView.swift in Sources */,
 				0D20A0292BC6CA9D00899274 /* ImmersiveTerrariumView.swift in Sources */,
 				3B99F0252BB43A4900322E0E /* Garden_Of_MemoryApp.swift in Sources */,
 				FC33B0B82BBB8977002D4DF8 /* Avatar.swift in Sources */,

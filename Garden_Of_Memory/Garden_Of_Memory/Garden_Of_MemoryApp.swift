@@ -3,26 +3,41 @@ import SwiftData
 
 @main
 struct Garden_Of_MemoryApp: App {
+    let modelContainer: ModelContainer
+        
+    init() {
+        do {
+            modelContainer = try ModelContainer(for: ChatEntry.self)
+        } catch {
+            fatalError("Could not initialize ModelContainer")
+        }
+    }
+    
     var body: some Scene {
         @State var immersionMode: ImmersionStyle = .progressive
-        let previewContainer = PreviewContainer([ChatEntry.self])
+//        let previewContainer = PreviewContainer([ChatEntry.self])
         
         WindowGroup {
             ContentView()
+                .modelContainer(modelContainer)
 //                .modelContainer(previewContainer.container)
 //            DisplayConversationView()
-//                 .modelContainer(for: ChatEntry.self)
-        }.windowStyle(.plain)
+                 
+        }
+        .windowStyle(.plain)
         
-//        WindowGroup(id: "DairyViewController") {
-//            DisplayConversationView()
-//        }
-//        .windowStyle(.volumetric)
+        
+        WindowGroup(id: "DairyViewController") {
+            ListConversationView()
+                .modelContainer(modelContainer)
+        }
+        .windowStyle(.plain)
         
         ImmersiveSpace(id: "WaterDrop") {
             WaterView()
-//                .modelContainer(previewContainer.container)
+                .modelContainer(modelContainer)
         }
+        
         
         ImmersiveSpace(id: "FullTerrarium"){
             ImmersiveTerrariumView()

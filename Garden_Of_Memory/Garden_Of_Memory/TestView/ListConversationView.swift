@@ -8,14 +8,16 @@
 import SwiftUI
 import SwiftData
 
-struct DisplayConversationView: View {
+struct ListConversationView: View {
+    
+    @Environment(\.modelContext) private var modelContext
+    @Query var chats: [ChatEntry]
+    
     let dateFormatter: DateFormatter = {
             let formatter = DateFormatter()
             formatter.dateFormat = "yyyy-MM-dd"
             return formatter
         }()
-    
-    @Query var chats: [ChatEntry]
     
     var body: some View {
         NavigationSplitView {
@@ -28,9 +30,14 @@ struct DisplayConversationView: View {
                 
                 ForEach(chats) { chat in
                     NavigationLink {
-                        TestView(chatEntry: chat)
+                        ConversationView(chatEntry: chat)
                     } label: {
                         Text(chat.getStringDate() + " " + (chat.name ?? "No Name"))
+                    }
+                    .swipeActions {
+                        Button("Delete", role: .destructive) {
+                            modelContext.delete(chat)
+                        }
                     }
                 }
 
@@ -49,7 +56,7 @@ struct DisplayConversationView: View {
                                                          
     
     return NavigationStack {
-        DisplayConversationView()
+        ListConversationView()
             .modelContainer(preview.container)
     }
 }

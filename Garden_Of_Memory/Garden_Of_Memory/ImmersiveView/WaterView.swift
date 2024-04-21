@@ -9,22 +9,23 @@ import SwiftUI
 import SwiftData
 import RealityKit
 import RealityKitContent
+import OpenAIKit
 
 struct WaterView: View {
-//    @Environment(\.modelContext) private var modelContext
+    @Environment(\.modelContext) private var modelContext
+    @Query(sort: \ChatEntry.date, order: .reverse) private var entries: [ChatEntry]
     
-//    @Query private var entries: [ChatEntry]
     @State public var upAnimation = false
     @State public var downAnimation = true
     @State var particles = ParticleEmitterComponent()
-
+    
     let viewModel = ViewModel.shared
-//    var currentChatEntry: ChatEntry = ChatEntry(date: Date(), mood: 10)
+    @State private var count:Int = 1
+    @State private var waterDrop: Entity? = nil
+    @State var currentChatEntry: ChatEntry = ChatEntry(date: Date(), mood: 10)
+    
     @ObservedObject var speechViewModel: SpeechRecognitionViewModel = SpeechRecognitionViewModel()
 
-    @State private var count:Int = 1
-
-    @State private var waterDrop: Entity? = nil
     var body: some View {
         RealityView { content, attachments in
             do {
@@ -62,6 +63,7 @@ struct WaterView: View {
                 } else {
                     Button("Stop Conversing") {
                         speechViewModel.changeRecognitionStatus()
+                        currentChatEntry.chatMessages = speechViewModel.messages
                     }
                     .padding()
                     .glassBackgroundEffect()
@@ -80,6 +82,21 @@ struct WaterView: View {
                     }
                 }.frame(width: 1000)
                 .glassBackgroundEffect()
+            }
+        }
+        .onAppear() {
+            print(entries.count)
+            var isloaded = false
+            if !entries.isEmpty {
+                if let todayEntry = entries.first {
+                    self.currentChatEntry = todayEntry
+                    speechViewModel.messages = self.currentChatEntry.chatMessages
+                    isloaded = true
+                }
+            }
+            if !isloaded {
+                print("insert")
+                modelContext.insert(self.currentChatEntry)
             }
         }
         .gesture(TapGesture()
