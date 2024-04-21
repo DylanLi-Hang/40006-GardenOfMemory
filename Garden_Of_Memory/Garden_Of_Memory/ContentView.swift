@@ -3,7 +3,10 @@ import RealityKit
 import RealityKitContent
 
 struct ContentView: View {
-
+    
+    @Environment(\.openWindow) private var openWindow
+    @Environment(\.dismissWindow) private var dismissWindow
+    
     @Environment(\.openImmersiveSpace) var openImmersiveSpace
     @Environment(\.dismissImmersiveSpace) var dismissImmersiveSpace
     
@@ -12,16 +15,17 @@ struct ContentView: View {
     
     @State var avatarView = false
     @State var terrarium = false
+    @State private var isDairyViewOpen: Bool = false
     @StateObject var speechRecognizer = SpeechRecognizer()
-
+    
     var body: some View {
-
-        VStack(alignment: .center, content: {
+        
+        VStack(alignment: .center) {
             Text("Welcome to the Garden of Memory.")
                 .font(.extraLargeTitle2)
             Text("Choose your avatar.")
                 .font(.extraLargeTitle2)
-
+            
             HStack(content: {
                 Button{
                     Task{
@@ -59,30 +63,30 @@ struct ContentView: View {
                         await dismissImmersiveSpace()
                         avatarView = false
                     }
+                }
+            }.font(.title)
+            
+            Button{
+                Task{
+                    print("OpenTerrarium")
+                    if avatarView{
+                        await dismissImmersiveSpace()
+                        avatarView = false
                     }
-                }.font(.title)
-               
-               Button{
-                   Task{
-                       print("OpenTerrarium")
-                       if avatarView{
-                           await dismissImmersiveSpace()
-                           avatarView = false
-                       }
-                       if !terrarium{
-                           await openImmersiveTerrarium(id:"FullTerrarium")
-                           terrarium = true
-                       }
-                   }
-               } label: {
-                   Text("Open Immersive Terrarium")
-                       .font(.title)
-               }
-
-
+                    if !terrarium{
+                        await openImmersiveTerrarium(id:"FullTerrarium")
+                        terrarium = true
+                    }
+                }
+            } label: {
+                Text("Open Immersive Terrarium")
+                    .font(.title)
+            }
+            
+            
             Button("Close immmersive view"){
                 Task{
-                        print("OpenTerrarium")
+                    print("OpenTerrarium")
                     if avatarView{
                         await dismissImmersiveSpace()
                         avatarView = false
@@ -95,11 +99,25 @@ struct ContentView: View {
             }
             .font(.title)
             
-        })
-            .padding(100)
-            .glassBackgroundEffect()
+            Button("View Data"){
+                isDairyViewOpen.toggle()
+            }
+            .font(.title)
             
         }
+        .padding(100)
+        .glassBackgroundEffect()
+        .onChange(of: isDairyViewOpen) { _, newValue in
+            Task {
+                if newValue {
+                    openWindow(id: "DairyViewController")
+                } else {
+                    dismissWindow(id: "DairyViewController")
+                }
+            }
+        }
+        
+    }
 }
 
 #Preview(windowStyle: .automatic) {

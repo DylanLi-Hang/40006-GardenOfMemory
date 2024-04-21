@@ -23,6 +23,7 @@ class SpeechRecognitionViewModel: ObservableObject {
     @Published var responseText: String = ""
     @Published var isCompleting: Bool = false
     
+//    private var container: ModelContainer
     var speechRecognizer: SimpleSpeechRecognizer? = nil
     var openAI: OpenAI
     var gemini: GenerativeModel
@@ -43,12 +44,13 @@ class SpeechRecognitionViewModel: ObservableObject {
         )
         self.openAI = OpenAI(config)
         
-        let systemInstruction = ModelContent(role: "system", parts: [.text(Prompt.systemInitPrompt)])
-        
         self.gemini = GenerativeModel(name: "gemini-1.0-pro", apiKey: APIKey.default, generationConfig: geminiConfig)
+        
+//        self.container = container
         
         self.messages.append(ChatMessage(role: .system, content: Prompt.systemInitPrompt))
         if viewModel.aimodel == .gemini {
+            let systemInstruction = ModelContent(role: "system", parts: [.text(Prompt.systemInitPrompt)])
             self.chat = gemini.startChat(history: [systemInstruction])
         }
     }
@@ -139,17 +141,5 @@ class SpeechRecognitionViewModel: ObservableObject {
             print("Error processing text: \(error)")
         }
     }
-    
-    func addChatMessageToEntry(_ chatMessage: ChatMessage) {
-        let container = ModelContainer()
-        let chatEntry = container.chatEntries.first { $0.date == Date() } ?? ChatEntry(date: Date(), mood: 0, messages: [], tags: [], name: nil)
-        
-        chatEntry.chatMessages.append(chatMessage)
-        
-        do {
-            try container.save()
-        } catch {
-            print("Failed to save chat entry: \(error)")
-        }
-    }
+
 }

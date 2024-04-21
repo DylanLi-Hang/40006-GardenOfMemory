@@ -26,16 +26,24 @@ class ChatEntry {
     var mood: Int // Scale 1 - 10
     var messages: [[String: String]]
     var tags: [String]
-    var chatMessages: [ChatMessage]
+//    var chatMessages: [ChatMessage]
     
-    init(date: Date, mood: Int, messages: [[String: String]], tags: [String], name: String?) {
+    init(date: Date, mood: Int, messages: [[String: String]] = [], tags: [String] = [], name: String = "") {
         self.date = date
         self.mood = mood
         self.messages = messages
         self.tags = tags
         self.name = name
-        self.chatMessages = []
+//        self.chatMessages = []
     }
+    
+//    func appendChatMessage(chatMessage: ChatMessage) {
+//        chatMessages.append(chatMessage)
+//    }
+    
+//    func replaceChatMessages(chatMessages: [ChatMessage]) {
+//        self.chatMessages = chatMessages
+//    }
     
     func getStringDate() -> String {
         let dateFormatter = DateFormatter()

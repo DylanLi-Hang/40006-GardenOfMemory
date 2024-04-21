@@ -2,17 +2,17 @@ import Foundation
 import SwiftData
 
 class PreviewContainer {
-    let container: ModelContainer! // register the container
+    let container: ModelContainer!
     
-    init(_ types: [any PersistentModel.Type], isStoredInMemoryOnly: Bool = true) {
-        let schema = Schema(types) // should be able to pass in any schema & have them registered
+    init(_ types: [any PersistentModel.Type], isStoredInMemoryOnly: Bool = false) {
+        let schema = Schema(types)
         let config = ModelConfiguration(isStoredInMemoryOnly: isStoredInMemoryOnly)
         self.container = try! ModelContainer(for: schema, configurations: [config])
     }
     
-    func add(items: [any PersistentModel]) {
+    func add<T: PersistentModel>(items: [T]) {
         Task { @MainActor in
-            items.forEach {container.mainContext.insert($0)}
+            items.forEach { container.mainContext.insert($0) }
         }
     }
 }

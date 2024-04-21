@@ -6,15 +6,20 @@
 //
 
 import SwiftUI
+import SwiftData
 import RealityKit
 import RealityKitContent
 
 struct WaterView: View {
+//    @Environment(\.modelContext) private var modelContext
+    
+//    @Query private var entries: [ChatEntry]
     @State public var upAnimation = false
     @State public var downAnimation = true
     @State var particles = ParticleEmitterComponent()
 
     let viewModel = ViewModel.shared
+//    var currentChatEntry: ChatEntry = ChatEntry(date: Date(), mood: 10)
     @ObservedObject var speechViewModel: SpeechRecognitionViewModel = SpeechRecognitionViewModel()
 
     @State private var count:Int = 1
@@ -57,7 +62,7 @@ struct WaterView: View {
             
             // Attachment 2
             Attachment(id: "DisplayResponse") {
-                HStack{
+                HStack {
                     Text("Response:")
                     if viewModel.status == .responding {
                         Text(speechViewModel.responseText)
@@ -66,7 +71,6 @@ struct WaterView: View {
                     }
                 }.frame(width: 1000)
                 .glassBackgroundEffect()
-                
             }
         }
         .gesture(TapGesture()
