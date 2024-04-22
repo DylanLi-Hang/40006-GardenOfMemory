@@ -27,6 +27,11 @@ struct Garden_Of_MemoryApp: App {
         }
         .windowStyle(.plain)
         
+        WindowGroup(id:"terrariumObject") {
+            TerrariumObjectView()
+                .modelContainer(modelContainer)
+                 
+        }.windowStyle(.volumetric)
         
         WindowGroup(id: "DairyViewController") {
             ListConversationView()
