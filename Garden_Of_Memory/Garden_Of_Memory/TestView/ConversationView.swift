@@ -42,7 +42,7 @@ struct ConversationView: View {
                     Text("    " + tag)
                 }
             }
-            .padding()
+            .padding(80)
         }
     }
 }

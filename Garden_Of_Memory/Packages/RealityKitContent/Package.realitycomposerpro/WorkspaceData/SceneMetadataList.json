@@ -69,7 +69,8 @@
     "objectMetadataList" : [
       [
         "549D2E12-3E81-48FB-8E20-AFE009576E99",
-        "Root"
+        "Root",
+        "WaterAnimation"
       ],
       {
         "isExpanded" : true,
@@ -77,8 +78,7 @@
       },
       [
         "549D2E12-3E81-48FB-8E20-AFE009576E99",
-        "Root",
-        "WaterAnimation"
+        "Root"
       ],
       {
         "isExpanded" : true,
@@ -90,8 +90,7 @@
     "objectMetadataList" : [
       [
         "638D3911-F403-4EA4-A913-761096C695F8",
-        "Root",
-        "Terrarium_1"
+        "Root"
       ],
       {
         "isExpanded" : true,
@@ -99,7 +98,8 @@
       },
       [
         "638D3911-F403-4EA4-A913-761096C695F8",
-        "Root"
+        "Root",
+        "Terrarium_1"
       ],
       {
         "isExpanded" : true,
@@ -133,7 +133,39 @@
       [
         "AF09ED6F-1707-48FD-8720-65B998362C09",
         "Root",
+        "water_drop_idle",
+        "Meshes",
+        "Sketchfab_model",
+        "_f200c4c2cc5428e918e9a353aec110b_fbx",
+        "RootNode"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "AF09ED6F-1707-48FD-8720-65B998362C09",
+        "Root",
+        "water_drop_idle",
+        "Meshes"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "AF09ED6F-1707-48FD-8720-65B998362C09",
+        "Root",
         "Sphere_Right"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "AF09ED6F-1707-48FD-8720-65B998362C09",
+        "Root",
+        "water_drop_idle"
       ],
       {
         "isExpanded" : true,
@@ -146,6 +178,43 @@
       {
         "isExpanded" : true,
         "isLocked" : false
+      },
+      [
+        "AF09ED6F-1707-48FD-8720-65B998362C09",
+        "Root",
+        "water_drop_idle",
+        "Meshes",
+        "Sketchfab_model",
+        "_f200c4c2cc5428e918e9a353aec110b_fbx"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "AF09ED6F-1707-48FD-8720-65B998362C09",
+        "Root",
+        "water_drop_idle",
+        "Meshes",
+        "Sketchfab_model",
+        "_f200c4c2cc5428e918e9a353aec110b_fbx",
+        "RootNode",
+        "WaterL"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "AF09ED6F-1707-48FD-8720-65B998362C09",
+        "Root",
+        "water_drop_idle",
+        "Meshes",
+        "Sketchfab_model"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
       }
     ]
   },
@@ -153,8 +222,7 @@
     "objectMetadataList" : [
       [
         "B3837902-5761-40F0-9643-75D7AFA14515",
-        "Root",
-        "Toon_Cat_FREE"
+        "Root"
       ],
       {
         "isExpanded" : true,
@@ -162,7 +230,8 @@
       },
       [
         "B3837902-5761-40F0-9643-75D7AFA14515",
-        "Root"
+        "Root",
+        "Toon_Cat_FREE"
       ],
       {
         "isExpanded" : true,
@@ -174,7 +243,8 @@
     "objectMetadataList" : [
       [
         "CB766F92-EE55-4A63-9401-E7B8C009764D",
-        "Root"
+        "Root",
+        "GridMaterial"
       ],
       {
         "isExpanded" : true,
@@ -182,8 +252,7 @@
       },
       [
         "CB766F92-EE55-4A63-9401-E7B8C009764D",
-        "Root",
-        "GridMaterial"
+        "Root"
       ],
       {
         "isExpanded" : true,
@@ -212,9 +281,7 @@
     "objectMetadataList" : [
       [
         "D66134B1-3681-4A8E-AFE5-29F257229F3B",
-        "Root",
-        "GridMaterial",
-        "GridMaterial"
+        "Root"
       ],
       {
         "isExpanded" : true,
@@ -222,7 +289,9 @@
       },
       [
         "D66134B1-3681-4A8E-AFE5-29F257229F3B",
-        "Root"
+        "Root",
+        "GridMaterial",
+        "GridMaterial"
       ],
       {
         "isExpanded" : true,

@@ -11,6 +11,7 @@ struct Garden_Of_MemoryApp: App {
         } catch {
             fatalError("Could not initialize ModelContainer")
         }
+        print(URL.applicationSupportDirectory.path(percentEncoded: false))
     }
     
     var body: some Scene {

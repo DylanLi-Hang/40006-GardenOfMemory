@@ -37,40 +37,17 @@ struct WaterView: View {
             do {
                 let immersiveEntity = try await Entity(named: "Immersive", in: realityKitContentBundle)
                 
-//                content.add(immersiveEntity)
-                if let unwrappedAnimatedEntity = animatedEntity {
-                    print("Animation Loaded")
-                    content.add(unwrappedAnimatedEntity)
-                    if let animation = unwrappedAnimatedEntity.availableAnimations.first {
-                        
-//                        unwrappedAnimatedEntity.playAnimation(animation)
-//                        let unifiedAnimations = unwrappedAnimatedEntity.availableAnimations.first!.definition
-                        animationDefinition = animation.definition
-                        def = animationDefinition?.trimmed(start: viewModel.animation.startTime, duration: viewModel.animation.duration)
-                        if let undef = def {
-                            print(undef)
-                            let animation_trimmed = try! AnimationResource.generate(with: undef)
-                            let controller = unwrappedAnimatedEntity.playAnimation(animation_trimmed, transitionDuration: 0.6, startsPaused: false)
-                            print(animation_trimmed)
-                        }
-                        
-                        
-//                        let animationResource = animation.trimmed(start: animation.startTime, duration: animation.duration)
-//                        let controller = unwrappedAnimatedEntity.playAnimation(animation, transitionDuration: 0.6, startsPaused: false)
-//                        print(animationDefinition)
-                    }
-                }
-                
+                content.add(immersiveEntity)
                 if let sceneAttachment = attachments.entity(for: "StartConversingButton") {
-                    if let water_drop = immersiveEntity.findEntity(named: "water_drop") {
+                    if let water_drop = immersiveEntity.findEntity(named: "water_drop_idle") {
                         sceneAttachment.position = water_drop.position + [0, 0.2, 0]
                         water_drop.addChild(sceneAttachment, preservingWorldTransform: true)
                     }
                 }
                 
                 if let sceneAttachment = attachments.entity(for: "DisplayResponse") {
-                    if let water_drop = immersiveEntity.findEntity(named: "water_drop") {
-                        sceneAttachment.position = water_drop.position + [0, -0.2, 0]
+                    if let water_drop = immersiveEntity.findEntity(named: "water_drop_idle") {
+                        sceneAttachment.position = water_drop.position + [0.5, 0, 0]
                         water_drop.addChild(sceneAttachment, preservingWorldTransform: true)
                     }
                 }
@@ -82,41 +59,52 @@ struct WaterView: View {
         } attachments: {
             // Attachment 1
             Attachment(id: "StartConversingButton") {
-                if speechViewModel.recognizationStatus == false {
-                    Button("Start Conversing") {
-                        speechViewModel.changeRecognitionStatus()
+                VStack {
+                    Text("Current Status: \(viewModel.status)")
+                        .glassBackgroundEffect()
+                    if speechViewModel.recognizationStatus == false {
+                        Button("Start Conversing") {
+                            speechViewModel.changeRecognitionStatus()
+                        }
+                        .padding()
+                        .glassBackgroundEffect()
+                    } else {
+                        Button("Stop Conversing") {
+                            speechViewModel.changeRecognitionStatus()
+                            currentChatEntry.chatMessages = speechViewModel.messages
+                        }
+                        .padding()
+                        .glassBackgroundEffect()
                     }
-                    .padding()
-                    .glassBackgroundEffect()
-                } else {
-                    Button("Stop Conversing") {
-                        speechViewModel.changeRecognitionStatus()
-                        currentChatEntry.chatMessages = speechViewModel.messages
-                    }
-                    .padding()
-                    .glassBackgroundEffect()
                 }
-                
             }
             
             // Attachment 2
             Attachment(id: "DisplayResponse") {
                 HStack {
-                    Text("Response:")
+                    Text("Response:  ")
                     if viewModel.status == .responding {
-                        Text(speechViewModel.responseText)
+                        ScrollView(.horizontal, showsIndicators: true) {
+                            Text(speechViewModel.responseText)
+                                .frame(alignment: .leading)
+                                .padding(80)
+                                .multilineTextAlignment(.leading)
+                        }
                     } else {
                         Text(speechViewModel.messages.last?.content ?? "No messages yet")
                     }
-                }.frame(width: 1000)
+                }
+                .frame(width: 800, height: 1000)
                 .glassBackgroundEffect()
             }
+
         }
         .onAppear() {
             var isloaded = false
             if !entries.isEmpty {
                 if let todayEntry = entries.first {
-                    if todayEntry.date == Date() {
+                    let calendar = Calendar.current
+                    if calendar.isDate(todayEntry.date, equalTo: Date(), toGranularity: .day) {
                         self.currentChatEntry = todayEntry
                         speechViewModel.messages = self.currentChatEntry.chatMessages
                         isloaded = true

@@ -60,6 +60,7 @@ enum AvatarStatus: String, Identifiable, CaseIterable, Equatable {
     case listening
     case waitForResponse
     case responding
+    case notListening
     
     var currentStatus: String {
         switch self {
@@ -67,6 +68,7 @@ enum AvatarStatus: String, Identifiable, CaseIterable, Equatable {
         case .listening: return "listening"
         case .responding: return "responding"
         case .waitForResponse: return "waiting"
+        case .notListening: return "notRecording"
         }
     }
 }
@@ -84,10 +86,11 @@ class ViewModel {
     static let shared = ViewModel()
     
     // MARK: - Avatar
-    var status: AvatarStatus = .idle
+    var status: AvatarStatus = .notListening
     var animation: Animation = .idle
 
 
     // MARK: - SpeechRecognition & AI
-    var aimodel: AIModel = .gemini
+    var aimodel: AIModel = .openAI
+    var waitingTime: Double = 4
 }
