@@ -604,7 +604,6 @@ def Xform "Root"
     }
 
     def "water_drop" (
-        active = false
         references = @waterDrop.usdz@
     )
     {
@@ -684,6 +683,12 @@ def Xform "Root"
                 }
             }
         }
+
+        over "Meshes" (
+            active = false
+        )
+        {
+        }
     }
 
     def "water_drop_idle" (
@@ -719,8 +724,10 @@ def Xform "Root"
 
                     over "RootNode"
                     {
+                        reorder nameChildren = ["WaterL", "Materials"]
                         over "WaterL"
                         {
+                            reorder nameChildren = ["Materials", "WaterBody1L", "WaterBody2L", "WaterEyesL"]
                             over "WaterBody1L" (
                                 prepend apiSchemas = ["MaterialBindingAPI"]
                             )
@@ -746,6 +753,21 @@ def Xform "Root"
                                 rel material:binding = </Root/water_drop/Materials/Eyes> (
                                     bindMaterialAs = "weakerThanDescendants"
                                 )
+                            }
+
+                            def Xform "Materials" (
+                                prepend apiSchemas = ["MaterialBindingAPI"]
+                                references = </Root/water_drop_idle/Materials>
+                            )
+                            {
+                                rel material:binding = </Root/water_drop/Materials/Eyes> (
+                                    bindMaterialAs = "weakerThanDescendants"
+                                )
+                                quatf xformOp:orient = (0.99999994, 0, 0, 0)
+                                float3 xformOp:scale = (99.999985, 99.999985, 99.999985)
+                                matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (0, 0, 0, 1) )
+                                float3 xformOp:translate = (0, 0.00012207031, 0)
+                                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
                             }
                         }
                     }
