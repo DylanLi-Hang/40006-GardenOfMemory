@@ -7,7 +7,11 @@
 
 import Foundation
 
-enum Animation: String, Codable {
+enum Animation: String, Codable, CaseIterable {
+    var id: Int {
+        return Animation.allCases.firstIndex(of: self) ?? 0
+    }
+    
     case idle, listening, waitForResponse, responding;
  
     var startTime: TimeInterval {

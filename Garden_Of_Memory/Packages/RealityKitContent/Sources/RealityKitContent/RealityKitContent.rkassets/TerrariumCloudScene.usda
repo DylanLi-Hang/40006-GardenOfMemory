@@ -18,7 +18,7 @@ def Xform "Root"
         rel material:binding = </Root/BadVibe/DefaultMaterial>
         double radius = 0.1
         float3 xformOp:scale = (1, 0.5, 1)
-        float3 xformOp:translate = (0, 1.5, -1)
+        float3 xformOp:translate = (0, 0.3, 0)
         uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
 
         def Material "DefaultMaterial"
@@ -176,6 +176,16 @@ def Xform "Root"
                 }
             }
         }
+    }
+
+    def "Terrarium" (
+        active = true
+        prepend references = @Terrarium.usdz@
+    )
+    {
+        float3 xformOp:scale = (0.001, 0.001, 0.001)
+        float3 xformOp:translate = (0, 0, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
     }
 }
 
