@@ -15,8 +15,7 @@
     "objectMetadataList" : [
       [
         "8D4D9BDD-9475-4751-BA36-EB144CD09C65",
-        "Root",
-        "Idle"
+        "Root"
       ],
       {
         "isExpanded" : true,
@@ -24,7 +23,8 @@
       },
       [
         "8D4D9BDD-9475-4751-BA36-EB144CD09C65",
-        "Root"
+        "Root",
+        "Idle"
       ],
       {
         "isExpanded" : true,
@@ -124,6 +124,32 @@
       [
         "AF09ED6F-1707-48FD-8720-65B998362C09",
         "Root",
+        "water_drop_idle"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "AF09ED6F-1707-48FD-8720-65B998362C09",
+        "Root",
+        "Sphere_Left"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "AF09ED6F-1707-48FD-8720-65B998362C09",
+        "Root"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "AF09ED6F-1707-48FD-8720-65B998362C09",
+        "Root",
         "water_drop_idle",
         "Meshes"
       ],
@@ -146,16 +172,10 @@
       },
       [
         "AF09ED6F-1707-48FD-8720-65B998362C09",
-        "Root"
-      ],
-      {
-        "isExpanded" : true,
-        "isLocked" : false
-      },
-      [
-        "AF09ED6F-1707-48FD-8720-65B998362C09",
         "Root",
-        "water_drop_idle"
+        "water_drop_idle",
+        "Meshes",
+        "Sketchfab_model"
       ],
       {
         "isExpanded" : true,
@@ -165,15 +185,6 @@
         "AF09ED6F-1707-48FD-8720-65B998362C09",
         "Root",
         "Sphere_Right"
-      ],
-      {
-        "isExpanded" : true,
-        "isLocked" : false
-      },
-      [
-        "AF09ED6F-1707-48FD-8720-65B998362C09",
-        "Root",
-        "Sphere_Left"
       ],
       {
         "isExpanded" : true,
@@ -204,17 +215,6 @@
       {
         "isExpanded" : true,
         "isLocked" : false
-      },
-      [
-        "AF09ED6F-1707-48FD-8720-65B998362C09",
-        "Root",
-        "water_drop_idle",
-        "Meshes",
-        "Sketchfab_model"
-      ],
-      {
-        "isExpanded" : true,
-        "isLocked" : false
       }
     ]
   },
@@ -222,7 +222,8 @@
     "objectMetadataList" : [
       [
         "B3837902-5761-40F0-9643-75D7AFA14515",
-        "Root"
+        "Root",
+        "Toon_Cat_FREE"
       ],
       {
         "isExpanded" : true,
@@ -230,8 +231,7 @@
       },
       [
         "B3837902-5761-40F0-9643-75D7AFA14515",
-        "Root",
-        "Toon_Cat_FREE"
+        "Root"
       ],
       {
         "isExpanded" : true,
@@ -243,7 +243,8 @@
     "objectMetadataList" : [
       [
         "CB766F92-EE55-4A63-9401-E7B8C009764D",
-        "Root"
+        "Root",
+        "GridMaterial"
       ],
       {
         "isExpanded" : true,
@@ -251,8 +252,7 @@
       },
       [
         "CB766F92-EE55-4A63-9401-E7B8C009764D",
-        "Root",
-        "GridMaterial"
+        "Root"
       ],
       {
         "isExpanded" : true,

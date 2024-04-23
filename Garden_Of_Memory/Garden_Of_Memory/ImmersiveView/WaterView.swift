@@ -18,10 +18,11 @@ struct WaterView: View {
     @State public var upAnimation = false
     @State public var downAnimation = true
     let animatedEntity = try? Entity.load(named: "WaterAnimation1", in: realityKitContentBundle)
-    @State var animationResource: [AnimationResource] = []
-    @State var animationDefinition: AnimationDefinition? = nil
-    @State var def: AnimationDefinition? = nil
-//    @State var animationController
+    @State var animationResources: [AnimationResource] = []
+    @State var animationController: AnimationPlaybackController? = nil
+    @State var animationController2: AnimationPlaybackController? = nil
+    @State private var currentAnimation: Animation = .idle
+    @State var animationControllers = [AnimationPlaybackController]()
     
     @State var particles = ParticleEmitterComponent()
     
@@ -124,7 +125,32 @@ struct WaterView: View {
         )
     }
 
+    
+    func loadAnimation() {
+        for animation in Animation.allCases {
+            if let animatedEntity = try? Entity.load(named: animation.rawValue+"Scene", in: realityKitContentBundle) {
+                
+                if let true_animatedEntity = animatedEntity.findEntity(named: "WaterL") {
+                    let animationResource = true_animatedEntity.availableAnimations[0]
+                    animationResources.append(animationResource)
+                    
+                    print("loaded animation \(animation.rawValue)")
+                }
+                
+            }
+        }
+    }
 
+    func play(animation: Animation) -> AnimationResource? {
+        if let matchingEntity = try? Entity.load(named: animation.rawValue),
+            let animation = matchingEntity.availableAnimations.first {
+            return animation
+        } else {
+            return nil
+        }
+    }
+    
+    
     //WaterDrop firework particles
     func pSystem() -> ParticleEmitterComponent {
         particles.emitterShape = .sphere

@@ -10,6 +10,8 @@
 		0D20A0292BC6CA9D00899274 /* ImmersiveTerrariumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D20A0282BC6CA9D00899274 /* ImmersiveTerrariumView.swift */; };
 		0D54D1592BC567B100B84E78 /* WaterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D54D1582BC567B100B84E78 /* WaterView.swift */; };
 		0D9A6AB52BD6359500CC6BF3 /* TerrariumObjectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D9A6AB42BD6359500CC6BF3 /* TerrariumObjectView.swift */; };
+		3B57A7D92BD75D4800ABAEFD /* DiaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B57A7D82BD75D4800ABAEFD /* DiaryView.swift */; };
+		3B57A7DB2BD75D5B00ABAEFD /* TerrariumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B57A7DA2BD75D5B00ABAEFD /* TerrariumView.swift */; };
 		3B99F0232BB43A4900322E0E /* RealityKitContent in Frameworks */ = {isa = PBXBuildFile; productRef = 3B99F0222BB43A4900322E0E /* RealityKitContent */; };
 		3B99F0252BB43A4900322E0E /* Garden_Of_MemoryApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B99F0242BB43A4900322E0E /* Garden_Of_MemoryApp.swift */; };
 		3B99F0272BB43A4900322E0E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B99F0262BB43A4900322E0E /* ContentView.swift */; };
@@ -46,6 +48,8 @@
 		0D20A0282BC6CA9D00899274 /* ImmersiveTerrariumView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImmersiveTerrariumView.swift; sourceTree = "<group>"; };
 		0D54D1582BC567B100B84E78 /* WaterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterView.swift; sourceTree = "<group>"; };
 		0D9A6AB42BD6359500CC6BF3 /* TerrariumObjectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TerrariumObjectView.swift; sourceTree = "<group>"; };
+		3B57A7D82BD75D4800ABAEFD /* DiaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryView.swift; sourceTree = "<group>"; };
+		3B57A7DA2BD75D5B00ABAEFD /* TerrariumView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TerrariumView.swift; sourceTree = "<group>"; };
 		3B99F01D2BB43A4900322E0E /* Garden_Of_Memory.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Garden_Of_Memory.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B99F0212BB43A4900322E0E /* RealityKitContent */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = RealityKitContent; sourceTree = "<group>"; };
 		3B99F0242BB43A4900322E0E /* Garden_Of_MemoryApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Garden_Of_MemoryApp.swift; sourceTree = "<group>"; };
@@ -161,6 +165,8 @@
 				0D54D1582BC567B100B84E78 /* WaterView.swift */,
 				0D20A0282BC6CA9D00899274 /* ImmersiveTerrariumView.swift */,
 				FC6ED9A22BC792E1006B2363 /* CatImmersiveView.swift */,
+				3B57A7D82BD75D4800ABAEFD /* DiaryView.swift */,
+				3B57A7DA2BD75D5B00ABAEFD /* TerrariumView.swift */,
 			);
 			path = ImmersiveView;
 			sourceTree = "<group>";
@@ -290,6 +296,7 @@
 				FC33B0BF2BBB8F47002D4DF8 /* ListConversationView.swift in Sources */,
 				FCDE671B2BD3D9B300AB2492 /* prompt.swift in Sources */,
 				FCDBE22B2BD3B35A00E00301 /* SpeechRecognizerViewModel.swift in Sources */,
+				3B57A7D92BD75D4800ABAEFD /* DiaryView.swift in Sources */,
 				FC6ED9A32BC792E1006B2363 /* CatImmersiveView.swift in Sources */,
 				65E4F98D2BC6B32E00CECC11 /* OpenAIService.swift in Sources */,
 				FCDBE2292BD3B30600E00301 /* SimpleSpeechRecognizer.swift in Sources */,
@@ -297,6 +304,7 @@
 				6593EF762BC6625E00CF644C /* SpeechRecognizer.swift in Sources */,
 				65E4F9932BC72EAF00CECC11 /* GlobalVariables.swift in Sources */,
 				0D54D1592BC567B100B84E78 /* WaterView.swift in Sources */,
+				3B57A7DB2BD75D5B00ABAEFD /* TerrariumView.swift in Sources */,
 				0D9A6AB52BD6359500CC6BF3 /* TerrariumObjectView.swift in Sources */,
 				3B99F0272BB43A4900322E0E /* ContentView.swift in Sources */,
 				FCDBE22D2BD3B38000E00301 /* ViewModel.swift in Sources */,
