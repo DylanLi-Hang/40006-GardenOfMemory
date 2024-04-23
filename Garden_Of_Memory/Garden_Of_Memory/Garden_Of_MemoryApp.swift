@@ -11,6 +11,7 @@ struct Garden_Of_MemoryApp: App {
         } catch {
             fatalError("Could not initialize ModelContainer")
         }
+        print(URL.applicationSupportDirectory.path(percentEncoded: false))
     }
     
     var body: some Scene {
@@ -26,6 +27,11 @@ struct Garden_Of_MemoryApp: App {
         }
         .windowStyle(.plain)
         
+        WindowGroup(id:"terrariumObject") {
+            TerrariumObjectView()
+                .modelContainer(modelContainer)
+                 
+        }.windowStyle(.volumetric)
         
         WindowGroup(id: "DairyViewController") {
             ListConversationView()

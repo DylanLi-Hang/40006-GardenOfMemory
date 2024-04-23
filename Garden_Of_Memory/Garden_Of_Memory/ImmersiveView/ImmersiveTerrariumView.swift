@@ -27,7 +27,7 @@ struct ImmersiveTerrariumView: View {
     var material = UnlitMaterial()
     //Add texture
     do {
-    let texture = try TextureResource.load(named: "scenic")
+    let texture = try TextureResource.load(named: "farm")
     material.color = .init(texture: .init(texture))
     } catch
     {

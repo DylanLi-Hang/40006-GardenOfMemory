@@ -24,7 +24,7 @@ class SpeechRecognitionViewModel: ObservableObject {
     @Published var responseText: String = ""
     @Published var isCompleting: Bool = false
     
-//    private var container: ModelContainer
+    var lastProcessedLength: Int = 0
     var speechRecognizer: SimpleSpeechRecognizer? = nil
     var openAI: OpenAI
     var gemini: GenerativeModel
@@ -40,14 +40,12 @@ class SpeechRecognitionViewModel: ObservableObject {
             organizationId: "",
             apiKey: APIKey.openai
         )
+        self.openAI = OpenAI(config)
+        
         let geminiConfig = GenerationConfig(
           maxOutputTokens: 5000
         )
-        self.openAI = OpenAI(config)
-        
         self.gemini = GenerativeModel(name: "gemini-1.0-pro", apiKey: APIKey.default, generationConfig: geminiConfig)
-        
-//        self.container = container
         
         self.messages.append(ChatMessage(role: .system, content: Prompt.systemInitPrompt))
         if viewModel.aimodel == .gemini {
@@ -67,15 +65,16 @@ class SpeechRecognitionViewModel: ObservableObject {
                     DispatchQueue.main.async {
                         if newRecognitionStatus == .stopped {
                             self.recognizationStatus = false
-                            self.viewModel.status = .idle
+                            self.viewModel.status = .notListening
                         } else if newRecognitionStatus == .recording {
                             self.recognizationStatus = true
-                            self.viewModel.status = .listening
+                            self.viewModel.status = .idle
                         }
                     }
                 },
                 utteranceChanged: { newUtterance in
-                    print("Recognized utterance changed: \(newUtterance)")
+//                    print("Recognized utterance changed: \(newUtterance)")
+                    self.viewModel.status = .listening
                     DispatchQueue.main.async {
                         self.updateRecognizedText(newUtterance)
                     }
@@ -95,17 +94,21 @@ class SpeechRecognitionViewModel: ObservableObject {
             self.recognizedText = newUtterance
             self.debouncer?.cancel()
             
-            self.debouncer = Timer.publish(every: 5, on: .main, in: .common)
+            self.debouncer = Timer.publish(every: viewModel.waitingTime, on: .main, in: .common)
                 .autoconnect()
                 .sink { _ in
                     DispatchQueue.main.async { [weak self] in
                         guard let self = self else { return }
-                        if self.recognizedText != self.lastPrintedText {
-                            print("Value not updated for 5 seconds: \(self.recognizedText)")
+                        let currentLength = recognizedText.count
+                        if currentLength > lastProcessedLength {
+                            let startIndex = recognizedText.index(recognizedText.startIndex, offsetBy: lastProcessedLength)
+                            let endIndex = recognizedText.endIndex
+                            let newText = String(recognizedText[startIndex..<endIndex])
                             Task {
-                                await self.sendMessage(self.recognizedText)
+                                print("Value not updated for 5 seconds with value: \(newText)")
+                                await self.sendMessage(newText)
+                                self.lastProcessedLength = currentLength
                             }
-                            self.lastPrintedText = self.recognizedText
                         }
                     }
                 }
@@ -115,9 +118,10 @@ class SpeechRecognitionViewModel: ObservableObject {
     private func sendMessage(_ message: String) async {
         DispatchQueue.main.async { [weak self] in
             guard let self = self else { return }
-            self.messages.append(ChatMessage(role: .user, content: self.recognizedText))
+            self.messages.append(ChatMessage(role: .user, content: message))
         }
         do {
+            self.responseText = ""
             self.viewModel.status = .responding
             
             if viewModel.aimodel == .gemini {
@@ -140,19 +144,22 @@ class SpeechRecognitionViewModel: ObservableObject {
                         DispatchQueue.main.async { [weak self] in
                             guard let self = self else { return }
                             if let role = delta.role {
-                                self.responseText += "\(role.rawValue.capitalized): "
+//                                self.responseText += "\(role.rawValue.capitalized): "
+//                                print("delat: \(delta.role?.rawValue)")
                             } else if let content = delta.content {
                                 self.responseText += content
-                                print(self.responseText)
                             }
                         }
                     }
                 }
             }
             
-            self.messages.append(ChatMessage(role: .assistant, content: self.responseText))
-            self.viewModel.status = .idle
-            self.responseText = ""
+            DispatchQueue.main.async { [weak self] in
+                guard let self = self else { return }
+                self.messages.append(ChatMessage(role: .assistant, content: self.responseText))
+                print("Final response: \(self.responseText)")
+                self.viewModel.status = .idle
+            }
         } catch {
             print("Error processing text: \(error)")
         }
