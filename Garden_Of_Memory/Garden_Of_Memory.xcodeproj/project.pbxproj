@@ -10,7 +10,7 @@
 		0D20A0292BC6CA9D00899274 /* ImmersiveTerrariumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D20A0282BC6CA9D00899274 /* ImmersiveTerrariumView.swift */; };
 		0D54D1592BC567B100B84E78 /* WaterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D54D1582BC567B100B84E78 /* WaterView.swift */; };
 		0D9A6AB52BD6359500CC6BF3 /* TerrariumObjectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D9A6AB42BD6359500CC6BF3 /* TerrariumObjectView.swift */; };
-		3B30D1732BE0E7CD00A030C0 /* DiarySoundEffect.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3B30D1722BE0E7CD00A030C0 /* DiarySoundEffect.wav */; };
+		3B30D1752BE0E92E00A030C0 /* DiarySoundEffect.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3B30D1742BE0E92E00A030C0 /* DiarySoundEffect.wav */; };
 		3B57A7D92BD75D4800ABAEFD /* DiaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B57A7D82BD75D4800ABAEFD /* DiaryView.swift */; };
 		3B57A7DB2BD75D5B00ABAEFD /* TerrariumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B57A7DA2BD75D5B00ABAEFD /* TerrariumView.swift */; };
 		3B99F0232BB43A4900322E0E /* RealityKitContent in Frameworks */ = {isa = PBXBuildFile; productRef = 3B99F0222BB43A4900322E0E /* RealityKitContent */; };
@@ -49,7 +49,7 @@
 		0D20A0282BC6CA9D00899274 /* ImmersiveTerrariumView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImmersiveTerrariumView.swift; sourceTree = "<group>"; };
 		0D54D1582BC567B100B84E78 /* WaterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterView.swift; sourceTree = "<group>"; };
 		0D9A6AB42BD6359500CC6BF3 /* TerrariumObjectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TerrariumObjectView.swift; sourceTree = "<group>"; };
-		3B30D1722BE0E7CD00A030C0 /* DiarySoundEffect.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = DiarySoundEffect.wav; path = ../../../../../Downloads/DiarySoundEffect.wav; sourceTree = "<group>"; };
+		3B30D1742BE0E92E00A030C0 /* DiarySoundEffect.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = DiarySoundEffect.wav; sourceTree = "<group>"; };
 		3B57A7D82BD75D4800ABAEFD /* DiaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryView.swift; sourceTree = "<group>"; };
 		3B57A7DA2BD75D5B00ABAEFD /* TerrariumView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TerrariumView.swift; sourceTree = "<group>"; };
 		3B99F01D2BB43A4900322E0E /* Garden_Of_Memory.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Garden_Of_Memory.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -101,7 +101,7 @@
 		3B30D16F2BE0E64300A030C0 /* SoundEffects */ = {
 			isa = PBXGroup;
 			children = (
-				3B30D1722BE0E7CD00A030C0 /* DiarySoundEffect.wav */,
+				3B30D1742BE0E92E00A030C0 /* DiarySoundEffect.wav */,
 			);
 			path = SoundEffects;
 			sourceTree = "<group>";
@@ -289,7 +289,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3B99F02D2BB43A4B00322E0E /* Assets.xcassets in Resources */,
-				3B30D1732BE0E7CD00A030C0 /* DiarySoundEffect.wav in Resources */,
+				3B30D1752BE0E92E00A030C0 /* DiarySoundEffect.wav in Resources */,
 				3B99F0302BB43A4B00322E0E /* Preview Assets.xcassets in Resources */,
 				FCDBE2332BD3B39300E00301 /* GenerativeAI-Info.plist in Resources */,
 				3B99F02B2BB43A4900322E0E /* ImageBasedLighting.skybox in Resources */,
