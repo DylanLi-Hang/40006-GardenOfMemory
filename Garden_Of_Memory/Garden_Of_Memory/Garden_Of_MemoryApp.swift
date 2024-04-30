@@ -43,10 +43,14 @@ struct Garden_Of_MemoryApp: App {
             WaterView()
                 .modelContainer(modelContainer)
         }
-        
+        WindowGroup(id: "diaryObject") {
+            ImmersiveDiaryView()
+                .modelContainer(modelContainer)
+        }.windowStyle(.volumetric)
         
         ImmersiveSpace(id: "FullTerrarium"){
             ImmersiveTerrariumView()
+                .modelContainer(modelContainer)
         }
         .immersionStyle(selection: $immersionMode, in: .progressive)
         

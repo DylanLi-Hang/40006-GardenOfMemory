@@ -16,6 +16,7 @@ struct ContentView: View {
     @State var avatarView = false
     @State var terrarium = false
     @State private var isDairyViewOpen: Bool = false
+    @State private var isDiaryObjViewOpen: Bool = false
     @State private var isTerraObjViewOpen: Bool = false
     @StateObject var speechRecognizer = SpeechRecognizer()
     
@@ -89,6 +90,11 @@ struct ContentView: View {
             }
             .font(.title)
             
+            Button("Add Diary Object"){
+                isDiaryObjViewOpen.toggle()
+            }
+            .font(.title)
+            
             Button("Close immmersive view"){
                 Task{
                     print("OpenTerrarium")
@@ -127,6 +133,15 @@ struct ContentView: View {
                     openWindow(id: "terrariumObject")
                 } else {
                     dismissWindow(id: "terrariumObject")
+                }
+            }
+        }
+        .onChange(of: isDiaryObjViewOpen) { _, newValue in
+            Task {
+                if newValue {
+                    openWindow(id: "diaryObject")
+                } else {
+                    dismissWindow(id: "diaryObject")
                 }
             }
         }
