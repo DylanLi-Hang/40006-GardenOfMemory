@@ -604,6 +604,7 @@ def Xform "Root"
     }
 
     def "water_drop" (
+        active = false
         references = @waterDrop.usdz@
     )
     {
@@ -635,7 +636,9 @@ def Xform "Root"
             }
         }
 
-        def RealityKitComponent "VFXEmitter"
+        def RealityKitComponent "VFXEmitter" (
+            active = false
+        )
         {
             uniform token info:id = "RealityKit.VFXEmitter"
 

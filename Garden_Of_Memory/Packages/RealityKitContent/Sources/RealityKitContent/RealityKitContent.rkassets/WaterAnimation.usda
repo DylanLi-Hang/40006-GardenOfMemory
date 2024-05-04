@@ -10,20 +10,100 @@
 
 def Xform "Root"
 {
+    reorder nameChildren = ["WaterAnimation", "water_drop_idle"]
     def "WaterAnimation" (
         active = true
-        prepend references = @WaterAnimation.usdz@
+        references = @WaterAnimation.usdz@
     )
     {
+        reorder nameChildren = ["water_drop_idle", "water_drop_listening", "water_drop_loading"]
         float3 xformOp:scale = (1, 1, 1)
         uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
 
         over "water_drop_listening"
         {
+            over "VFXEmitter" (
+                active = false
+            )
+            {
+                def RealityKitStruct "currentState"
+                {
+                    double emissionDuration = 10
+                    bool isEmitting = 1
+                    bool isLocal = 0
+                    bool loops = 1
+                }
+            }
         }
 
         over "water_drop_loading"
         {
+        }
+
+        def "water_drop_idle" (
+            active = true
+            references = @Idle.usdz@
+        )
+        {
+            quatf xformOp:orient = (1, 0, 0, 0)
+            float3 xformOp:scale = (0.001, 0.001, 0.001)
+            float3 xformOp:translate = (0, 1.5, -1)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            over "Meshes"
+            {
+                quatf xformOp:orient = (1, 0, 0, 0)
+                float3 xformOp:scale = (99.99998, 99.999985, 99.99999)
+                float3 xformOp:translate = (0, 0, 0)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+                over "Sketchfab_model"
+                {
+                    over "_f200c4c2cc5428e918e9a353aec110b_fbx"
+                    {
+                        over "RootNode"
+                        {
+                            over "WaterL"
+                            {
+                                over "WaterBody1L" (
+                                    prepend apiSchemas = ["MaterialBindingAPI"]
+                                )
+                                {
+                                    rel material:binding = </Root/WaterAnimation/water_drop_listening/Materials/WaterBody1> (
+                                        bindMaterialAs = "weakerThanDescendants"
+                                    )
+                                }
+
+                                over "WaterBody2L" (
+                                    prepend apiSchemas = ["MaterialBindingAPI"]
+                                )
+                                {
+                                    rel material:binding = </Root/WaterAnimation/water_drop_listening/Materials/WaterBody2> (
+                                        bindMaterialAs = "weakerThanDescendants"
+                                    )
+                                }
+
+                                over "WaterEyesL" (
+                                    prepend apiSchemas = ["MaterialBindingAPI"]
+                                )
+                                {
+                                    rel material:binding = </Root/WaterAnimation/water_drop_listening/Materials/Eyes> (
+                                        bindMaterialAs = "weakerThanDescendants"
+                                    )
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            over "Materials"
+            {
+                quatf xformOp:orient = (1, 0, 0, 0)
+                float3 xformOp:scale = (99.99998, 99.999985, 99.99999)
+                float3 xformOp:translate = (0, 0, 0)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+            }
         }
     }
 }

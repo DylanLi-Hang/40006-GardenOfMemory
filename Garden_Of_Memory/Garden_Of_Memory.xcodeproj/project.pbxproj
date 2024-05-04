@@ -21,6 +21,7 @@
 		65E4F98D2BC6B32E00CECC11 /* OpenAIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65E4F98C2BC6B32E00CECC11 /* OpenAIService.swift */; };
 		65E4F98F2BC6B66500CECC11 /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65E4F98E2BC6B66500CECC11 /* Secrets.swift */; };
 		65E4F9932BC72EAF00CECC11 /* GlobalVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65E4F9922BC72EAF00CECC11 /* GlobalVariables.swift */; };
+		FC23BB852BE59E6700DF36ED /* EmitterSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC23BB842BE59E6600DF36ED /* EmitterSettings.swift */; };
 		FC33B0B82BBB8977002D4DF8 /* Avatar.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC33B0B72BBB8977002D4DF8 /* Avatar.swift */; };
 		FC33B0BD2BBB8B66002D4DF8 /* ChatEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC33B0BC2BBB8B66002D4DF8 /* ChatEntry.swift */; };
 		FC33B0BF2BBB8F47002D4DF8 /* ListConversationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC33B0BE2BBB8F47002D4DF8 /* ListConversationView.swift */; };
@@ -59,6 +60,7 @@
 		65E4F98C2BC6B32E00CECC11 /* OpenAIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenAIService.swift; sourceTree = "<group>"; };
 		65E4F98E2BC6B66500CECC11 /* Secrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
 		65E4F9922BC72EAF00CECC11 /* GlobalVariables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalVariables.swift; sourceTree = "<group>"; };
+		FC23BB842BE59E6600DF36ED /* EmitterSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = EmitterSettings.swift; path = Garden_Of_Memory/DataModel/EmitterSettings.swift; sourceTree = SOURCE_ROOT; };
 		FC33B0B72BBB8977002D4DF8 /* Avatar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Avatar.swift; sourceTree = "<group>"; };
 		FC33B0BC2BBB8B66002D4DF8 /* ChatEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatEntry.swift; sourceTree = "<group>"; };
 		FC33B0BE2BBB8F47002D4DF8 /* ListConversationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListConversationView.swift; sourceTree = "<group>"; };
@@ -73,6 +75,7 @@
 		FCDBE22F2BD3B39300E00301 /* GenerativeAI-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GenerativeAI-Info.plist"; sourceTree = "<group>"; };
 		FCDBE2302BD3B39300E00301 /* OpenAI-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "OpenAI-Info.plist"; sourceTree = "<group>"; };
 		FCDE671A2BD3D9B300AB2492 /* prompt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = prompt.swift; sourceTree = "<group>"; };
+		FCF740562BDE798A008BD066 /* GeminiPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; name = GeminiPlayground.playground; path = Garden_Of_Memory/TestView/GeminiPlayground.playground; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -159,6 +162,7 @@
 			isa = PBXGroup;
 			children = (
 				0D54D1582BC567B100B84E78 /* WaterView.swift */,
+				FC23BB842BE59E6600DF36ED /* EmitterSettings.swift */,
 				0D20A0282BC6CA9D00899274 /* ImmersiveTerrariumView.swift */,
 				FC6ED9A22BC792E1006B2363 /* CatImmersiveView.swift */,
 			);
@@ -172,6 +176,7 @@
 				FC33B0C02BBB8FBC002D4DF8 /* ConversationView.swift */,
 				FC33B0C22BBB90A8002D4DF8 /* TestInsertDummyView.swift */,
 				0D9A6AB42BD6359500CC6BF3 /* TerrariumObjectView.swift */,
+				FCF740562BDE798A008BD066 /* GeminiPlayground.playground */,
 			);
 			path = TestView;
 			sourceTree = "<group>";
@@ -295,6 +300,7 @@
 				FCDBE2292BD3B30600E00301 /* SimpleSpeechRecognizer.swift in Sources */,
 				65E4F98F2BC6B66500CECC11 /* Secrets.swift in Sources */,
 				6593EF762BC6625E00CF644C /* SpeechRecognizer.swift in Sources */,
+				FC23BB852BE59E6700DF36ED /* EmitterSettings.swift in Sources */,
 				65E4F9932BC72EAF00CECC11 /* GlobalVariables.swift in Sources */,
 				0D54D1592BC567B100B84E78 /* WaterView.swift in Sources */,
 				0D9A6AB52BD6359500CC6BF3 /* TerrariumObjectView.swift in Sources */,
