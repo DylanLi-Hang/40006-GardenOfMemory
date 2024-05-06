@@ -22,16 +22,32 @@ def Xform "Root"
 
         over "water_drop_listening"
         {
-            over "VFXEmitter" (
-                active = false
-            )
+            over "VFXEmitter"
             {
                 def RealityKitStruct "currentState"
                 {
+                    token birthDirection = "Normal"
+                    token birthLocation = "Surface"
+                    float3 birthLocationVertex = (6, 6, 6)
                     double emissionDuration = 10
+                    token emitterShape = "Point"
                     bool isEmitting = 1
                     bool isLocal = 0
+                    bool isLocalFields = 1
                     bool loops = 1
+                    float3 shapeSize = (0.05, 0.05, 0.05)
+                    bool spawnInheritParentColor = 1
+                    token spawnOccasion = "OnUpdate"
+
+                    over "mainEmitter"
+                    {
+                        float birthRate = 40
+                        float4 endColorA = (1, 0.051991113, 1, 1)
+                        float4 endColorB = (0, 0.98059916, 1, 1)
+                        token opacityOverLife = "GradualFadeInOut"
+                        bool useEndColor = 1
+                        bool useEndColorRange = 1
+                    }
                 }
             }
         }
