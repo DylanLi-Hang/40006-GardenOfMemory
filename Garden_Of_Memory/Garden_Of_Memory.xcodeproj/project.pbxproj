@@ -10,6 +10,7 @@
 		0D20A0292BC6CA9D00899274 /* ImmersiveTerrariumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D20A0282BC6CA9D00899274 /* ImmersiveTerrariumView.swift */; };
 		0D54D1592BC567B100B84E78 /* WaterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D54D1582BC567B100B84E78 /* WaterView.swift */; };
 		0D9A6AB52BD6359500CC6BF3 /* TerrariumObjectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D9A6AB42BD6359500CC6BF3 /* TerrariumObjectView.swift */; };
+		3B041EE72BE9F5DD00D2A81D /* DiaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B041EE62BE9F5DD00D2A81D /* DiaryView.swift */; };
 		3B30D1752BE0E92E00A030C0 /* DiarySoundEffect.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3B30D1742BE0E92E00A030C0 /* DiarySoundEffect.wav */; };
 		3B57A7D92BD75D4800ABAEFD /* ImmersiveDiaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B57A7D82BD75D4800ABAEFD /* ImmersiveDiaryView.swift */; };
 		3B57A7DB2BD75D5B00ABAEFD /* TerrariumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B57A7DA2BD75D5B00ABAEFD /* TerrariumView.swift */; };
@@ -49,6 +50,7 @@
 		0D20A0282BC6CA9D00899274 /* ImmersiveTerrariumView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImmersiveTerrariumView.swift; sourceTree = "<group>"; };
 		0D54D1582BC567B100B84E78 /* WaterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterView.swift; sourceTree = "<group>"; };
 		0D9A6AB42BD6359500CC6BF3 /* TerrariumObjectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TerrariumObjectView.swift; sourceTree = "<group>"; };
+		3B041EE62BE9F5DD00D2A81D /* DiaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryView.swift; sourceTree = "<group>"; };
 		3B30D1742BE0E92E00A030C0 /* DiarySoundEffect.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = DiarySoundEffect.wav; sourceTree = "<group>"; };
 		3B57A7D82BD75D4800ABAEFD /* ImmersiveDiaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImmersiveDiaryView.swift; sourceTree = "<group>"; };
 		3B57A7DA2BD75D5B00ABAEFD /* TerrariumView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TerrariumView.swift; sourceTree = "<group>"; };
@@ -177,6 +179,7 @@
 				0D20A0282BC6CA9D00899274 /* ImmersiveTerrariumView.swift */,
 				FC6ED9A22BC792E1006B2363 /* CatImmersiveView.swift */,
 				3B57A7D82BD75D4800ABAEFD /* ImmersiveDiaryView.swift */,
+				3B041EE62BE9F5DD00D2A81D /* DiaryView.swift */,
 				3B57A7DA2BD75D5B00ABAEFD /* TerrariumView.swift */,
 			);
 			path = ImmersiveView;
@@ -309,6 +312,7 @@
 				FCDE671B2BD3D9B300AB2492 /* prompt.swift in Sources */,
 				FCDBE22B2BD3B35A00E00301 /* SpeechRecognizerViewModel.swift in Sources */,
 				3B57A7D92BD75D4800ABAEFD /* ImmersiveDiaryView.swift in Sources */,
+				3B041EE72BE9F5DD00D2A81D /* DiaryView.swift in Sources */,
 				FC6ED9A32BC792E1006B2363 /* CatImmersiveView.swift in Sources */,
 				65E4F98D2BC6B32E00CECC11 /* OpenAIService.swift in Sources */,
 				FCDBE2292BD3B30600E00301 /* SimpleSpeechRecognizer.swift in Sources */,
