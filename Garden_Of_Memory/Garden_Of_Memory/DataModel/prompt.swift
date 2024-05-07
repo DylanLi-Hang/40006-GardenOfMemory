@@ -14,7 +14,7 @@ struct Prompt {
     
     static let emotionScaleInitPrompt = "You will rate how the user is feeling based off these conversations, on a scale of 1-5. 1 is the worst, while 5 is the best. Rate 1 if you think the user is feeling horrible. Rate 2 if you think the user is feeling sad. Rate 3 if you think the user is feeling neutral. Rate 4 if you think the user is feeling happy. Rate 4 if you think the user is feeling ecstatic. Please give your response in json format like this ```json { 'mood': '5' }```"
     
-    static let tagsInitPrompt = "Based on these four conversations, retrieve one main conversation tag, in one word. Please give your response in json format like this ```json { 'tag 1': 'description' }```"
+    static let tagsInitPrompt = "Summarize the main theme of the four conversations in one word. Provide your response in JSON format, as shown: json { 'tag 1': 'word' }"
     
     static let emotionScalePrompt = "Rate the mood from 1-5"
 }
