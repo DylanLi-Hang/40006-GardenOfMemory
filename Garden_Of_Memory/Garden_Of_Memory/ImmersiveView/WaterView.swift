@@ -43,6 +43,7 @@ struct WaterView: View {
 //                let immersiveEntity = try await Entity(named: "Immersive", in: realityKitContentBundle)
                 let animatedEntity = try await Entity(named: "WaterAnimation", in: realityKitContentBundle)
                 
+                // Animation Resource 0: idle
                 if let unwrappedAnimatedEntity = animatedEntity.findEntity(named: "water_drop_idle") {
                     if let animation = unwrappedAnimatedEntity.availableAnimations.first {
                         animationResources.append(animation.repeat())
@@ -52,26 +53,25 @@ struct WaterView: View {
                     content.add(unwrappedAnimatedEntity)
                 }
                 
+                // Animation Resource 1: preloading
                 if let unwrappedAnimatedEntity = animatedEntity.findEntity(named: "water_drop_loading") {
                     if let animation = unwrappedAnimatedEntity.availableAnimations.first {
                         animationResources.append(animation)
                     }
                 }
                 
-                
+                // Particle for listening
                 if let unwrappedAnimatedEntity = animatedEntity.findEntity(named: "water_drop_listening") {
-//                    let emitter = EmitterSettings()
-                    if var particleEmitterComponent = unwrappedAnimatedEntity.components[ParticleEmitterComponent.self] {
-//                        particleEmitterComponent.isEmitting = false
+                    if let particleEmitterComponent = unwrappedAnimatedEntity.components[ParticleEmitterComponent.self] {
                         componentResources.append(particleEmitterComponent)
-                        print("Appended")
-//                        unwrappedAnimatedEntity.components.remove(ParticleEmitterComponent.self)
                     }
-//                    unwrappedAnimatedEntity.components.removeAll()
-                    
-//                    unwrappedAnimatedEntity.components.set(componentResources)
-//                    ParticleEmitterComponent
-//                    unwrappedAnimatedEntity.components.set(emitter.particles)
+                }
+                
+                // Animation Resource 2: response (Not working one)
+                if let unwrappedAnimatedEntity = animatedEntity.findEntity(named: "water_drop_response") {
+                    if let animation = unwrappedAnimatedEntity.availableAnimations.first {
+                        animationResources.append(animation)
+                    }
                 }
                 
                 if let sceneAttachment = attachments.entity(for: "StartConversingButton") {
@@ -89,10 +89,6 @@ struct WaterView: View {
                 }
                 
                 if let sceneAttachment = attachments.entity(for: "PlayAnimation") {
-//                    if let water_drop = immersiveEntity.findEntity(named: "water_drop_idle") {
-//                        sceneAttachment.position = water_drop.position + [0.5, 0, 0]
-//                        water_drop.addChild(sceneAttachment, preservingWorldTransform: true)
-//                    }
                     content.add(sceneAttachment)
                     sceneAttachment.position += [0, 1.5, -0.5]
                 }
@@ -159,7 +155,6 @@ struct WaterView: View {
                 .shadow(color: .gray, radius: 3, x: 1, y: 1)
                 .padding(.horizontal, 10)
                 .frame(width: 800, height: 200)
-                
             }
             
             Attachment(id: "PlayAnimation") {
@@ -169,6 +164,12 @@ struct WaterView: View {
                         print("Current Status: \(viewModel.status)")
                     } label: {
                         Text("Status Control")
+                    }
+                    
+                    Button {
+                        waterDropEntity?.components[ParticleEmitterComponent.self]?.burst()
+                    } label: {
+                        Text("Burst")
                     }
                     
                     ForEach(animationControllers.indices, id: \.self) { index in
@@ -194,33 +195,24 @@ struct WaterView: View {
                 }
             }
             
-            if oldValue == .notListening && newValue != .notListening {
-                let rotationTransform = Transform(rotation: simd_quatf(angle: .pi, axis: [0,1,0]))
-                if let unwrappedAnimatedEntity = waterDropEntity {
-                    unwrappedAnimatedEntity.move(to: rotationTransform, relativeTo: unwrappedAnimatedEntity.self, duration: 3.0)
-                }
-            }
+//            if oldValue == .notListening && newValue != .notListening {
+//                let rotationTransform = Transform(rotation: simd_quatf(angle: .pi, axis: [0,1,0]))
+//                if let unwrappedAnimatedEntity = waterDropEntity {
+//                    unwrappedAnimatedEntity.move(to: rotationTransform, relativeTo: unwrappedAnimatedEntity.self, duration: 3.0)
+//                }
+//            }
             
             if newValue == .listening {
-//                let particles = ParticleEmitterComponent()
                 if let unwrappedAnimatedEntity = waterDropEntity {
-//                    unwrappedAnimatedEntity.components[ParticleEmitterComponent.self] = componentResources.first
-//                    unwrappedAnimatedEntity.components[ParticleEmitterComponent.self] = pSystem()
-//                    unwrappedAnimatedEntity.components.set(particles)
                     unwrappedAnimatedEntity.components.set(componentResources)
-//                    if var particleEmitterComponent = unwrappedAnimatedEntity.components[ParticleEmitterComponent.self] {
-//                        particleEmitterComponent.particlesInheritTransform = false
-//                    }
-//                    if let component = componentResources.first {
-//                        print("before")
-//                        print(unwrappedAnimatedEntity.components.count)
-//                        print("after")
-//                        unwrappedAnimatedEntity.components.set(component)
-//                        print(unwrappedAnimatedEntity.components.count)
-//                    }
                 }
+                
+                waterDropEntity?.components[ParticleEmitterComponent.self]?.burst()
             } else if newValue == .idle {
                 dropAnimation()
+                if let unwrappedAnimatedEntity = waterDropEntity {
+                    unwrappedAnimatedEntity.components.set(componentResources)
+                }
                 if let unwrappedAnimatedEntity = waterDropEntity {
                     guard let idleAnimation = animationResources.first else { return }
                     let controller = unwrappedAnimatedEntity.playAnimation(idleAnimation, transitionDuration: 0.6, startsPaused: false)
@@ -230,36 +222,28 @@ struct WaterView: View {
             } else if newValue == .responding {
                 dropAnimation()
                 if let unwrappedAnimatedEntity = waterDropEntity {
-                    guard animationResources.count > 1 else { return }
-                    let respondingAnimation = animationResources[1]
-                    let controller = unwrappedAnimatedEntity.playAnimation(respondingAnimation, transitionDuration: 0.6, startsPaused: false)
+                    guard animationResources.count > 2 else { return }
+                    guard let completeResponseAnimation = try? AnimationResource.sequence(with: [animationResources[1], animationResources[2]]) else {
+                        return
+                    }
+                    let controller = unwrappedAnimatedEntity.playAnimation(completeResponseAnimation, transitionDuration: 0.6, startsPaused: false)
                     animationControllers.append(controller)
                     print("play loading animation")
                 }
             } else if newValue == .waitForResponse {
                 dropAnimation()
                 if let unwrappedAnimatedEntity = waterDropEntity {
-                    guard animationResources.count > 1 else { return }
-                    let respondingAnimation = animationResources[1]
+                    guard animationResources.count > 2 else { return }
+                    let respondingAnimation = animationResources[2]
                     let controller = unwrappedAnimatedEntity.playAnimation(respondingAnimation, transitionDuration: 0.6, startsPaused: false)
                     animationControllers.append(controller)
                     print("play loading animation")
                 }
-            } else if viewModel.status == .notListening {
-                let rotationTransform = Transform(rotation: simd_quatf(angle: .pi, axis: [0,1,0]))
-                if let unwrappedAnimatedEntity = waterDropEntity {
-                    unwrappedAnimatedEntity.move(to: rotationTransform, relativeTo: unwrappedAnimatedEntity.self, duration: 3.0)
-                }
-            }
-//                else {
-//                if let unwrappedAnimatedEntity = waterDropEntity?.findEntity(named: "water_drop_listening") {
-//                    print(unwrappedAnimatedEntity.components.has(ParticleEmitterComponent.self))
-//                    unwrappedAnimatedEntity.components.remove(ParticleEmitterComponent.self)
-//                    print(unwrappedAnimatedEntity.components.has(ParticleEmitterComponent.self))
-//                    if var particleEmitterComponent = unwrappedAnimatedEntity.components[ParticleEmitterComponent.self] {
-//                        particleEmitterComponent.particlesInheritTransform = true
-//                    }
-//                    
+            } 
+//            else if viewModel.status == .notListening {
+//                let rotationTransform = Transform(rotation: simd_quatf(angle: .pi, axis: [0,1,0]))
+//                if let unwrappedAnimatedEntity = waterDropEntity {
+//                    unwrappedAnimatedEntity.move(to: rotationTransform, relativeTo: unwrappedAnimatedEntity.self, duration: 3.0)
 //                }
 //            }
         })
@@ -298,25 +282,6 @@ struct WaterView: View {
                 }
             }
         }
-    }
-    
-    //WaterDrop firework particles
-    func pSystem() -> ParticleEmitterComponent {
-        particles.emitterShape = .sphere
-        particles.burstCount = 100
-        particles.burst()
-        particles.timing = .repeating(warmUp: 1.5, emit: ParticleEmitterComponent.Timing.VariableDuration(duration: 10, variation: 0))
-        particles.emitterShape = .point
-        particles.birthLocation = .surface
-        particles.birthDirection = .normal
-        particles.emitterShapeSize = [0.05, 0.05, 0.05]
-        particles.spawnInheritsParentColor = true
-        particles.speed = 0.1
-        particles.mainEmitter.birthRate = 150
-        
-        particles.emitterShapeSize = [0.1, 0.1, 0.1]
-        
-        return particles
     }
     
 }

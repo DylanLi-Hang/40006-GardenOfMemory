@@ -98,7 +98,7 @@ class ViewModel {
     static let shared = ViewModel()
     
     // MARK: - Avatar
-    var status: AvatarStatus = .listening
+    var status: AvatarStatus = .idle
     var animation: Animation = .idle
 
 
