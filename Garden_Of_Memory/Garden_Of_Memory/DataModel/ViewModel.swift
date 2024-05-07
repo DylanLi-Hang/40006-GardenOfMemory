@@ -43,7 +43,7 @@ enum Animation: String, Codable, CaseIterable {
     var endFrame: Int {
         switch self {
             case .idle:
-                return 20
+                return 100
  
             case .listening:
                 return 180
@@ -75,6 +75,14 @@ enum AvatarStatus: String, Identifiable, CaseIterable, Equatable {
         case .notListening: return "notRecording"
         }
     }
+    func next() -> AvatarStatus {
+        let allCases = Self.allCases
+        if let currentIndex = allCases.firstIndex(of: self), currentIndex < allCases.count - 1 {
+            return allCases[currentIndex + 1]
+        } else {
+            return allCases.first!
+        }
+    }
 }
 
 enum AIModel: String, Identifiable, CaseIterable, Equatable {
@@ -90,11 +98,11 @@ class ViewModel {
     static let shared = ViewModel()
     
     // MARK: - Avatar
-    var status: AvatarStatus = .notListening
+    var status: AvatarStatus = .idle
     var animation: Animation = .idle
 
 
     // MARK: - SpeechRecognition & AI
-    var aimodel: AIModel = .openAI
+    var aimodel: AIModel = .gemini
     var waitingTime: Double = 4
 }

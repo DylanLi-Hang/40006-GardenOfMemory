@@ -23,12 +23,12 @@ class SpeechRecognitionViewModel: ObservableObject {
     @Published var messages: [ChatMessage] = []
     @Published var responseText: String = ""
     @Published var isCompleting: Bool = false
-    
     var lastProcessedLength: Int = 0
     var speechRecognizer: SimpleSpeechRecognizer? = nil
     var openAI: OpenAI
     var gemini: GenerativeModel
     private var chat: Chat?
+    
     
     let viewModel = ViewModel.shared
     
@@ -45,18 +45,35 @@ class SpeechRecognitionViewModel: ObservableObject {
         let config = Configuration(
             organizationId: "",
             apiKey: APIKey.openai
+            
         )
         self.openAI = OpenAI(config)
         
         let geminiConfig = GenerationConfig(
-          maxOutputTokens: 5000
+            temperature: 0.1,
+            maxOutputTokens: 2048
         )
+        
+        //        let textPart = ModelContent.Part.text(Prompt.systemInitPrompt)
+        //        let modelContent = ModelContent(role: "system", parts: [textPart])
+        
         self.gemini = GenerativeModel(name: "gemini-1.0-pro", apiKey: APIKey.default, generationConfig: geminiConfig)
         
         self.messages.append(ChatMessage(role: .system, content: Prompt.systemInitPrompt))
         if viewModel.aimodel == .gemini {
-            let systemInstruction = ModelContent(role: "system", parts: [.text(Prompt.systemInitPrompt)])
-            self.chat = gemini.startChat(history: [systemInstruction])
+            var history: [ModelContent] = []
+            history = Prompt.history
+            for message in messages {
+                if let messageContent = message.content {
+                    if message.role == .user {
+                        history.append(ModelContent(role: "user", parts: messageContent))
+                    } else if message.role == .assistant {
+                        history.append(ModelContent(role: "model", parts: messageContent))
+                    }
+                }
+            }
+            self.chat = gemini.startChat(history: Prompt.history)
+            
         }
     }
     
@@ -79,7 +96,7 @@ class SpeechRecognitionViewModel: ObservableObject {
                     }
                 },
                 utteranceChanged: { newUtterance in
-//                    print("Recognized utterance changed: \(newUtterance)")
+                    //                    print("Recognized utterance changed: \(newUtterance)")
                     self.viewModel.status = .listening
                     DispatchQueue.main.async {
                         self.updateRecognizedText(newUtterance)
@@ -120,7 +137,7 @@ class SpeechRecognitionViewModel: ObservableObject {
                 }
         }
     }
-
+    
     private func sendMessage(_ message: String) async {
         DispatchQueue.main.async { [weak self] in
             guard let self = self else { return }
@@ -151,7 +168,14 @@ class SpeechRecognitionViewModel: ObservableObject {
             self.viewModel.status = .responding
             
             if viewModel.aimodel == .gemini {
-                let outputContentStream = gemini.generateContentStream(message)
+                //                let prompt = "Write a story about a magic backpack."
+                //                let response = try await gemini.generateContent(prompt)
+                //                gemini.modelResourceName.propertyList()
+                //                if let text = response.text {
+                //                  print(text)
+                //                }
+                
+                let outputContentStream = chat!.sendMessageStream(message)
                 for try await outputContent in outputContentStream {
                     guard let line = outputContent.text else {
                         return
@@ -170,8 +194,8 @@ class SpeechRecognitionViewModel: ObservableObject {
                         DispatchQueue.main.async { [weak self] in
                             guard let self = self else { return }
                             if let role = delta.role {
-//                                self.responseText += "\(role.rawValue.capitalized): "
-//                                print("delat: \(delta.role?.rawValue)")
+                                //                                self.responseText += "\(role.rawValue.capitalized): "
+                                //                                print("delat: \(delta.role?.rawValue)")
                             } else if let content = delta.content {
                                 self.responseText += content
                             }
@@ -190,5 +214,5 @@ class SpeechRecognitionViewModel: ObservableObject {
             print("Error processing text: \(error)")
         }
     }
-
+    
 }
