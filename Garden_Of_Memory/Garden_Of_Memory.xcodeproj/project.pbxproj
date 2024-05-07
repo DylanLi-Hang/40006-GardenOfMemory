@@ -20,6 +20,8 @@
 		3B99F02B2BB43A4900322E0E /* ImageBasedLighting.skybox in Resources */ = {isa = PBXBuildFile; fileRef = 3B99F02A2BB43A4900322E0E /* ImageBasedLighting.skybox */; };
 		3B99F02D2BB43A4B00322E0E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3B99F02C2BB43A4B00322E0E /* Assets.xcassets */; };
 		3B99F0302BB43A4B00322E0E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3B99F02F2BB43A4B00322E0E /* Preview Assets.xcassets */; };
+		657E31C42BE9E8440000E6A6 /* EmotionScaleRetrieval.swift in Sources */ = {isa = PBXBuildFile; fileRef = 657E31C32BE9E8440000E6A6 /* EmotionScaleRetrieval.swift */; };
+		657E31C62BE9F4D90000E6A6 /* ConversationTagsRetrieval.swift in Sources */ = {isa = PBXBuildFile; fileRef = 657E31C52BE9F4D90000E6A6 /* ConversationTagsRetrieval.swift */; };
 		6593EF762BC6625E00CF644C /* SpeechRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6593EF752BC6625E00CF644C /* SpeechRecognizer.swift */; };
 		6593EF782BC663FE00CF644C /* ConversationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6593EF772BC663FE00CF644C /* ConversationManager.swift */; };
 		65E4F98D2BC6B32E00CECC11 /* OpenAIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65E4F98C2BC6B32E00CECC11 /* OpenAIService.swift */; };
@@ -62,6 +64,8 @@
 		3B99F02C2BB43A4B00322E0E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3B99F02F2BB43A4B00322E0E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		3B99F0312BB43A4B00322E0E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		657E31C32BE9E8440000E6A6 /* EmotionScaleRetrieval.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmotionScaleRetrieval.swift; sourceTree = "<group>"; };
+		657E31C52BE9F4D90000E6A6 /* ConversationTagsRetrieval.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationTagsRetrieval.swift; sourceTree = "<group>"; };
 		6593EF752BC6625E00CF644C /* SpeechRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechRecognizer.swift; sourceTree = "<group>"; };
 		6593EF772BC663FE00CF644C /* ConversationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationManager.swift; sourceTree = "<group>"; };
 		65E4F98C2BC6B32E00CECC11 /* OpenAIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenAIService.swift; sourceTree = "<group>"; };
@@ -206,6 +210,8 @@
 				6593EF772BC663FE00CF644C /* ConversationManager.swift */,
 				65E4F98C2BC6B32E00CECC11 /* OpenAIService.swift */,
 				65E4F98E2BC6B66500CECC11 /* Secrets.swift */,
+				657E31C32BE9E8440000E6A6 /* EmotionScaleRetrieval.swift */,
+				657E31C52BE9F4D90000E6A6 /* ConversationTagsRetrieval.swift */,
 			);
 			path = ServiceModel;
 			sourceTree = "<group>";
@@ -318,6 +324,8 @@
 				FCDBE2292BD3B30600E00301 /* SimpleSpeechRecognizer.swift in Sources */,
 				65E4F98F2BC6B66500CECC11 /* Secrets.swift in Sources */,
 				6593EF762BC6625E00CF644C /* SpeechRecognizer.swift in Sources */,
+				657E31C62BE9F4D90000E6A6 /* ConversationTagsRetrieval.swift in Sources */,
+				657E31C42BE9E8440000E6A6 /* EmotionScaleRetrieval.swift in Sources */,
 				65E4F9932BC72EAF00CECC11 /* GlobalVariables.swift in Sources */,
 				0D54D1592BC567B100B84E78 /* WaterView.swift in Sources */,
 				3B57A7DB2BD75D5B00ABAEFD /* TerrariumView.swift in Sources */,

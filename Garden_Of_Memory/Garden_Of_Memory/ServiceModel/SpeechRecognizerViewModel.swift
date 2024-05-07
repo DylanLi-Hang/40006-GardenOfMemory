@@ -35,6 +35,12 @@ class SpeechRecognitionViewModel: ObservableObject {
     private var debouncer: AnyCancellable?
     private var lastPrintedText: String?
     
+    // For emotion scale retrieval
+    private var conversationCount = 0 // Counter to track the number of conversations
+    private let emotionViewModel = EmotionScaleViewModel()
+    
+    private let conversationTagsViewModel = ConversationTagsViewModel()
+    
     init() {
         let config = Configuration(
             organizationId: "",
@@ -119,6 +125,26 @@ class SpeechRecognitionViewModel: ObservableObject {
         DispatchQueue.main.async { [weak self] in
             guard let self = self else { return }
             self.messages.append(ChatMessage(role: .user, content: message))
+            
+            // Increment the conversation count when chatgpt responds
+            self.conversationCount += 1
+            if self.conversationCount == 4 { // Check if there have been four conversations
+                print("Four conversations have been had. Let's retrieve the emotion state.")
+                
+                // Perform action to retrieve emotion state
+                
+                let userMessages = self.messages.filter { $0.role == .user }
+                let latestFourUserMessages = Array(userMessages.suffix(4))
+                let latestFourUserMessagesContent = latestFourUserMessages.compactMap { $0.content }
+//                print("\n\nlatestFourUserMessagesContent:\n", latestFourUserMessagesContent, "\n\n")
+                
+                emotionViewModel.retrieveEmotionScale(latestFourUserMessagesContent)
+                
+                conversationTagsViewModel.retrieveConversationTags(latestFourUserMessagesContent)
+                
+                // Reset the conversation count to 0 after processing four conversations
+                self.conversationCount = 0
+            }
         }
         do {
             self.responseText = ""
