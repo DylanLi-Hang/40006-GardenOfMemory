@@ -15,32 +15,21 @@ struct WaterView: View {
     @Environment(\.modelContext) private var modelContext
     @Query(sort: \ChatEntry.date, order: .reverse) private var entries: [ChatEntry]
     
-    @State public var upAnimation = false
-    @State public var downAnimation = true
+    @State var waterDropEntity: Entity? = nil
+    @ObservedObject var speechViewModel: SpeechRecognitionViewModel = SpeechRecognitionViewModel()
     
     @State var animationResources: [AnimationResource] = [] // idle, listening, waiting, responding
-    @State var idleAnimationController: AnimationPlaybackController? = nil
-    @State var listeningAnimationController: AnimationPlaybackController? = nil
     @State var componentResources: [Component] = []
-    @State private var currentAnimation: Animation = .idle
     @State var animationControllers = [AnimationPlaybackController]()
-    @State var isEmitting = false
-    
-    @State var waterDropEntity: Entity? = nil
-    
-    @State var particles = ParticleEmitterComponent()
     
     let viewModel = ViewModel.shared
-    @State private var count:Int = 1
+    @State private var count: Int = 1
     @State private var waterDrop: Entity? = nil
     @State var currentChatEntry: ChatEntry = ChatEntry(date: Date(), mood: 10)
-    
-    @ObservedObject var speechViewModel: SpeechRecognitionViewModel = SpeechRecognitionViewModel()
     
     var body: some View {
         RealityView { content, attachments in
             do {
-//                let immersiveEntity = try await Entity(named: "Immersive", in: realityKitContentBundle)
                 let animatedEntity = try await Entity(named: "WaterAnimation", in: realityKitContentBundle)
                 
                 // Animation Resource 0: idle
@@ -165,13 +154,7 @@ struct WaterView: View {
                     } label: {
                         Text("Status Control")
                     }
-                    
-                    Button {
-                        waterDropEntity?.components[ParticleEmitterComponent.self]?.burst()
-                    } label: {
-                        Text("Burst")
-                    }
-                    
+
                     ForEach(animationControllers.indices, id: \.self) { index in
                         let controller = animationControllers[index]
                         Button("PlayAnimation") {
@@ -195,18 +178,19 @@ struct WaterView: View {
                 }
             }
             
-//            if oldValue == .notListening && newValue != .notListening {
-//                let rotationTransform = Transform(rotation: simd_quatf(angle: .pi, axis: [0,1,0]))
-//                if let unwrappedAnimatedEntity = waterDropEntity {
-//                    unwrappedAnimatedEntity.move(to: rotationTransform, relativeTo: unwrappedAnimatedEntity.self, duration: 3.0)
-//                }
-//            }
-            
             if newValue == .listening {
                 if let unwrappedAnimatedEntity = waterDropEntity {
                     unwrappedAnimatedEntity.components.set(componentResources)
                 }
                 
+                var count = 1
+                _ = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { timer in
+                    waterDropEntity?.components[ParticleEmitterComponent.self]?.burst()
+                    if count > 4 {
+                        timer.invalidate()
+                    }
+                    count += 1
+                }
                 waterDropEntity?.components[ParticleEmitterComponent.self]?.burst()
             } else if newValue == .idle {
                 dropAnimation()
@@ -239,13 +223,7 @@ struct WaterView: View {
                     animationControllers.append(controller)
                     print("play loading animation")
                 }
-            } 
-//            else if viewModel.status == .notListening {
-//                let rotationTransform = Transform(rotation: simd_quatf(angle: .pi, axis: [0,1,0]))
-//                if let unwrappedAnimatedEntity = waterDropEntity {
-//                    unwrappedAnimatedEntity.move(to: rotationTransform, relativeTo: unwrappedAnimatedEntity.self, duration: 3.0)
-//                }
-//            }
+            }
         })
         .onAppear() {
             var isloaded = false
@@ -289,43 +267,3 @@ struct WaterView: View {
 #Preview {
     WaterView()
 }
-
-
-// Learning Code
-// Thanks for https://stackoverflow.com/questions/76599901/how-to-use-multiple-animations-on-a-usdz-model-with-realitykit/76600896#76600896
-// Thanks for https://blog.studiolanes.com/posts/unified-animation-timeline
-
- 
-/*struct ContentView : View {
-    
-    @State var animationResource: [AnimationResource] = []
-    @State var model1 = try! Entity.loadModel(named: "idle.usdz")
-    @State var model2 = try! Entity.loadModel(named: "jump.usdz")
-    
-    var body : some View {
-        ZStack {
-            ARViewContainer(model: $model1)
-                .ignoresSafeArea()
-                .onAppear {
-                    animationResource.append(model1.availableAnimations[0])
-                    animationResource.append(model2.availableAnimations[0])
-                }
-            VStack {
-                Spacer()
-                HStack {
-                    Spacer()
-                    Button("Jump") {
-                        model1.playAnimation(animationResource[1].repeat(),
-                                             transitionDuration: 0.5)
-                    }
-                    Spacer()
-                    Button("Neutral") {
-                        model1.playAnimation(animationResource[0].repeat(),
-                                             transitionDuration: 0.5)
-                    }
-                    Spacer()
-                }
-            }
-        }
-    }
-}*/
