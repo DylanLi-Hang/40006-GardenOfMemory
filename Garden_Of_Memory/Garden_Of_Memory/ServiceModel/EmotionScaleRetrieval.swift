@@ -33,9 +33,7 @@ class EmotionScaleViewModel: ObservableObject {
         let latestFourConversations = latestFourUserMessagesContent.joined(separator: "\n")
         
         self.moodPrompt.append(ChatMessage(role: .user, content: latestFourConversations))
-        
-        do {
-            // Perform the asynchronous operation
+
             Task {
                 do {
                     let result = try await openAI.generateChatCompletion(parameters: ChatParameters(model: .chatGPTTurbo, messages: self.moodPrompt))
@@ -63,12 +61,6 @@ class EmotionScaleViewModel: ObservableObject {
                 } catch {
                     print("Error processing text: \(error)")
                 }
-                
-                // Add a delay before checking for response again
-                await Task.sleep(500) // Sleep for 500 milliseconds (adjust as needed)
             }
-        } catch {
-            print("Error processing text: \(error)")
-        }
     }
 }

@@ -23,6 +23,9 @@ class SpeechRecognitionViewModel: ObservableObject {
     @Published var messages: [ChatMessage] = []
     @Published var responseText: String = ""
     @Published var isCompleting: Bool = false
+    @Published var mood: Int = 5
+    @Published var tags: [String] = []
+    
     var lastProcessedLength: Int = 0
     var speechRecognizer: SimpleSpeechRecognizer? = nil
     var openAI: OpenAI
@@ -38,7 +41,6 @@ class SpeechRecognitionViewModel: ObservableObject {
     // For emotion scale retrieval
     private var conversationCount = 0 // Counter to track the number of conversations
     private let emotionViewModel = EmotionScaleViewModel()
-    
     private let conversationTagsViewModel = ConversationTagsViewModel()
     
     init() {
@@ -153,10 +155,8 @@ class SpeechRecognitionViewModel: ObservableObject {
                 let userMessages = self.messages.filter { $0.role == .user }
                 let latestFourUserMessages = Array(userMessages.suffix(4))
                 let latestFourUserMessagesContent = latestFourUserMessages.compactMap { $0.content }
-//                print("\n\nlatestFourUserMessagesContent:\n", latestFourUserMessagesContent, "\n\n")
                 
                 emotionViewModel.retrieveEmotionScale(latestFourUserMessagesContent)
-                
                 conversationTagsViewModel.retrieveConversationTags(latestFourUserMessagesContent)
                 
                 // Reset the conversation count to 0 after processing four conversations

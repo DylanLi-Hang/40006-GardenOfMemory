@@ -171,6 +171,12 @@ struct WaterView: View {
                 
             }
         }
+        .onChange(of: speechViewModel.mood, { oldValue, newValue in
+            currentChatEntry.mood = speechViewModel.mood
+        })
+        .onChange(of: speechViewModel.tags, { oldValue, newValue in
+            currentChatEntry.tags = speechViewModel.tags
+        })
         .onChange(of: viewModel.status, { oldValue, newValue in
             if oldValue == .listening && newValue != .listening {
                 if let unwrappedAnimatedEntity = waterDropEntity {
