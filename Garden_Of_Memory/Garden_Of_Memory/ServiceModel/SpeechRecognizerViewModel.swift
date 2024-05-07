@@ -39,6 +39,8 @@ class SpeechRecognitionViewModel: ObservableObject {
     private var conversationCount = 0 // Counter to track the number of conversations
     private let emotionViewModel = EmotionScaleViewModel()
     
+    private let conversationTagsViewModel = ConversationTagsViewModel()
+    
     init() {
         let config = Configuration(
             organizationId: "",
@@ -137,6 +139,8 @@ class SpeechRecognitionViewModel: ObservableObject {
 //                print("\n\nlatestFourUserMessagesContent:\n", latestFourUserMessagesContent, "\n\n")
                 
                 emotionViewModel.retrieveEmotionScale(latestFourUserMessagesContent)
+                
+                conversationTagsViewModel.retrieveConversationTags(latestFourUserMessagesContent)
                 
                 // Reset the conversation count to 0 after processing four conversations
                 self.conversationCount = 0

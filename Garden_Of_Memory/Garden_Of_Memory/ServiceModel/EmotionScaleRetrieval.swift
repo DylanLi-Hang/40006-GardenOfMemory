@@ -14,7 +14,7 @@ class EmotionScaleViewModel: ObservableObject {
     var moodPrompt: [ChatMessage] = [] // Used for sending prompt to chatgpt asking to rate user's mood from a scale of 1-5
     @Published var mood: Int = 0 // Used for receiving the mood value from chatgpt's response
     
-    @Published var tags: [ChatMessage] = []
+    // @Published var tags: [ChatMessage] = []
     
     var openAI: OpenAI
     
@@ -30,7 +30,7 @@ class EmotionScaleViewModel: ObservableObject {
                 
         self.moodPrompt.append(ChatMessage(role: .system, content: Prompt.emotionScaleInitPrompt))
         
-        self.tags.append(ChatMessage(role: .system, content: Prompt.tagsInitPrompt))
+//        self.tags.append(ChatMessage(role: .system, content: Prompt.tagsInitPrompt))
     }
     
     
