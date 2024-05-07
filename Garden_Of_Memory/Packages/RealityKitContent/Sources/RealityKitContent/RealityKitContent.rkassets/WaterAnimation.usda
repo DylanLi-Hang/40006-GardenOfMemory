@@ -29,6 +29,7 @@ def Xform "Root"
                     token birthDirection = "Normal"
                     token birthLocation = "Surface"
                     float3 birthLocationVertex = (6, 6, 6)
+                    int64 burstCount = 10
                     double emissionDuration = 10
                     token emitterShape = "Point"
                     bool isEmitting = 1
@@ -45,6 +46,10 @@ def Xform "Root"
                         float4 endColorA = (1, 0.051991113, 1, 1)
                         float4 endColorB = (0, 0.98059916, 1, 1)
                         token opacityOverLife = "GradualFadeInOut"
+                        float particleAngularVelocity = 0.1
+                        double particleLifeSpan = 1
+                        float particleSize = 0.12
+                        float sizeMultiplierAtEndOfLifespan = 0.15
                         bool useEndColor = 1
                         bool useEndColorRange = 1
                     }

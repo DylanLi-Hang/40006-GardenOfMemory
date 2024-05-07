@@ -62,10 +62,10 @@ struct WaterView: View {
                 if let unwrappedAnimatedEntity = animatedEntity.findEntity(named: "water_drop_listening") {
 //                    let emitter = EmitterSettings()
                     if var particleEmitterComponent = unwrappedAnimatedEntity.components[ParticleEmitterComponent.self] {
-                        particleEmitterComponent.isEmitting = false
+//                        particleEmitterComponent.isEmitting = false
                         componentResources.append(particleEmitterComponent)
                         print("Appended")
-                        unwrappedAnimatedEntity.components.remove(ParticleEmitterComponent.self)
+//                        unwrappedAnimatedEntity.components.remove(ParticleEmitterComponent.self)
                     }
 //                    unwrappedAnimatedEntity.components.removeAll()
                     
@@ -76,14 +76,14 @@ struct WaterView: View {
                 
                 if let sceneAttachment = attachments.entity(for: "StartConversingButton") {
                     if let water_drop = waterDropEntity {
-                        sceneAttachment.position = water_drop.position + [0, 0.2, 0]
+                        sceneAttachment.position = water_drop.position + [0, 0.35, 0]
                         water_drop.addChild(sceneAttachment, preservingWorldTransform: true)
                     }
                 }
                 
                 if let sceneAttachment = attachments.entity(for: "DisplayResponse") {
                     if let water_drop = waterDropEntity {
-                        sceneAttachment.position = water_drop.position + [0.5, 0, 0]
+                        sceneAttachment.position = water_drop.position + [0, 0.2, 0]
                         water_drop.addChild(sceneAttachment, preservingWorldTransform: true)
                     }
                 }
@@ -127,20 +127,39 @@ struct WaterView: View {
             // Attachment 2
             Attachment(id: "DisplayResponse") {
                 HStack {
-                    Text("Response:  ")
+                    Image("WaterDrop")
+                        .resizable()
+                        .frame(width: 60, height: 60)
+                        .clipShape(Circle())
+                        .overlay(Circle().stroke(Color.gray, lineWidth: 1))
+                    
                     if viewModel.status == .responding {
-                        ScrollView(.horizontal, showsIndicators: true) {
+                        ScrollView(showsIndicators: true) {
                             Text(speechViewModel.responseText)
-                                .frame(alignment: .leading)
-                                .padding(80)
+                                .padding(.all, 10)
+                                .background(Color.gray.opacity(0.25))
+                                .cornerRadius(20)
                                 .multilineTextAlignment(.leading)
+                                .frame(width: 600, height: 150, alignment: .leading)
                         }
                     } else {
-                        Text(speechViewModel.messages.last?.content ?? "No messages yet")
+                        ScrollView(showsIndicators: true) {
+                            Text(speechViewModel.messages.last?.content ?? "No messages yet")
+                                .padding(.all, 10)
+                                .background(Color.gray.opacity(0.25))
+                                .cornerRadius(20)
+                                .multilineTextAlignment(.leading)
+                                .frame(width: 600, height: 150, alignment: .leading)
+                        }
                     }
                 }
-                .frame(width: 800, height: 1000)
-                .glassBackgroundEffect()
+                .padding(.all, 10)
+                .background(Color.black.opacity(0.5))
+                .cornerRadius(25)
+                .shadow(color: .gray, radius: 3, x: 1, y: 1)
+                .padding(.horizontal, 10)
+                .frame(width: 800, height: 200)
+                
             }
             
             Attachment(id: "PlayAnimation") {
@@ -169,6 +188,12 @@ struct WaterView: View {
             }
         }
         .onChange(of: viewModel.status, { oldValue, newValue in
+            if oldValue == .listening && newValue != .listening {
+                if let unwrappedAnimatedEntity = waterDropEntity {
+                    unwrappedAnimatedEntity.components.remove(ParticleEmitterComponent.self)
+                }
+            }
+            
             if oldValue == .notListening && newValue != .notListening {
                 let rotationTransform = Transform(rotation: simd_quatf(angle: .pi, axis: [0,1,0]))
                 if let unwrappedAnimatedEntity = waterDropEntity {
@@ -181,7 +206,8 @@ struct WaterView: View {
                 if let unwrappedAnimatedEntity = waterDropEntity {
 //                    unwrappedAnimatedEntity.components[ParticleEmitterComponent.self] = componentResources.first
 //                    unwrappedAnimatedEntity.components[ParticleEmitterComponent.self] = pSystem()
-                    unwrappedAnimatedEntity.components.set(particles)
+//                    unwrappedAnimatedEntity.components.set(particles)
+                    unwrappedAnimatedEntity.components.set(componentResources)
 //                    if var particleEmitterComponent = unwrappedAnimatedEntity.components[ParticleEmitterComponent.self] {
 //                        particleEmitterComponent.particlesInheritTransform = false
 //                    }
@@ -224,17 +250,18 @@ struct WaterView: View {
                 if let unwrappedAnimatedEntity = waterDropEntity {
                     unwrappedAnimatedEntity.move(to: rotationTransform, relativeTo: unwrappedAnimatedEntity.self, duration: 3.0)
                 }
-            } else {
-                if let unwrappedAnimatedEntity = waterDropEntity?.findEntity(named: "water_drop_listening") {
-                    print(unwrappedAnimatedEntity.components.has(ParticleEmitterComponent.self))
-                    unwrappedAnimatedEntity.components.remove(ParticleEmitterComponent.self)
-                    print(unwrappedAnimatedEntity.components.has(ParticleEmitterComponent.self))
-                    if var particleEmitterComponent = unwrappedAnimatedEntity.components[ParticleEmitterComponent.self] {
-                        particleEmitterComponent.particlesInheritTransform = true
-                    }
-                    
-                }
             }
+//                else {
+//                if let unwrappedAnimatedEntity = waterDropEntity?.findEntity(named: "water_drop_listening") {
+//                    print(unwrappedAnimatedEntity.components.has(ParticleEmitterComponent.self))
+//                    unwrappedAnimatedEntity.components.remove(ParticleEmitterComponent.self)
+//                    print(unwrappedAnimatedEntity.components.has(ParticleEmitterComponent.self))
+//                    if var particleEmitterComponent = unwrappedAnimatedEntity.components[ParticleEmitterComponent.self] {
+//                        particleEmitterComponent.particlesInheritTransform = true
+//                    }
+//                    
+//                }
+//            }
         })
         .onAppear() {
             var isloaded = false
@@ -275,19 +302,19 @@ struct WaterView: View {
     
     //WaterDrop firework particles
     func pSystem() -> ParticleEmitterComponent {
-//        particles.emitterShape = .sphere
-//        particles.burstCount = 100
-//        particles.burst()
+        particles.emitterShape = .sphere
+        particles.burstCount = 100
+        particles.burst()
         particles.timing = .repeating(warmUp: 1.5, emit: ParticleEmitterComponent.Timing.VariableDuration(duration: 10, variation: 0))
         particles.emitterShape = .point
         particles.birthLocation = .surface
         particles.birthDirection = .normal
         particles.emitterShapeSize = [0.05, 0.05, 0.05]
         particles.spawnInheritsParentColor = true
-        particles.speed = 0.001
+        particles.speed = 0.1
         particles.mainEmitter.birthRate = 150
         
-        particles.emitterShapeSize = [0.05, 0.05, 0.05]
+        particles.emitterShapeSize = [0.1, 0.1, 0.1]
         
         return particles
     }
