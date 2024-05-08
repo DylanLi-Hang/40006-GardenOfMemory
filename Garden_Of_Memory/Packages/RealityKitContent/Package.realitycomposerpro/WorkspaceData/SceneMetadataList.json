@@ -57,11 +57,35 @@
     "objectMetadataList" : [
       [
         "21A7285A-1FB4-41A1-AB1B-07E2DEB1F63C",
+        "Root",
+        "Rainbow"
+      ],
+      {
+        "isExpanded" : false,
+        "isLocked" : false,
+        "selectedAudioFilePrim" : {
+          "string" : "\/Root\/AtmospheresForestFloor"
+        }
+      },
+      [
+        "21A7285A-1FB4-41A1-AB1B-07E2DEB1F63C",
         "Root"
       ],
       {
         "isExpanded" : true,
         "isLocked" : false
+      },
+      [
+        "21A7285A-1FB4-41A1-AB1B-07E2DEB1F63C",
+        "Root",
+        "Sparks"
+      ],
+      {
+        "isExpanded" : false,
+        "isLocked" : false,
+        "selectedAudioFilePrim" : {
+          "string" : "\/Root\/AtmospheresForestFloor"
+        }
       }
     ]
   },
@@ -74,6 +98,18 @@
       {
         "isExpanded" : true,
         "isLocked" : false
+      },
+      [
+        "33FC1826-8C65-46F4-A95A-944ED2E64EEA",
+        "Root",
+        "Rain"
+      ],
+      {
+        "isExpanded" : false,
+        "isLocked" : false,
+        "selectedAudioFilePrim" : {
+          "string" : "\/Root\/Rain_wav"
+        }
       }
     ]
   },
@@ -91,6 +127,18 @@
   },
   "80BDD26D-7950-405F-AE41-2572C5F11EFA" : {
     "objectMetadataList" : [
+      [
+        "80BDD26D-7950-405F-AE41-2572C5F11EFA",
+        "Root",
+        "sunshine"
+      ],
+      {
+        "isExpanded" : false,
+        "isLocked" : false,
+        "selectedAudioFilePrim" : {
+          "string" : "\/Root\/Sunny_mp3"
+        }
+      },
       [
         "80BDD26D-7950-405F-AE41-2572C5F11EFA",
         "Root"
@@ -382,6 +430,18 @@
   },
   "E308D5F6-FB42-4B21-9FB4-B888FF1BBD69" : {
     "objectMetadataList" : [
+      [
+        "E308D5F6-FB42-4B21-9FB4-B888FF1BBD69",
+        "Root",
+        "Mist"
+      ],
+      {
+        "isExpanded" : false,
+        "isLocked" : false,
+        "selectedAudioFilePrim" : {
+          "string" : "\/Root\/Cloud_mp3"
+        }
+      },
       [
         "E308D5F6-FB42-4B21-9FB4-B888FF1BBD69",
         "Root"

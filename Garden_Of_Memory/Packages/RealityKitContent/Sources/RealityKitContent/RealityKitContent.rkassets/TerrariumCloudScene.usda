@@ -285,6 +285,19 @@ def Xform "Root"
                 }
             }
         }
+
+        def RealityKitComponent "SpatialAudio"
+        {
+            float directLevel = 0
+            uniform token info:id = "RealityKit.SpatialAudio"
+        }
+    }
+
+    def RealityKitAudioFile "Cloud_mp3"
+    {
+        uniform asset file = @Cloud.mp3@
+        uniform bool shouldLoop = 1
+        uniform bool shouldRandomizeStartTime = 1
     }
 }
 

@@ -10,9 +10,10 @@
 
 def Xform "Root"
 {
+    reorder nameChildren = ["Terrarium", "sunny_buddy", "sunshine", "Sunny_mp3"]
     def "Terrarium" (
         active = true
-        prepend references = @Terrarium.usdz@
+        references = @Terrarium.usdz@
     )
     {
         float3 xformOp:scale = (0.001, 0.001, 0.001)
@@ -55,7 +56,7 @@ def Xform "Root"
 
     def "sunny_buddy" (
         active = true
-        prepend references = @sunny_buddy.usdz@
+        references = @sunny_buddy.usdz@
     )
     {
         float3 xformOp:scale = (0.05, 0.05, 0.05)
@@ -71,7 +72,14 @@ def Xform "Root"
         }
     }
 
-    def Xform "Transform" (
+    def RealityKitAudioFile "Sunny_mp3"
+    {
+        uniform asset file = @Sunny.mp3@
+        uniform bool shouldLoop = 1
+        uniform bool shouldRandomizeStartTime = 1
+    }
+
+    def Xform "sunshine" (
         active = true
     )
     {
@@ -211,6 +219,12 @@ def Xform "Root"
                     float vortexStrength = 0
                 }
             }
+        }
+
+        def RealityKitComponent "SpatialAudio"
+        {
+            float directLevel = -10.924967
+            uniform token info:id = "RealityKit.SpatialAudio"
         }
     }
 }
