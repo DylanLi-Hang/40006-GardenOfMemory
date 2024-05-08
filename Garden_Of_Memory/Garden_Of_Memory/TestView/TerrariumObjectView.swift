@@ -11,6 +11,7 @@ import RealityKit
 import RealityKitContent
 
 struct TerrariumObjectView: View {
+    
     var body: some View {
         
         RealityView { content in
@@ -19,6 +20,7 @@ struct TerrariumObjectView: View {
                 content.add(scene)
             }
         } update: { content in
+            
             // Update the RealityKit content when SwiftUI state changes
 //            if let scene = content.entities.first {
 //                let uniformScale: Float = enlarge ? 1.4 : 1.0
@@ -27,6 +29,7 @@ struct TerrariumObjectView: View {
         }
         .onAppear() {
         }
+        
 //        .gesture(TapGesture()
 //            .targetedToAnyEntity()
 //            .onEnded({ value in

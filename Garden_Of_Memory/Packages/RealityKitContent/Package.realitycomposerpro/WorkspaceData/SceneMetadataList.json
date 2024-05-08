@@ -105,8 +105,7 @@
     "objectMetadataList" : [
       [
         "549D2E12-3E81-48FB-8E20-AFE009576E99",
-        "Root",
-        "WaterAnimation"
+        "Root"
       ],
       {
         "isExpanded" : true,
@@ -114,7 +113,8 @@
       },
       [
         "549D2E12-3E81-48FB-8E20-AFE009576E99",
-        "Root"
+        "Root",
+        "WaterAnimation"
       ],
       {
         "isExpanded" : true,
@@ -164,6 +164,18 @@
       {
         "isExpanded" : true,
         "isLocked" : false
+      },
+      [
+        "342353B2-E0C0-4535-89D4-6D7F0122EFEA",
+        "Root",
+        "ParticleEmitter_1"
+      ],
+      {
+        "isExpanded" : false,
+        "isLocked" : false,
+        "selectedAudioFilePrim" : {
+          "string" : "\/Root\/Thunder_wav"
+        }
       }
     ]
   },
@@ -172,9 +184,47 @@
       [
         "AF09ED6F-1707-48FD-8720-65B998362C09",
         "Root",
+        "Sphere_Right"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "AF09ED6F-1707-48FD-8720-65B998362C09",
+        "Root"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "AF09ED6F-1707-48FD-8720-65B998362C09",
+        "Root",
         "water_drop_idle",
         "Meshes",
         "Sketchfab_model"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "AF09ED6F-1707-48FD-8720-65B998362C09",
+        "Root",
+        "water_drop_idle",
+        "Meshes",
+        "Sketchfab_model",
+        "_f200c4c2cc5428e918e9a353aec110b_fbx"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "AF09ED6F-1707-48FD-8720-65B998362C09",
+        "Root",
+        "Sphere_Left"
       ],
       {
         "isExpanded" : true,
@@ -214,14 +264,6 @@
       },
       [
         "AF09ED6F-1707-48FD-8720-65B998362C09",
-        "Root"
-      ],
-      {
-        "isExpanded" : true,
-        "isLocked" : false
-      },
-      [
-        "AF09ED6F-1707-48FD-8720-65B998362C09",
         "Root",
         "water_drop_idle",
         "Meshes",
@@ -229,36 +271,6 @@
         "_f200c4c2cc5428e918e9a353aec110b_fbx",
         "RootNode",
         "WaterL"
-      ],
-      {
-        "isExpanded" : true,
-        "isLocked" : false
-      },
-      [
-        "AF09ED6F-1707-48FD-8720-65B998362C09",
-        "Root",
-        "Sphere_Left"
-      ],
-      {
-        "isExpanded" : true,
-        "isLocked" : false
-      },
-      [
-        "AF09ED6F-1707-48FD-8720-65B998362C09",
-        "Root",
-        "water_drop_idle",
-        "Meshes",
-        "Sketchfab_model",
-        "_f200c4c2cc5428e918e9a353aec110b_fbx"
-      ],
-      {
-        "isExpanded" : true,
-        "isLocked" : false
-      },
-      [
-        "AF09ED6F-1707-48FD-8720-65B998362C09",
-        "Root",
-        "Sphere_Right"
       ],
       {
         "isExpanded" : true,
@@ -291,8 +303,7 @@
     "objectMetadataList" : [
       [
         "CB766F92-EE55-4A63-9401-E7B8C009764D",
-        "Root",
-        "GridMaterial"
+        "Root"
       ],
       {
         "isExpanded" : true,
@@ -300,7 +311,8 @@
       },
       [
         "CB766F92-EE55-4A63-9401-E7B8C009764D",
-        "Root"
+        "Root",
+        "GridMaterial"
       ],
       {
         "isExpanded" : true,
@@ -351,8 +363,7 @@
     "objectMetadataList" : [
       [
         "E85BD46A-2E58-41BB-9C61-E72FDC26D69C",
-        "Root",
-        "BadVibe"
+        "Root"
       ],
       {
         "isExpanded" : true,
@@ -360,7 +371,8 @@
       },
       [
         "E85BD46A-2E58-41BB-9C61-E72FDC26D69C",
-        "Root"
+        "Root",
+        "BadVibe"
       ],
       {
         "isExpanded" : true,

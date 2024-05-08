@@ -16,7 +16,7 @@ def Xform "Root"
     )
     {
         float3 xformOp:scale = (0.001, 0.001, 0.001)
-        float3 xformOp:translate = (0.00020299852, 0, 0.0021100268)
+        float3 xformOp:translate = (0.00023830682, 0, 0.0021498427)
         uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
 
         over "Meshes"
@@ -265,7 +265,7 @@ def Xform "Root"
     {
         quatf xformOp:orient = (1, 0, 0, 0)
         float3 xformOp:scale = (1, 1, 1)
-        float3 xformOp:translate = (0.011513032, 0.21941805, -0.050351214)
+        float3 xformOp:translate = (0.011513032, 0.21941805, 0.010670066)
         uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
 
         def RealityKitComponent "VFXEmitter"
@@ -383,6 +383,13 @@ def Xform "Root"
                     float vortexStrength = 0
                 }
             }
+        }
+
+        def RealityKitComponent "SpatialAudio"
+        {
+            float directivityFocus = 0.075200535
+            float directLevel = -5
+            uniform token info:id = "RealityKit.SpatialAudio"
         }
     }
 
@@ -739,6 +746,13 @@ def Xform "Root"
                 }
             }
         }
+    }
+
+    def RealityKitAudioFile "Thunder_wav"
+    {
+        uniform asset file = @Thunder.wav@
+        uniform bool shouldLoop = 1
+        uniform bool shouldRandomizeStartTime = 1
     }
 }
 
