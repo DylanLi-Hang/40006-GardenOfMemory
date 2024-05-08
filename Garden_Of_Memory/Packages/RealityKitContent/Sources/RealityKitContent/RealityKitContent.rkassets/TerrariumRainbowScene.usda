@@ -1,0 +1,50 @@
+#usda 1.0
+(
+    customLayerData = {
+        string creator = "Reality Composer Pro Version 1.0 (409.100.15)"
+    }
+    defaultPrim = "Root"
+    metersPerUnit = 1
+    upAxis = "Y"
+)
+
+def Xform "Root"
+{
+    def "Terrarium" (
+        active = true
+        prepend references = @Terrarium.usdz@
+    )
+    {
+        float3 xformOp:scale = (0.001, 0.001, 0.001)
+        float3 xformOp:translate = (0, -0.12279384, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+    }
+
+    def "Rainbow" (
+        active = true
+        prepend references = @Rainbow.usdz@
+    )
+    {
+        quatf xformOp:orient = (1, 0, 0, 0)
+        float3 xformOp:scale = (0.001, 0.001, 0.001)
+        float3 xformOp:translate = (0, 0.029293776, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        over "Meshes"
+        {
+            quatf xformOp:orient = (1, 0, 0, 0)
+            float3 xformOp:scale = (0.5, 0.5, 0.5)
+            double3 xformOp:translate = (-7.6147613525390625, 44.52076721191406, -1.3612433671951294)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            over "Sketchfab_model"
+            {
+                quatf xformOp:orient = (0, 1, 0, 0)
+                float3 xformOp:scale = (1, 1, 1)
+                float3 xformOp:translate = (0, 0, 0)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+            }
+        }
+    }
+}
+

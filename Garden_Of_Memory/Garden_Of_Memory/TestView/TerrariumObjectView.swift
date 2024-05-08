@@ -15,14 +15,14 @@ struct TerrariumObjectView: View {
         
         RealityView { content in
             // Add the initial RealityKit content
-            if let scene = try? await Entity(named: "TerrariumCloudScene", in: realityKitContentBundle) {
+            if let scene = try? await Entity(named: "TerrariumThunderScene", in: realityKitContentBundle) {
                 content.add(scene)
             }
         } update: { content in
-//            // Update the RealityKit content when SwiftUI state changes
+            // Update the RealityKit content when SwiftUI state changes
 //            if let scene = content.entities.first {
-////                let uniformScale: Float = enlarge ? 1.4 : 1.0
-////                scene.transform.scale = [uniformScale, uniformScale, uniformScale]
+//                let uniformScale: Float = enlarge ? 1.4 : 1.0
+//                scene.transform.scale = [uniformScale, uniformScale, uniformScale]
 //            }
         }
         .onAppear() {
