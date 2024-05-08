@@ -18,7 +18,21 @@ struct TerrariumObjectView: View {
             // Add the initial RealityKit content
             if let scene = try? await Entity(named: "TerrariumThunderScene", in: realityKitContentBundle) {
                 content.add(scene)
+//                guard let thunder = scene.findEntity(named: "/Root/ThunderEmitter"),
+//                      let resource = try? AudioFileResource(named: "/Root/Thunder_wav", from: "TerrariumThunderScene.usda", in: RealityKitContent.realityKitContentBundle) else { return }
+                print("prepare play audio")
+                guard let resource = try? AudioFileResource.load(named: "/Root/Thunder_wav",
+                                                                 from: "TerrariumThunderScene.usda",
+                                                                 in: RealityKitContent.realityKitContentBundle) else { return }
+                let audioPlaybackController = scene.prepareAudio(resource)
+                audioPlaybackController.play()
+                print("play audio")
             }
+            
+            
+            
+            
+            
         } update: { content in
             
             // Update the RealityKit content when SwiftUI state changes

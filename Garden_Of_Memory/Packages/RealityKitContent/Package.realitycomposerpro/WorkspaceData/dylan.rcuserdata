@@ -5,7 +5,8 @@
     "Immersive.usda",
     "Immersive1.usda",
     "WaterAnimation1.usda",
-    "TerrariumCloudScene.usda"
+    "TerrariumCloudScene.usda",
+    "TerrariumThunderScene.usda"
   ],
   "recentIdentifiers" : {
     "8D4D9BDD-9475-4751-BA36-EB144CD09C65" : [
@@ -15,6 +16,9 @@
 
     ],
     "6451D4E7-4FEA-464B-9985-27788B19DE26" : [
+
+    ],
+    "342353B2-E0C0-4535-89D4-6D7F0122EFEA" : [
 
     ],
     "AF09ED6F-1707-48FD-8720-65B998362C09" : [
@@ -785,6 +789,30 @@
         ]
       }
     ],
+    "342353B2-E0C0-4535-89D4-6D7F0122EFEA" : [
+      {
+        "date" : 736863230.436275,
+        "title" : "Untitled",
+        "transform" : [
+          0.99999994,
+          0,
+          -0,
+          0,
+          -0,
+          0.86982465,
+          -0.49336097,
+          0,
+          0,
+          0.49336097,
+          0.86982465,
+          0,
+          0.00023830679,
+          0.663921,
+          0.94427836,
+          1
+        ]
+      }
+    ],
     "AF09ED6F-1707-48FD-8720-65B998362C09" : [
       {
         "date" : 735388844.156442,
@@ -1233,6 +1261,28 @@
     ],
     "E308D5F6-FB42-4B21-9FB4-B888FF1BBD69" : [
       {
+        "date" : 736863222.741982,
+        "title" : "Untitled",
+        "transform" : [
+          0.950136,
+          5.804396e-09,
+          0.3118356,
+          0,
+          0.15646522,
+          0.86500955,
+          -0.47673598,
+          0,
+          -0.26974076,
+          0.5017554,
+          0.8218767,
+          0,
+          -0.6319211,
+          1.1157836,
+          2.2626467,
+          1
+        ]
+      },
+      {
         "date" : 735485866.592523,
         "title" : "Untitled",
         "transform" : [
@@ -1429,30 +1479,8 @@
           2.1795273,
           1
         ]
-      },
-      {
-        "date" : 735485711.100508,
-        "title" : "Untitled",
-        "transform" : [
-          1,
-          0,
-          0,
-          0,
-          0,
-          0.86602485,
-          -0.5000009,
-          0,
-          0,
-          0.5000009,
-          0.86602485,
-          0,
-          -0.13037708,
-          2.3885942,
-          1.7442062,
-          1
-        ]
       }
     ]
   },
-  "selectedSceneRelativePath" : "TerrariumCloudScene.usda"
+  "selectedSceneRelativePath" : "TerrariumThunderScene.usda"
 }

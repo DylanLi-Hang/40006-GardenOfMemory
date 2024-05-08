@@ -10,9 +10,10 @@
 
 def Xform "Root"
 {
+    reorder nameChildren = ["Terrarium", "cloud", "cloud2", "cloud3", "cloud3_1", "ParticleEmitter_1", "ParticleEmitter_2", "ParticleEmitter_3", "Mist", "ThunderEmitter", "Thunder_wav", "AmbientThunderEmitter"]
     def "Terrarium" (
         active = true
-        prepend references = @Terrarium.usdz@
+        references = @Terrarium.usdz@
     )
     {
         float3 xformOp:scale = (0.001, 0.001, 0.001)
@@ -142,7 +143,7 @@ def Xform "Root"
                 }
 
                 def Material "Cloud_1" (
-                    prepend references = </Root/cloud2/Materials/_materials/Cloud>
+                    references = </Root/cloud2/Materials/_materials/Cloud>
                 )
                 {
                     token outputs:surface.connect = </Root/cloud2/Materials/_materials/Cloud_1/Principled_BSDF.outputs:surface>
@@ -168,7 +169,7 @@ def Xform "Root"
                 }
 
                 def Material "Cloud_2" (
-                    prepend references = </Root/cloud2/Materials/_materials/Cloud>
+                    references = </Root/cloud2/Materials/_materials/Cloud>
                 )
                 {
                     token outputs:surface.connect = </Root/cloud2/Materials/_materials/Cloud_2/Principled_BSDF.outputs:surface>
@@ -748,11 +749,17 @@ def Xform "Root"
         }
     }
 
+    def Xform "ThunderEmitter"
+    {
+        def RealityKitComponent "SpatialAudio"
+        {
+            uniform token info:id = "RealityKit.SpatialAudio"
+        }
+    }
+
     def RealityKitAudioFile "Thunder_wav"
     {
         uniform asset file = @Thunder.wav@
-        uniform bool shouldLoop = 1
-        uniform bool shouldRandomizeStartTime = 1
     }
 }
 
