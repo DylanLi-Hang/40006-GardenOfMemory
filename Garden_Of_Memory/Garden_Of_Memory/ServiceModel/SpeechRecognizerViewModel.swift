@@ -42,6 +42,7 @@ class SpeechRecognitionViewModel: ObservableObject {
     private var conversationCount = 0 // Counter to track the number of conversations
     private let emotionViewModel = EmotionScaleViewModel()
     private let conversationTagsViewModel = ConversationTagsViewModel()
+    private let textToSpeechViewModel = TextToSpeechViewModel()
     
     init() {
         let config = Configuration(
@@ -225,6 +226,10 @@ class SpeechRecognitionViewModel: ObservableObject {
             DispatchQueue.main.async { [weak self] in
                 guard let self = self else { return }
                 self.messages.append(ChatMessage(role: .assistant, content: self.responseText))
+                
+                // Call text-to-speech functionality here
+                textToSpeechViewModel.speak(self.responseText)
+                
                 print("Final response: \(self.responseText)")
                 if self.viewModel.status != .notListening {
                     self.viewModel.status = .idle

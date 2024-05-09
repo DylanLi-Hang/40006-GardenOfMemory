@@ -24,6 +24,7 @@
 		657E31C62BE9F4D90000E6A6 /* ConversationTagsRetrieval.swift in Sources */ = {isa = PBXBuildFile; fileRef = 657E31C52BE9F4D90000E6A6 /* ConversationTagsRetrieval.swift */; };
 		6593EF762BC6625E00CF644C /* SpeechRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6593EF752BC6625E00CF644C /* SpeechRecognizer.swift */; };
 		6593EF782BC663FE00CF644C /* ConversationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6593EF772BC663FE00CF644C /* ConversationManager.swift */; };
+		6596F9492BECE11F00AE2CD3 /* TextToSpeech.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6596F9482BECE11F00AE2CD3 /* TextToSpeech.swift */; };
 		65E4F98D2BC6B32E00CECC11 /* OpenAIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65E4F98C2BC6B32E00CECC11 /* OpenAIService.swift */; };
 		65E4F98F2BC6B66500CECC11 /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65E4F98E2BC6B66500CECC11 /* Secrets.swift */; };
 		65E4F9932BC72EAF00CECC11 /* GlobalVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65E4F9922BC72EAF00CECC11 /* GlobalVariables.swift */; };
@@ -69,6 +70,7 @@
 		657E31C52BE9F4D90000E6A6 /* ConversationTagsRetrieval.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationTagsRetrieval.swift; sourceTree = "<group>"; };
 		6593EF752BC6625E00CF644C /* SpeechRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechRecognizer.swift; sourceTree = "<group>"; };
 		6593EF772BC663FE00CF644C /* ConversationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationManager.swift; sourceTree = "<group>"; };
+		6596F9482BECE11F00AE2CD3 /* TextToSpeech.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextToSpeech.swift; sourceTree = "<group>"; };
 		65E4F98C2BC6B32E00CECC11 /* OpenAIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenAIService.swift; sourceTree = "<group>"; };
 		65E4F98E2BC6B66500CECC11 /* Secrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
 		65E4F9922BC72EAF00CECC11 /* GlobalVariables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalVariables.swift; sourceTree = "<group>"; };
@@ -217,6 +219,7 @@
 				65E4F98E2BC6B66500CECC11 /* Secrets.swift */,
 				657E31C32BE9E8440000E6A6 /* EmotionScaleRetrieval.swift */,
 				657E31C52BE9F4D90000E6A6 /* ConversationTagsRetrieval.swift */,
+				6596F9482BECE11F00AE2CD3 /* TextToSpeech.swift */,
 			);
 			path = ServiceModel;
 			sourceTree = "<group>";
@@ -321,6 +324,7 @@
 				FC33B0BD2BBB8B66002D4DF8 /* ChatEntry.swift in Sources */,
 				FC33B0BF2BBB8F47002D4DF8 /* ListConversationView.swift in Sources */,
 				FCDE671B2BD3D9B300AB2492 /* prompt.swift in Sources */,
+				6596F9492BECE11F00AE2CD3 /* TextToSpeech.swift in Sources */,
 				FCDBE22B2BD3B35A00E00301 /* SpeechRecognizerViewModel.swift in Sources */,
 				3B57A7D92BD75D4800ABAEFD /* ImmersiveDiaryView.swift in Sources */,
 				3B041EE72BE9F5DD00D2A81D /* DiaryView.swift in Sources */,
