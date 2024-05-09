@@ -8,6 +8,7 @@
 import Foundation
 import OpenAIKit
 import SwiftUI
+import GoogleGenerativeAI
 
 class ConversationTagsViewModel: ObservableObject {
     
@@ -16,6 +17,7 @@ class ConversationTagsViewModel: ObservableObject {
     @Published var tags: [ChatMessage] = []
     
     var openAI: OpenAI
+    var gemini: GenerativeModel
     
     var responseText: String = ""
     
@@ -25,7 +27,12 @@ class ConversationTagsViewModel: ObservableObject {
             organizationId: "",
             apiKey: APIKey.openai
         )
+        let geminiConfig = GenerationConfig(
+            temperature: 0.1,
+            maxOutputTokens: 2048
+        )
         self.openAI = OpenAI(config)
+        self.gemini = GenerativeModel(name: "gemini-1.0-pro", apiKey: APIKey.default, generationConfig: geminiConfig)
         
         self.tagsPrompt.append(ChatMessage(role: .system, content: Prompt.tagsInitPrompt))
     }
@@ -37,6 +44,7 @@ class ConversationTagsViewModel: ObservableObject {
         Task {
             do {
                 let result = try await openAI.generateChatCompletion(parameters: ChatParameters(model: .chatGPTTurbo, messages: self.tagsPrompt))
+//                let result = try await gemini.generateContent(Prompt.tagsInitPrompt + latestFourConversations)
                 var tags = [String]()
                 
                 guard let choice = result.choices.first else { return }
@@ -62,6 +70,5 @@ class ConversationTagsViewModel: ObservableObject {
             }
         }
     }
-
     
 }

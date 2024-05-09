@@ -30,7 +30,7 @@ struct WaterView: View {
     var body: some View {
         RealityView { content, attachments in
             do {
-                let animatedEntity = try await Entity(named: "WaterAnimation", in: realityKitContentBundle)
+                let animatedEntity = try await Entity(named: "WaterAnimation2", in: realityKitContentBundle)
                 
                 // Animation Resource 0: idle
                 if let unwrappedAnimatedEntity = animatedEntity.findEntity(named: "water_drop_idle") {
@@ -56,11 +56,19 @@ struct WaterView: View {
                     }
                 }
                 
-                // Animation Resource 2: response (Not working one)
+                // Animation Resource 2: response
                 if let unwrappedAnimatedEntity = animatedEntity.findEntity(named: "water_drop_response") {
-                    if let animation = unwrappedAnimatedEntity.availableAnimations.first {
-                        animationResources.append(animation)
-                    }
+                        if let animation = unwrappedAnimatedEntity.availableAnimations.first {
+                            animationResources.append(animation.repeat(count: 3))
+//                            if let waterDropEntity {
+//                                let controller = waterDropEntity.playAnimation(animation.repeat()
+//                                                                                       , transitionDuration: 0.6, startsPaused: false)
+//                                animationControllers.append(controller)
+//                                let sizeTransform = Transform(scale: [100, 100, 100])
+//                                waterDropEntity.move(to: sizeTransform, relativeTo: waterDropEntity.self)
+//                                print("play responding animation")
+//                            }
+                        }
                 }
                 
                 if let sceneAttachment = attachments.entity(for: "StartConversingButton") {
@@ -79,7 +87,8 @@ struct WaterView: View {
                 
                 if let sceneAttachment = attachments.entity(for: "PlayAnimation") {
                     content.add(sceneAttachment)
-                    sceneAttachment.position += [0, 1.5, -0.5]
+//                    sceneAttachment.position += [0, 1.5, -0.5]
+                    sceneAttachment.position += [0, -0.1, 0]
                 }
             } catch {
                 print("Error in RealityView's make: \(error)")
@@ -155,7 +164,7 @@ struct WaterView: View {
                         Text("Status Control")
                     }
 
-                    ForEach(animationControllers.indices, id: \.self) { index in
+                    /*ForEach(animationControllers.indices, id: \.self) { index in
                         let controller = animationControllers[index]
                         Button("PlayAnimation") {
                             if controller.isPlaying == false {
@@ -166,7 +175,7 @@ struct WaterView: View {
                         }
                         .padding()
                         .glassBackgroundEffect()
-                    }
+                    }*/
                 }
                 
             }
@@ -183,6 +192,11 @@ struct WaterView: View {
                     unwrappedAnimatedEntity.components.remove(ParticleEmitterComponent.self)
                 }
             }
+//            if oldValue == .responding && newValue != .responding {
+//                if let unwrappedAnimatedEntity = waterDropEntity {
+//                    unwrappedAnimatedEntity.move(to: Transform(scale: [0.1, 0.1, 0.1]), relativeTo: unwrappedAnimatedEntity.self)
+//                }
+//            }
             
             if newValue == .listening {
                 if let unwrappedAnimatedEntity = waterDropEntity {
@@ -192,7 +206,7 @@ struct WaterView: View {
                 var count = 1
                 _ = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { timer in
                     waterDropEntity?.components[ParticleEmitterComponent.self]?.burst()
-                    if count > 4 {
+                    if count > 3 {
                         timer.invalidate()
                     }
                     count += 1
@@ -205,29 +219,40 @@ struct WaterView: View {
                 }
                 if let unwrappedAnimatedEntity = waterDropEntity {
                     guard let idleAnimation = animationResources.first else { return }
+                    
+                    
+                    
                     let controller = unwrappedAnimatedEntity.playAnimation(idleAnimation, transitionDuration: 0.6, startsPaused: false)
                     animationControllers.append(controller)
                     print("play idle animation")
                 }
             } else if newValue == .responding {
                 dropAnimation()
+                
                 if let unwrappedAnimatedEntity = waterDropEntity {
                     guard animationResources.count > 2 else { return }
-                    guard let completeResponseAnimation = try? AnimationResource.sequence(with: [animationResources[1], animationResources[2]]) else {
-                        return
+
+                    let controller = unwrappedAnimatedEntity.playAnimation(animationResources[1], transitionDuration: 0.6, startsPaused: false)
+                    
+                    animationControllers.append(controller)
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 2.0)
+                    {
+                        guard animationResources.count > 2 else { return }
+                        let respondingAnimation = animationResources[2]
+                        let controller = unwrappedAnimatedEntity.playAnimation(respondingAnimation, transitionDuration: 0.6, startsPaused: false)
+                        animationControllers.append(controller)
+                        
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 2.5)
+                        {
+                            dropAnimation()
+                            guard animationResources.count > 0 else { return }
+                            let respondingAnimation = animationResources[0]
+                            let controller = unwrappedAnimatedEntity.playAnimation(respondingAnimation, transitionDuration: 0.6, startsPaused: false)
+                            animationControllers.append(controller)
+                        }
                     }
-                    let controller = unwrappedAnimatedEntity.playAnimation(completeResponseAnimation, transitionDuration: 0.6, startsPaused: false)
-                    animationControllers.append(controller)
-                    print("play loading animation")
-                }
-            } else if newValue == .waitForResponse {
-                dropAnimation()
-                if let unwrappedAnimatedEntity = waterDropEntity {
-                    guard animationResources.count > 2 else { return }
-                    let respondingAnimation = animationResources[2]
-                    let controller = unwrappedAnimatedEntity.playAnimation(respondingAnimation, transitionDuration: 0.6, startsPaused: false)
-                    animationControllers.append(controller)
-                    print("play loading animation")
+                    
+                    
                 }
             }
         })

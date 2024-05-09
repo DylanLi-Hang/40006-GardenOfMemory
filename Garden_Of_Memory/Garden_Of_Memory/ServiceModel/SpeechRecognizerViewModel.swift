@@ -75,7 +75,6 @@ class SpeechRecognitionViewModel: ObservableObject {
                 }
             }
             self.chat = gemini.startChat(history: Prompt.history)
-            
         }
     }
     
@@ -227,7 +226,9 @@ class SpeechRecognitionViewModel: ObservableObject {
                 guard let self = self else { return }
                 self.messages.append(ChatMessage(role: .assistant, content: self.responseText))
                 print("Final response: \(self.responseText)")
-                self.viewModel.status = .idle
+                if self.viewModel.status != .notListening {
+                    self.viewModel.status = .idle
+                }
             }
         } catch {
             print("Error processing text: \(error)")

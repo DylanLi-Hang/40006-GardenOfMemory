@@ -47,7 +47,8 @@ struct ContentView: View {
                             await dismissImmersiveTerrarium()
                             terrarium = false
                         }
-                        await openImmersiveSpace(id: "WaterDrop")
+//                        await openImmersiveSpace(id: "WaterDrop")
+                        openWindow(id: "WaterDrop")
                         avatarView = true
                     }
                 } label: {

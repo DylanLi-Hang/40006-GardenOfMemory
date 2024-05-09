@@ -39,10 +39,17 @@ struct Garden_Of_MemoryApp: App {
         }
         .windowStyle(.plain)
         
-        ImmersiveSpace(id: "WaterDrop") {
+//        ImmersiveSpace(id: "WaterDrop") {
+//            WaterView()
+//                .modelContainer(modelContainer)
+//        }
+        
+        WindowGroup(id: "WaterDrop") {
             WaterView()
                 .modelContainer(modelContainer)
         }
+        .windowStyle(.volumetric)
+        
         WindowGroup(id: "diaryObject") {
             ImmersiveDiaryView()
                 .modelContainer(modelContainer)
