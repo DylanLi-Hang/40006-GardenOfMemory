@@ -50,5 +50,6 @@ extension TextToSpeechViewModel: AVSpeechSynthesizerDelegate {
     func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didFinish utterance: AVSpeechUtterance) {
         print("all done")
         viewModel.status = .idle
+        viewModel.recognizationStatus = true
     }
 }

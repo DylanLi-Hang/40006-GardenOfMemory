@@ -32,11 +32,9 @@ class SpeechRecognitionViewModel: ObservableObject {
     var gemini: GenerativeModel
     private var chat: Chat?
     
-    
     let viewModel = ViewModel.shared
     
     private var debouncer: AnyCancellable?
-    private var lastPrintedText: String?
     
     // For emotion scale retrieval
     private var conversationCount = 0 // Counter to track the number of conversations
@@ -48,7 +46,6 @@ class SpeechRecognitionViewModel: ObservableObject {
         let config = Configuration(
             organizationId: "",
             apiKey: APIKey.openai
-            
         )
         self.openAI = OpenAI(config)
         
@@ -56,9 +53,6 @@ class SpeechRecognitionViewModel: ObservableObject {
             temperature: 0.1,
             maxOutputTokens: 2048
         )
-        
-        //        let textPart = ModelContent.Part.text(Prompt.systemInitPrompt)
-        //        let modelContent = ModelContent(role: "system", parts: [textPart])
         
         self.gemini = GenerativeModel(name: "gemini-1.0-pro", apiKey: APIKey.default, generationConfig: geminiConfig)
         
@@ -81,6 +75,7 @@ class SpeechRecognitionViewModel: ObservableObject {
     
     func changeRecognitionStatus() {
         if (speechRecognizer == nil) {
+            self.viewModel.status = .idle
             speechRecognizer = SimpleSpeechRecognizer(
                 authorizationStatusChanged: { newAuthorizationStatus in
                     print("Authorization status changed: \(newAuthorizationStatus)")
@@ -90,15 +85,17 @@ class SpeechRecognitionViewModel: ObservableObject {
                     DispatchQueue.main.async {
                         if newRecognitionStatus == .stopped {
                             self.recognizationStatus = false
-                            self.viewModel.status = .notListening
                         } else if newRecognitionStatus == .recording {
                             self.recognizationStatus = true
-                            self.viewModel.status = .idle
+                            self.recognizedText = ""
+                            self.lastProcessedLength = 0
                         }
                     }
                 },
                 utteranceChanged: { newUtterance in
-                    //                    print("Recognized utterance changed: \(newUtterance)")
+//                    print("Recognized utterance changed: \(newUtterance)")
+//                    print("\(self.recognizedText), length: \(self.lastProcessedLength)")
+                                        
                     self.viewModel.status = .listening
                     DispatchQueue.main.async {
                         self.updateRecognizedText(newUtterance)
@@ -110,6 +107,7 @@ class SpeechRecognitionViewModel: ObservableObject {
             speechRecognizer?.stop()
         } else if (speechRecognizer != nil && self.recognizationStatus == false) {
             speechRecognizer?.start()
+//            self.lastProcessedLength = 0
         }
     }
     
@@ -144,11 +142,12 @@ class SpeechRecognitionViewModel: ObservableObject {
         DispatchQueue.main.async { [weak self] in
             guard let self = self else { return }
             self.messages.append(ChatMessage(role: .user, content: message))
+            self.viewModel.recognizationStatus = false
             
             // Increment the conversation count when chatgpt responds
             self.conversationCount += 1
             if self.conversationCount == 4 { // Check if there have been four conversations
-                print("Four conversations have been had. Let's retrieve the emotion state.")
+//                print("Four conversations have been had. Let's retrieve the emotion state.")
                 
                 // Perform action to retrieve emotion state
                 
@@ -189,14 +188,7 @@ class SpeechRecognitionViewModel: ObservableObject {
             self.responseText = ""
             self.viewModel.status = .responding
             
-            if viewModel.aimodel == .gemini {
-                //                let prompt = "Write a story about a magic backpack."
-                //                let response = try await gemini.generateContent(prompt)
-                //                gemini.modelResourceName.propertyList()
-                //                if let text = response.text {
-                //                  print(text)
-                //                }
-                
+            if viewModel.aimodel == .gemini { 
                 let outputContentStream = chat!.sendMessageStream(message)
                 for try await outputContent in outputContentStream {
                     guard let line = outputContent.text else {
