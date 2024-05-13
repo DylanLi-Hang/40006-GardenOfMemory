@@ -6,20 +6,6 @@
 //
 
 import Foundation
-import Observation
-import SwiftUI
-
-enum TerrariumState {
-    case open
-    case close
-}
-
-@Observable
-class FullTerrarium {
-    
-    var terrariumState = TerrariumState.close
-    
-}
 
 struct ImmersiveTerrariumState {
     static var terrarium = false
