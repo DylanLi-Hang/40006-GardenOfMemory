@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0D20A0292BC6CA9D00899274 /* ImmersiveTerrariumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D20A0282BC6CA9D00899274 /* ImmersiveTerrariumView.swift */; };
+		0D509A2D2BF1F3F200BE3F09 /* Terrarium.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D509A2C2BF1F3F200BE3F09 /* Terrarium.swift */; };
 		0D54D1592BC567B100B84E78 /* WaterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D54D1582BC567B100B84E78 /* WaterView.swift */; };
 		0D9A6AB52BD6359500CC6BF3 /* TerrariumObjectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D9A6AB42BD6359500CC6BF3 /* TerrariumObjectView.swift */; };
 		3B041EE72BE9F5DD00D2A81D /* DiaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B041EE62BE9F5DD00D2A81D /* DiaryView.swift */; };
@@ -52,6 +53,7 @@
 
 /* Begin PBXFileReference section */
 		0D20A0282BC6CA9D00899274 /* ImmersiveTerrariumView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImmersiveTerrariumView.swift; sourceTree = "<group>"; };
+		0D509A2C2BF1F3F200BE3F09 /* Terrarium.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Terrarium.swift; sourceTree = "<group>"; };
 		0D54D1582BC567B100B84E78 /* WaterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterView.swift; sourceTree = "<group>"; };
 		0D9A6AB42BD6359500CC6BF3 /* TerrariumObjectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TerrariumObjectView.swift; sourceTree = "<group>"; };
 		3B041EE62BE9F5DD00D2A81D /* DiaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryView.swift; sourceTree = "<group>"; };
@@ -177,6 +179,7 @@
 				FC33B0B72BBB8977002D4DF8 /* Avatar.swift */,
 				FC33B0BC2BBB8B66002D4DF8 /* ChatEntry.swift */,
 				FC33B0C42BBB9863002D4DF8 /* PreviewContainer.swift */,
+				0D509A2C2BF1F3F200BE3F09 /* Terrarium.swift */,
 			);
 			path = DataModel;
 			sourceTree = "<group>";
@@ -332,6 +335,7 @@
 				65E4F98D2BC6B32E00CECC11 /* OpenAIService.swift in Sources */,
 				FCDBE2292BD3B30600E00301 /* SimpleSpeechRecognizer.swift in Sources */,
 				65E4F98F2BC6B66500CECC11 /* Secrets.swift in Sources */,
+				0D509A2D2BF1F3F200BE3F09 /* Terrarium.swift in Sources */,
 				6593EF762BC6625E00CF644C /* SpeechRecognizer.swift in Sources */,
 				657E31C62BE9F4D90000E6A6 /* ConversationTagsRetrieval.swift in Sources */,
 				657E31C42BE9E8440000E6A6 /* EmotionScaleRetrieval.swift in Sources */,

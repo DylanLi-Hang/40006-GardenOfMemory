@@ -1,3 +1,56 @@
 {
-
+  "80BDD26D-7950-405F-AE41-2572C5F11EFA" : {
+    "objectMetadataList" : [
+      [
+        "80BDD26D-7950-405F-AE41-2572C5F11EFA",
+        "Root",
+        "sunny_buddy"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "80BDD26D-7950-405F-AE41-2572C5F11EFA",
+        "Root",
+        "sunny_buddy",
+        "Meshes"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "80BDD26D-7950-405F-AE41-2572C5F11EFA",
+        "Root",
+        "sunny_buddy",
+        "Meshes",
+        "Sketchfab_model"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "80BDD26D-7950-405F-AE41-2572C5F11EFA",
+        "Root"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      }
+    ]
+  },
+  "342353B2-E0C0-4535-89D4-6D7F0122EFEA" : {
+    "objectMetadataList" : [
+      [
+        "342353B2-E0C0-4535-89D4-6D7F0122EFEA",
+        "Root"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      }
+    ]
+  }
 }
