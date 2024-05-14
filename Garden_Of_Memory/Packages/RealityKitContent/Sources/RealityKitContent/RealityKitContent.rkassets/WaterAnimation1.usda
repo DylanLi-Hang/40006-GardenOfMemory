@@ -12,9 +12,10 @@ def Xform "Root"
 {
     def "WaterAnimation" (
         active = true
-        prepend references = @WaterAnimation.usdz@
+        references = @WaterAnimation.usdz@
     )
     {
+        reorder nameChildren = ["water_drop_listening", "water_drop_loading", "Materials_1"]
         float3 xformOp:scale = (1, 1, 1)
         uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
 
@@ -22,6 +23,278 @@ def Xform "Root"
             active = false
         )
         {
+            over "Materials" (
+                active = true
+            )
+            {
+            }
+        }
+
+        over "water_drop_loading"
+        {
+            reorder nameChildren = ["Materials_1", "Meshes", "Materials", "InputTarget", "CharacterController"]
+            def Scope "Materials_1" (
+                references = </Root/WaterAnimation/water_drop_listening/Materials>
+            )
+            {
+                def Material "Eyes"
+                {
+                    token outputs:surface.connect = </Root/WaterAnimation/water_drop_loading/Materials_1/Eyes/pbr_shader.outputs:surface>
+
+                    def Shader "pbr_shader"
+                    {
+                        uniform token info:id = "UsdPreviewSurface"
+                        color3f inputs:diffuseColor.connect = </Root/WaterAnimation/water_drop_loading/Materials_1/Eyes/tex_base.outputs:rgb>
+                        color3f inputs:emissiveColor = (0, 0, 0)
+                        float inputs:metallic.connect = </Root/WaterAnimation/water_drop_loading/Materials_1/Eyes/tex_metallic.outputs:r>
+                        normal3f inputs:normal.connect = </Root/WaterAnimation/water_drop_loading/Materials_1/Eyes/tex_normal.outputs:rgb>
+                        float inputs:occlusion = 1
+                        float inputs:roughness.connect = </Root/WaterAnimation/water_drop_loading/Materials_1/Eyes/tex_roughness.outputs:r>
+                        token outputs:surface
+                    }
+
+                    def Shader "uvset0"
+                    {
+                        uniform token info:id = "UsdPrimvarReader_float2"
+                        token inputs:varname = "st0"
+                        float2 outputs:result
+                    }
+
+                    def Shader "tex_base"
+                    {
+                        uniform token info:id = "UsdUVTexture"
+                        float4 inputs:fallback = (1, 1, 1, 1)
+                        asset inputs:file
+                        float2 inputs:st.connect = </Root/WaterAnimation/water_drop_loading/Materials_1/Eyes/uvset0.outputs:result>
+                        token inputs:wrapS = "repeat"
+                        token inputs:wrapT = "repeat"
+                        float outputs:a
+                        float3 outputs:rgb
+                    }
+
+                    def Shader "tex_metallic"
+                    {
+                        uniform token info:id = "UsdUVTexture"
+                        float4 inputs:fallback = (0, 0, 0, 1)
+                        asset inputs:file
+                        float2 inputs:st.connect = </Root/WaterAnimation/water_drop_loading/Materials_1/Eyes/uvset0.outputs:result>
+                        token inputs:wrapS = "repeat"
+                        token inputs:wrapT = "repeat"
+                        float outputs:r
+                    }
+
+                    def Shader "tex_roughness"
+                    {
+                        uniform token info:id = "UsdUVTexture"
+                        float4 inputs:fallback = (1, 0, 0, 1)
+                        asset inputs:file
+                        float2 inputs:st.connect = </Root/WaterAnimation/water_drop_loading/Materials_1/Eyes/uvset0.outputs:result>
+                        token inputs:wrapS = "repeat"
+                        token inputs:wrapT = "repeat"
+                        float outputs:r
+                    }
+
+                    def Shader "tex_normal"
+                    {
+                        uniform token info:id = "UsdUVTexture"
+                        float4 inputs:bias = (-1, -1, -1, -1)
+                        float4 inputs:fallback = (0, 0, 1, 1)
+                        asset inputs:file
+                        float4 inputs:scale = (2, 2, 2, 2)
+                        token inputs:sourceColorSpace = "raw"
+                        float2 inputs:st.connect = </Root/WaterAnimation/water_drop_loading/Materials_1/Eyes/uvset0.outputs:result>
+                        token inputs:wrapS = "repeat"
+                        token inputs:wrapT = "repeat"
+                        float3 outputs:rgb
+                    }
+                }
+
+                def Material "WaterBody1"
+                {
+                    token outputs:surface.connect = </Root/WaterAnimation/water_drop_loading/Materials_1/WaterBody1/pbr_shader.outputs:surface>
+
+                    def Shader "pbr_shader"
+                    {
+                        uniform token info:id = "UsdPreviewSurface"
+                        color3f inputs:diffuseColor.connect = </Root/WaterAnimation/water_drop_loading/Materials_1/WaterBody1/tex_base.outputs:rgb>
+                        color3f inputs:emissiveColor = (0, 0, 0)
+                        float inputs:metallic.connect = </Root/WaterAnimation/water_drop_loading/Materials_1/WaterBody1/tex_metallic.outputs:r>
+                        normal3f inputs:normal.connect = </Root/WaterAnimation/water_drop_loading/Materials_1/WaterBody1/tex_normal.outputs:rgb>
+                        float inputs:occlusion = 1
+                        float inputs:roughness.connect = </Root/WaterAnimation/water_drop_loading/Materials_1/WaterBody1/tex_roughness.outputs:r>
+                        token outputs:surface
+                    }
+
+                    def Shader "uvset0"
+                    {
+                        uniform token info:id = "UsdPrimvarReader_float2"
+                        token inputs:varname = "st0"
+                        float2 outputs:result
+                    }
+
+                    def Shader "tex_base"
+                    {
+                        uniform token info:id = "UsdUVTexture"
+                        float4 inputs:fallback = (1, 1, 1, 1)
+                        asset inputs:file
+                        float2 inputs:st.connect = </Root/WaterAnimation/water_drop_loading/Materials_1/WaterBody1/uvset0.outputs:result>
+                        token inputs:wrapS = "repeat"
+                        token inputs:wrapT = "repeat"
+                        float outputs:a
+                        float3 outputs:rgb
+                    }
+
+                    def Shader "tex_metallic"
+                    {
+                        uniform token info:id = "UsdUVTexture"
+                        float4 inputs:fallback = (0, 0, 0, 1)
+                        asset inputs:file
+                        float2 inputs:st.connect = </Root/WaterAnimation/water_drop_loading/Materials_1/WaterBody1/uvset0.outputs:result>
+                        token inputs:wrapS = "repeat"
+                        token inputs:wrapT = "repeat"
+                        float outputs:r
+                    }
+
+                    def Shader "tex_roughness"
+                    {
+                        uniform token info:id = "UsdUVTexture"
+                        float4 inputs:fallback = (1, 0, 0, 1)
+                        asset inputs:file
+                        float2 inputs:st.connect = </Root/WaterAnimation/water_drop_loading/Materials_1/WaterBody1/uvset0.outputs:result>
+                        token inputs:wrapS = "repeat"
+                        token inputs:wrapT = "repeat"
+                        float outputs:r
+                    }
+
+                    def Shader "tex_normal"
+                    {
+                        uniform token info:id = "UsdUVTexture"
+                        float4 inputs:bias = (-1, -1, -1, -1)
+                        float4 inputs:fallback = (0, 0, 1, 1)
+                        asset inputs:file
+                        float4 inputs:scale = (2, 2, 2, 2)
+                        token inputs:sourceColorSpace = "raw"
+                        float2 inputs:st.connect = </Root/WaterAnimation/water_drop_loading/Materials_1/WaterBody1/uvset0.outputs:result>
+                        token inputs:wrapS = "repeat"
+                        token inputs:wrapT = "repeat"
+                        float3 outputs:rgb
+                    }
+                }
+
+                def Material "WaterBody2"
+                {
+                    token outputs:surface.connect = </Root/WaterAnimation/water_drop_loading/Materials_1/WaterBody2/pbr_shader.outputs:surface>
+
+                    def Shader "pbr_shader"
+                    {
+                        uniform token info:id = "UsdPreviewSurface"
+                        color3f inputs:diffuseColor.connect = </Root/WaterAnimation/water_drop_loading/Materials_1/WaterBody2/tex_base.outputs:rgb>
+                        color3f inputs:emissiveColor = (0, 0, 0)
+                        float inputs:metallic.connect = </Root/WaterAnimation/water_drop_loading/Materials_1/WaterBody2/tex_metallic.outputs:r>
+                        normal3f inputs:normal.connect = </Root/WaterAnimation/water_drop_loading/Materials_1/WaterBody2/tex_normal.outputs:rgb>
+                        float inputs:occlusion = 1
+                        float inputs:roughness.connect = </Root/WaterAnimation/water_drop_loading/Materials_1/WaterBody2/tex_roughness.outputs:r>
+                        token outputs:surface
+                    }
+
+                    def Shader "uvset0"
+                    {
+                        uniform token info:id = "UsdPrimvarReader_float2"
+                        token inputs:varname = "st0"
+                        float2 outputs:result
+                    }
+
+                    def Shader "tex_base"
+                    {
+                        uniform token info:id = "UsdUVTexture"
+                        float4 inputs:fallback = (1, 1, 1, 1)
+                        asset inputs:file
+                        float2 inputs:st.connect = </Root/WaterAnimation/water_drop_loading/Materials_1/WaterBody2/uvset0.outputs:result>
+                        token inputs:wrapS = "repeat"
+                        token inputs:wrapT = "repeat"
+                        float outputs:a
+                        float3 outputs:rgb
+                    }
+
+                    def Shader "tex_metallic"
+                    {
+                        uniform token info:id = "UsdUVTexture"
+                        float4 inputs:fallback = (0, 0, 0, 1)
+                        asset inputs:file
+                        float2 inputs:st.connect = </Root/WaterAnimation/water_drop_loading/Materials_1/WaterBody2/uvset0.outputs:result>
+                        token inputs:wrapS = "repeat"
+                        token inputs:wrapT = "repeat"
+                        float outputs:r
+                    }
+
+                    def Shader "tex_roughness"
+                    {
+                        uniform token info:id = "UsdUVTexture"
+                        float4 inputs:fallback = (1, 0, 0, 1)
+                        asset inputs:file
+                        float2 inputs:st.connect = </Root/WaterAnimation/water_drop_loading/Materials_1/WaterBody2/uvset0.outputs:result>
+                        token inputs:wrapS = "repeat"
+                        token inputs:wrapT = "repeat"
+                        float outputs:r
+                    }
+
+                    def Shader "tex_normal"
+                    {
+                        uniform token info:id = "UsdUVTexture"
+                        float4 inputs:bias = (-1, -1, -1, -1)
+                        float4 inputs:fallback = (0, 0, 1, 1)
+                        asset inputs:file
+                        float4 inputs:scale = (2, 2, 2, 2)
+                        token inputs:sourceColorSpace = "raw"
+                        float2 inputs:st.connect = </Root/WaterAnimation/water_drop_loading/Materials_1/WaterBody2/uvset0.outputs:result>
+                        token inputs:wrapS = "repeat"
+                        token inputs:wrapT = "repeat"
+                        float3 outputs:rgb
+                    }
+                }
+            }
+
+            over "Meshes"
+            {
+                over "Sketchfab_model"
+                {
+                    over "_f200c4c2cc5428e918e9a353aec110b_fbx"
+                    {
+                        over "RootNode"
+                        {
+                            over "WaterL"
+                            {
+                                over "WaterBody1L" (
+                                    prepend apiSchemas = ["MaterialBindingAPI"]
+                                )
+                                {
+                                    rel material:binding = </Root/WaterAnimation/water_drop_loading/Materials_1/WaterBody1> (
+                                        bindMaterialAs = "weakerThanDescendants"
+                                    )
+                                }
+
+                                over "WaterBody2L" (
+                                    prepend apiSchemas = ["MaterialBindingAPI"]
+                                )
+                                {
+                                    rel material:binding = </Root/WaterAnimation/water_drop_loading/Materials_1/WaterBody2> (
+                                        bindMaterialAs = "weakerThanDescendants"
+                                    )
+                                }
+
+                                over "WaterEyesL" (
+                                    prepend apiSchemas = ["MaterialBindingAPI"]
+                                )
+                                {
+                                    rel material:binding = </Root/WaterAnimation/water_drop_loading/Materials_1/Eyes> (
+                                        bindMaterialAs = "weakerThanDescendants"
+                                    )
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 }

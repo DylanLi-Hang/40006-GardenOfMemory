@@ -15,42 +15,43 @@ struct WaterView: View {
     @Environment(\.modelContext) private var modelContext
     @Query(sort: \ChatEntry.date, order: .reverse) private var entries: [ChatEntry]
     
-    @State public var upAnimation = false
-    @State public var downAnimation = true
-    let animatedEntity = try? Entity.load(named: "WaterAnimation1", in: realityKitContentBundle)
-    @State var animationResources: [AnimationResource] = []
-    @State var animationController: AnimationPlaybackController? = nil
-    @State var animationController2: AnimationPlaybackController? = nil
-    @State private var currentAnimation: Animation = .idle
+    @State var waterDropEntity: Entity? = nil
+    @ObservedObject var speechViewModel: SpeechRecognitionViewModel = SpeechRecognitionViewModel()
+    
+    @State var animationResources: [AnimationResource] = [] // idle, listening, waiting, responding
+    @State var componentResources: [Component] = []
     @State var animationControllers = [AnimationPlaybackController]()
     
-    @State var particles = ParticleEmitterComponent()
-    
     let viewModel = ViewModel.shared
-    @State private var count:Int = 1
+    @State private var count: Int = 1
     @State private var waterDrop: Entity? = nil
     @State var currentChatEntry: ChatEntry = ChatEntry(date: Date(), mood: 10)
     
-    @ObservedObject var speechViewModel: SpeechRecognitionViewModel = SpeechRecognitionViewModel()
-
     var body: some View {
         RealityView { content, attachments in
             do {
-                let immersiveEntity = try await Entity(named: "Immersive", in: realityKitContentBundle)
+                let animatedEntity = try await Entity(named: "WaterAnimation2", in: realityKitContentBundle)
                 
-                content.add(immersiveEntity)
-                if let sceneAttachment = attachments.entity(for: "StartConversingButton") {
-                    if let water_drop = immersiveEntity.findEntity(named: "water_drop_idle") {
-                        sceneAttachment.position = water_drop.position + [0, 0.2, 0]
-                        water_drop.addChild(sceneAttachment, preservingWorldTransform: true)
+                loadAnimation(animatedEntity: animatedEntity)
+                if let waterDropEntity {
+                    content.add(waterDropEntity)
+                }
+                
+                if let water_drop = waterDropEntity {
+                    if let sceneAttachmentStart = attachments.entity(for: "StartConversingButton") {
+                        sceneAttachmentStart.position = water_drop.position + [0, 0.35, 0]
+                        water_drop.addChild(sceneAttachmentStart, preservingWorldTransform: true)
+                    }
+                    
+                    if let sceneAttachmentDisplay = attachments.entity(for: "DisplayResponse") {
+                        sceneAttachmentDisplay.position = water_drop.position + [0, 0.2, 0]
+                        water_drop.addChild(sceneAttachmentDisplay, preservingWorldTransform: true)
                     }
                 }
                 
-                if let sceneAttachment = attachments.entity(for: "DisplayResponse") {
-                    if let water_drop = immersiveEntity.findEntity(named: "water_drop_idle") {
-                        sceneAttachment.position = water_drop.position + [0.5, 0, 0]
-                        water_drop.addChild(sceneAttachment, preservingWorldTransform: true)
-                    }
+                if let sceneAttachment = attachments.entity(for: "ChangeStatus") {
+                    content.add(sceneAttachment)
+                    sceneAttachment.position += [0, -0.1, 0]
                 }
             } catch {
                 print("Error in RealityView's make: \(error)")
@@ -63,15 +64,20 @@ struct WaterView: View {
                 VStack {
                     Text("Current Status: \(viewModel.status)")
                         .glassBackgroundEffect()
-                    if speechViewModel.recognizationStatus == false {
+                    Text("Current Status: \(viewModel.recognizationStatus)")
+                        .glassBackgroundEffect()
+                    
+                    if viewModel.status == .notListening {
                         Button("Start Conversing") {
-                            speechViewModel.changeRecognitionStatus()
+                            viewModel.recognizationStatus = true
+                            viewModel.status = .idle
                         }
                         .padding()
                         .glassBackgroundEffect()
                     } else {
                         Button("Stop Conversing") {
-                            speechViewModel.changeRecognitionStatus()
+                            viewModel.recognizationStatus = false
+                            viewModel.status = .notListening
                             currentChatEntry.chatMessages = speechViewModel.messages
                         }
                         .padding()
@@ -83,23 +89,70 @@ struct WaterView: View {
             // Attachment 2
             Attachment(id: "DisplayResponse") {
                 HStack {
-                    Text("Response:  ")
+                    Image("WaterDrop")
+                        .resizable()
+                        .frame(width: 60, height: 60)
+                        .clipShape(Circle())
+                        .overlay(Circle().stroke(Color.gray, lineWidth: 1))
+                    
                     if viewModel.status == .responding {
-                        ScrollView(.horizontal, showsIndicators: true) {
+                        ScrollView(showsIndicators: true) {
                             Text(speechViewModel.responseText)
-                                .frame(alignment: .leading)
-                                .padding(80)
+                                .padding(.all, 10)
+                                .background(Color.gray.opacity(0.25))
+                                .cornerRadius(20)
                                 .multilineTextAlignment(.leading)
+                                .frame(width: 600, height: 150, alignment: .leading)
                         }
                     } else {
-                        Text(speechViewModel.messages.last?.content ?? "No messages yet")
+                        ScrollView(showsIndicators: true) {
+                            Text(speechViewModel.messages.last?.content ?? "No messages yet")
+                                .padding(.all, 10)
+                                .background(Color.gray.opacity(0.25))
+                                .cornerRadius(20)
+                                .multilineTextAlignment(.leading)
+                                .frame(width: 600, height: 150, alignment: .leading)
+                        }
                     }
                 }
-                .frame(width: 800, height: 1000)
-                .glassBackgroundEffect()
+                .padding(.all, 10)
+                .background(Color.black.opacity(0.5))
+                .cornerRadius(25)
+                .shadow(color: .gray, radius: 3, x: 1, y: 1)
+                .padding(.horizontal, 10)
+                .frame(width: 800, height: 200)
             }
-
+            
+            Attachment(id: "ChangeStatus") {
+                HStack{
+                    Button {
+                        viewModel.status = viewModel.status.next()
+                        print("Current Status: \(viewModel.status)")
+                    } label: {
+                        Text("Status Control")
+                    }
+                }
+                
+            }
         }
+        .onChange(of: speechViewModel.mood, { oldValue, newValue in
+            currentChatEntry.mood = speechViewModel.mood
+        })
+        .onChange(of: speechViewModel.tags, { oldValue, newValue in
+            currentChatEntry.tags = speechViewModel.tags
+        })
+        .onChange(of: viewModel.recognizationStatus, { oldValue, newValue in
+                speechViewModel.changeRecognitionStatus()
+        })
+        .onChange(of: viewModel.status, { oldValue, newValue in
+            if oldValue == .listening && newValue != .listening {
+                if let unwrappedAnimatedEntity = waterDropEntity {
+                    unwrappedAnimatedEntity.components.remove(ParticleEmitterComponent.self)
+                }
+            }
+            
+            playAnimation(status: newValue)
+        })
         .onAppear() {
             var isloaded = false
             if !entries.isEmpty {
@@ -116,92 +169,115 @@ struct WaterView: View {
                 modelContext.insert(self.currentChatEntry)
             }
         }
-        .gesture(TapGesture()
-            .targetedToAnyEntity()
-            .onEnded({ value in 
-                print("Tapped work \(value.entity)")
-                
-            })
-        )
     }
-
     
-    func loadAnimation() {
-        for animation in Animation.allCases {
-            if let animatedEntity = try? Entity.load(named: animation.rawValue+"Scene", in: realityKitContentBundle) {
-                
-                if let true_animatedEntity = animatedEntity.findEntity(named: "WaterL") {
-                    let animationResource = true_animatedEntity.availableAnimations[0]
-                    animationResources.append(animationResource)
-                    
-                    print("loaded animation \(animation.rawValue)")
+    func dropAnimation() {
+        for animationController in animationControllers {
+            animationController.stop(blendOutDuration: 1)
+            animationControllers.removeFirst()
+        }
+    }
+    
+    func playAnimation(status: AvatarStatus) {
+        if status == .notListening {
+            dropAnimation()
+            if let unwrappedAnimatedEntity = waterDropEntity {
+                guard let idleAnimation = animationResources.first else { return }
+
+                let controller = unwrappedAnimatedEntity.playAnimation(idleAnimation, transitionDuration: 0.6, startsPaused: false)
+                animationControllers.append(controller)
+            }
+        } else if status == .idle {
+            dropAnimation()
+            if let unwrappedAnimatedEntity = waterDropEntity {
+                unwrappedAnimatedEntity.components.set(componentResources)
+            }
+            if let unwrappedAnimatedEntity = waterDropEntity {
+                guard let idleAnimation = animationResources.first else { return }
+
+                let controller = unwrappedAnimatedEntity.playAnimation(idleAnimation, transitionDuration: 0.6, startsPaused: false)
+                animationControllers.append(controller)
+            }
+        } else if status == .listening {
+            if let unwrappedAnimatedEntity = waterDropEntity {
+                unwrappedAnimatedEntity.components.set(componentResources)
+            }
+            
+            var count = 1
+            _ = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { timer in
+                waterDropEntity?.components[ParticleEmitterComponent.self]?.burst()
+                if count > 3 {
+                    timer.invalidate()
                 }
+                count += 1
+            }
+            waterDropEntity?.components[ParticleEmitterComponent.self]?.burst()
+        } else if status == .responding {
+            dropAnimation()
+            
+            if let unwrappedAnimatedEntity = waterDropEntity {
+                guard animationResources.count > 2 else { return }
+
+                let controller = unwrappedAnimatedEntity.playAnimation(animationResources[1], transitionDuration: 0.6, startsPaused: false)
                 
+                animationControllers.append(controller)
+                DispatchQueue.main.asyncAfter(deadline: .now() + 2.0)
+                {
+                    guard animationResources.count > 2 else { return }
+                    let respondingAnimation = animationResources[2]
+                    let controller = unwrappedAnimatedEntity.playAnimation(respondingAnimation, transitionDuration: 0.6, startsPaused: false)
+                    animationControllers.append(controller)
+                    
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 2.5)
+                    {
+                        dropAnimation()
+                        guard animationResources.count > 0 else { return }
+                        let respondingAnimation = animationResources[0]
+                        let controller = unwrappedAnimatedEntity.playAnimation(respondingAnimation, transitionDuration: 0.6, startsPaused: false)
+                        animationControllers.append(controller)
+                        if let unwrappedAnimatedEntity = waterDropEntity {
+                            unwrappedAnimatedEntity.components.set(componentResources)
+                        }
+                    }
+                }
             }
         }
     }
-
-    func play(animation: Animation) -> AnimationResource? {
-        if let matchingEntity = try? Entity.load(named: animation.rawValue),
-            let animation = matchingEntity.availableAnimations.first {
-            return animation
-        } else {
-            return nil
+    
+    func loadAnimation(animatedEntity: Entity) {
+        // Animation Resource 0: idle
+        if let unwrappedAnimatedEntity = animatedEntity.findEntity(named: "water_drop_idle") {
+            if let animation = unwrappedAnimatedEntity.availableAnimations.first {
+                animationResources.append(animation.repeat())
+                unwrappedAnimatedEntity.playAnimation(animation.repeat())
+            }
+            waterDropEntity = unwrappedAnimatedEntity
+        }
+        
+        // Animation Resource 1: preloading
+        if let unwrappedAnimatedEntity = animatedEntity.findEntity(named: "water_drop_loading") {
+            if let animation = unwrappedAnimatedEntity.availableAnimations.first {
+                animationResources.append(animation)
+            }
+        }
+        
+        // Particle for listening
+        if let unwrappedAnimatedEntity = animatedEntity.findEntity(named: "water_drop_listening") {
+            if let particleEmitterComponent = unwrappedAnimatedEntity.components[ParticleEmitterComponent.self] {
+                componentResources.append(particleEmitterComponent)
+            }
+        }
+        
+        // Animation Resource 2: response
+        if let unwrappedAnimatedEntity = animatedEntity.findEntity(named: "water_drop_response") {
+                if let animation = unwrappedAnimatedEntity.availableAnimations.first {
+                    animationResources.append(animation.repeat(count: 3))
+                }
         }
     }
     
-    
-    //WaterDrop firework particles
-    func pSystem() -> ParticleEmitterComponent {
-        particles.emitterShape = .sphere
-        particles.burstCount = 100
-        particles.burst()
-        return particles
-    }
-
 }
 
 #Preview {
     WaterView()
 }
-
-
-// Learning Code
-// Thanks for https://stackoverflow.com/questions/76599901/how-to-use-multiple-animations-on-a-usdz-model-with-realitykit/76600896#76600896
-// Thanks for https://blog.studiolanes.com/posts/unified-animation-timeline
-/*
- 
- struct ContentView : View {
-
-     @State var animationResource: [AnimationResource] = []
-     @State var model1 = try! Entity.loadModel(named: "idle.usdz")
-     @State var model2 = try! Entity.loadModel(named: "jump.usdz")
-     
-     var body : some View {
-         ZStack {
-             ARViewContainer(model: $model1)
-                 .ignoresSafeArea()
-                 .onAppear {
-                     animationResource.append(model1.availableAnimations[0])
-                     animationResource.append(model2.availableAnimations[0])
-                 }
-             VStack {
-                 Spacer()
-                 HStack {
-                     Spacer()
-                     Button("Jump") {
-                         model1.playAnimation(animationResource[1].repeat(),
-                                              transitionDuration: 0.5)
-                     }
-                     Spacer()
-                     Button("Neutral") {
-                         model1.playAnimation(animationResource[0].repeat(),
-                                              transitionDuration: 0.5)
-                     }
-                     Spacer()
-                 }
-             }
-         }
-     }
- }
- */

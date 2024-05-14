@@ -13,8 +13,8 @@ struct ContentView: View {
     @Environment(\.openImmersiveSpace) var openImmersiveTerrarium
     @Environment(\.dismissImmersiveSpace) var dismissImmersiveTerrarium
     
-    @State var avatarView = false
-    @State var terrarium = false
+    @State var avatarView: Bool = false
+//    @State var terrarium = false
     @State private var isDairyViewOpen: Bool = false
     @State private var isDiaryObjViewOpen: Bool = false
     @State private var isTerraObjViewOpen: Bool = false
@@ -43,11 +43,12 @@ struct ContentView: View {
                 Button{
                     Task{
                         print("OpenAvatar")
-                        if terrarium{
-                            await dismissImmersiveTerrarium()
-                            terrarium = false
-                        }
-                        await openImmersiveSpace(id: "WaterDrop")
+//                        if terrarium{
+//                            await dismissImmersiveTerrarium()
+//                            terrarium = false
+//                        }
+//                        await openImmersiveSpace(id: "WaterDrop")
+                        openWindow(id: "WaterDrop")
                         avatarView = true
                     }
                 } label: {
@@ -75,9 +76,10 @@ struct ContentView: View {
                         await dismissImmersiveSpace()
                         avatarView = false
                     }
-                    if !terrarium{
+                    if !ImmersiveTerrariumState.terrarium{
                         await openImmersiveTerrarium(id:"FullTerrarium")
-                        terrarium = true
+                        ImmersiveTerrariumState.terrarium = true
+                        print(ImmersiveTerrariumState.terrarium)
                     }
                 }
             } label: {
@@ -97,14 +99,15 @@ struct ContentView: View {
             
             Button("Close immmersive view"){
                 Task{
-                    print("OpenTerrarium")
+                    print("CloseTerrarium")
                     if avatarView{
                         await dismissImmersiveSpace()
                         avatarView = false
                     }
-                    if terrarium{
+                    if ImmersiveTerrariumState.terrarium{
                         await dismissImmersiveTerrarium()
-                        terrarium = false
+                        ImmersiveTerrariumState.terrarium = false
+                        print(ImmersiveTerrariumState.terrarium)
                     }
                 }
             }

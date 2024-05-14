@@ -10,58 +10,194 @@
 
 def Xform "Root"
 {
-    def Sphere "BadVibe" (
+    reorder nameChildren = ["Terrarium", "cloud2", "cloud", "cloud3", "cloud3_1", "Mist"]
+    def "Terrarium" (
         active = true
-        prepend apiSchemas = ["MaterialBindingAPI"]
+        references = @Terrarium.usdz@
     )
     {
-        rel material:binding = </Root/BadVibe/DefaultMaterial>
-        double radius = 0.1
-        float3 xformOp:scale = (1, 0.5, 1)
-        float3 xformOp:translate = (0, 0.3, 0)
+        float3 xformOp:scale = (1, 1, 1)
+        float3 xformOp:translate = (0, -1.0421838, 0)
         uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
 
-        def Material "DefaultMaterial"
+        over "Meshes"
         {
-            token outputs:mtlx:surface
-            token outputs:realitykit:vertex
-            prepend token outputs:surface.connect = </Root/BadVibe/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
+            quatf xformOp:orient = (1, 0, 0, 0)
+            float3 xformOp:scale = (1, 1, 1)
+            double3 xformOp:translate = (0.5173013210296631, -0.5483978986740112, -4.488356113433838)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
 
-            def Shader "DefaultSurfaceShader"
+            over "Sketchfab_model"
             {
-                uniform token info:id = "UsdPreviewSurface"
-                color3f inputs:diffuseColor = (0.3177973, 0.3209438, 0.3209438) (
-                    colorSpace = "srgb_displayp3"
-                )
-                normal3f inputs:normal = (0, 0, 1)
-                float inputs:opacity = 0.8
-                float inputs:roughness = 1
-                token outputs:surface
-            }
-        }
-
-        def RealityKitComponent "InputTarget"
-        {
-            uniform token info:id = "RealityKit.InputTarget"
-        }
-
-        def RealityKitComponent "Collider"
-        {
-            uint group = 1
-            uniform token info:id = "RealityKit.Collider"
-            uint mask = 4294967295
-            token type = "Default"
-
-            def RealityKitStruct "Shape"
-            {
-                float3 extent = (0.2, 0.2, 0.2)
-                token shapeType = "Box"
-
-                def RealityKitStruct "pose"
+                over "root"
                 {
+                    over "GLTF_SceneRootNode"
+                    {
+                        over "Cylinder_001_0"
+                        {
+                            over "Object_4"
+                            {
+                                def RealityKitComponent "HierarchicalFade"
+                                {
+                                    uniform token info:id = "RealityKit.HierarchicalFade"
+                                    float opacity = 1
+                                }
+                            }
+
+                            over "Object_11"
+                            {
+                                def RealityKitComponent "HierarchicalFade"
+                                {
+                                    uniform token info:id = "RealityKit.HierarchicalFade"
+                                    float opacity = 1
+                                }
+                            }
+                        }
+                    }
                 }
             }
         }
+    }
+
+    def "cloud2" (
+        active = true
+        references = @cloud2.usdz@
+    )
+    {
+        reorder nameChildren = ["Meshes", "Materials", "_materials"]
+        quatf xformOp:orient = (0.70710677, 0.70710677, 0, 0)
+        float3 xformOp:scale = (0.3, 0.3, 0.3)
+        float3 xformOp:translate = (0.068591684, 0.49168742, 0.33117265)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        over "Materials"
+        {
+            def "_materials" (
+                active = true
+                references = @cloud2.usdz@</_materials>
+            )
+            {
+                over "Cloud"
+                {
+                    token outputs:mtlx:surface
+                    token outputs:realitykit:vertex
+                }
+            }
+        }
+
+        over "Meshes" (
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </Root/cloud2/Materials/_materials/Cloud> (
+                bindMaterialAs = "weakerThanDescendants"
+            )
+        }
+    }
+
+    def "cloud" (
+        active = true
+        prepend apiSchemas = ["MaterialBindingAPI"]
+        customData = {
+            float3 rotationEulerHint = (1.5707964, 0, 0)
+        }
+        references = @cloud.usdz@
+    )
+    {
+        rel material:binding = </Root/cloud2/Materials/_materials/Cloud> (
+            bindMaterialAs = "weakerThanDescendants"
+        )
+        quatf xformOp:orient = (0.70710677, 0.70710677, 0, 0)
+        float3 xformOp:scale = (0.02, 0.02, 0.02)
+        float3 xformOp:translate = (0.047115415, 0.28146112, -0.6228779)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        over "Meshes"
+        {
+            quatf xformOp:orient = (0.99999994, 0, 0, 0)
+            float3 xformOp:scale = (1, 1, 1)
+            float3 xformOp:translate = (0, 0, 0)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            over "Sketchfab_model"
+            {
+                over "_493b8ebc20a430ebfdd72bb313b9f64_fbx"
+                {
+                    quatf xformOp:orient = (0.7071068, 0.7071067, 0, 0)
+                    float3 xformOp:scale = (1, 1, 1)
+                    float3 xformOp:translate = (0, 0, 0)
+                    uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+                    over "RootNode"
+                    {
+                        over "C3"
+                        {
+                            quatf xformOp:orient = (0.70710665, -0.7071069, 0, 0)
+                            float3 xformOp:scale = (1, 1.0000001, 1.0000001)
+                            float3 xformOp:translate = (0, 0, 0)
+                            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    def "cloud3" (
+        active = true
+        prepend apiSchemas = ["MaterialBindingAPI"]
+        references = @cloud3.usdz@
+    )
+    {
+        rel material:binding = </Root/cloud2/Materials/_materials/Cloud> (
+            bindMaterialAs = "weakerThanDescendants"
+        )
+        quatf xformOp:orient = (0.70710677, 0.70710677, 0, 0)
+        float3 xformOp:scale = (0.01, 0.01, 0.01)
+        float3 xformOp:translate = (-0.34850666, 0.46503294, -0.18012394)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        over "Meshes"
+        {
+            quatf xformOp:orient = (1, 0, 0, 0)
+            float3 xformOp:scale = (1, 1, 1)
+            float3 xformOp:translate = (0, 0, 0)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+        }
+    }
+
+    def "cloud3_1" (
+        active = true
+        prepend apiSchemas = ["MaterialBindingAPI"]
+        customData = {
+            float3 rotationEulerHint = (1.5707961, 3.1415927, -0.34906554)
+        }
+        references = @cloud3.usdz@
+    )
+    {
+        rel material:binding = </Root/cloud2/Materials/_materials/Cloud> (
+            bindMaterialAs = "weakerThanDescendants"
+        )
+        quatf xformOp:orient = (-0.12278781, 0.12278777, 0.69636434, -0.69636416)
+        float3 xformOp:scale = (0.01, 0.01, 0.01)
+        float3 xformOp:translate = (0.5149414, 0.4463124, -0.25179464)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        over "Meshes"
+        {
+            quatf xformOp:orient = (1, 0, 0, 0)
+            float3 xformOp:scale = (1, 1, 1)
+            float3 xformOp:translate = (0, 0, 0)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+        }
+    }
+
+    def Xform "Mist" (
+        active = true
+    )
+    {
+        float3 xformOp:translate = (-0.027756646, 0.25709534, -0.1637072)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
 
         def RealityKitComponent "VFXEmitter"
         {
@@ -69,123 +205,99 @@ def Xform "Root"
 
             def RealityKitStruct "currentState"
             {
-                token birthDirection = "Constant"
-                token birthLocation = "Volume"
+                token birthDirection = "Normal"
+                token birthLocation = "Surface"
+                int64 burstCount = 15
                 float3 emissionDirection = (0, 1, 0)
-                double emissionDuration = 0.21
+                double emissionDuration = 1
                 double emissionDurationVariation = 0
-                token emitterShape = "Plane"
+                token emitterShape = "Cylinder"
                 double idleDuration = 0
                 double idleDurationVariation = 0
                 bool isLocal = 0
-                bool isSpawningEnabled = 1
+                bool isSpawningEnabled = 0
                 bool loops = 1
-                float particleSpeed = -5
-                float particleSpeedVariation = 5
-                float3 shapeSize = (0.1, 1, 0.1)
+                float particleSpeed = 0.1
+                float particleSpeedVariation = 0.1
+                float radialAmount = 0.8
+                float3 shapeSize = (0.01, 0.05, 0.05)
                 bool spawnInheritParentColor = 0
-                token spawnOccasion = "OnBirth"
-                float spawnSpreadFactor = 0.2
+                token spawnOccasion = "OnDeath"
+                float spawnSpreadFactor = 0
                 float spawnSpreadFactorVariation = 0
-                float spawnVelocityFactor = 0.4
+                float spawnVelocityFactor = 0.1
                 double warmupDuration = 0
 
                 def RealityKitStruct "mainEmitter"
                 {
                     float3 acceleration = (0, 0, 0)
+                    token animationRepeatMode = "PlayOnce"
+                    float3 billboardAxis = (0, 0, 0)
                     token billboardMode = "Billboard"
-                    float birthRate = 3000
-                    float birthRateVariation = 1000
-                    token blendMode = "Additive"
+                    float birthRate = 50
+                    float birthRateVariation = 0
+                    token blendMode = "Alpha"
                     float colorEvolutionPower = 1
-                    float dampingFactor = 0
+                    int64 columnCount = 4
+                    float dampingFactor = 2
                     float4 endColorA = (0.0013309671, 0.03458923, 1, 1)
                     float4 endColorB = (0.11386989, 0.0064959256, 0.10626237, 1)
+                    float frameRate = 0
+                    float frameRateVariation = 0
+                    int64 initialFrame = 2
+                    int64 initialFrameVariation = 6
+                    bool isAnimated = 1
                     bool isLightingEnabled = 0
                     float noiseAnimationSpeed = 0
                     float noiseScale = 1
-                    float noiseStrength = 4
-                    token opacityOverLife = "Constant"
+                    float noiseStrength = 1
+                    token opacityOverLife = "LinearFadeOut"
                     float particleAngle = 0
                     float particleAngleVariation = 0
                     float particleAngularVelocity = 0
-                    float particleAngularVelocityVariation = 0
-                    asset particleImage = @ParticleEmitterPresetTextures/rain.png@
-                    double particleLifeSpan = 0.04
-                    double particleLifeSpanVariation = 0.002
+                    float particleAngularVelocityVariation = 1
+                    asset particleImage = @ParticleEmitterPresetTextures/dustsheet.exr@
+                    double particleLifeSpan = 3
+                    double particleLifeSpanVariation = 1
                     float particleMass = 1
-                    float particleMassVariation = 0
-                    float particleSize = 0.001
-                    float particleSizeVariation = 0.0005
-                    float3 radialGravityCenter = (1, 1, 0)
+                    float particleMassVariation = 0.8
+                    float particleSize = 0.1
+                    float particleSizeVariation = 0
+                    float3 radialGravityCenter = (0, 0, 0)
                     float radialGravityStrength = 0
-                    float sizeMultiplierAtEndOfLifespan = 1
-                    float sizeMultiplierAtEndOfLifespanPower = 1
-                    token sortOrder = "IncreasingDepth"
-                    float spreadingAngle = 0.02
-                    float4 startColorA = (1, 1, 1, 0.19)
-                    float4 startColorB = (1, 1, 1, 0.14)
-                    float stretchFactor = 3
+                    int64 rowCount = 4
+                    float sizeMultiplierAtEndOfLifespan = 8
+                    float sizeMultiplierAtEndOfLifespanPower = 0.2
+                    token sortOrder = "DecreasingDepth"
+                    float spreadingAngle = 0
+                    float4 startColorA = (1, 1, 1, 0.26)
+                    float4 startColorB = (1, 1, 1, 0.07)
+                    float stretchFactor = 0
                     bool useEndColor = 0
                     bool useEndColorRange = 0
                     bool useStartColorRange = 1
-                    float3 vortexDirection = (0, 1, 0)
+                    float3 vortexDirection = (0, 0, 0)
                     float vortexStrength = 0
                 }
 
                 def RealityKitStruct "spawnedEmitter"
                 {
-                    float3 acceleration = (0, -3, 0)
-                    token billboardMode = "Billboard"
-                    float birthRate = 300
-                    float birthRateVariation = 0
-                    token blendMode = "Additive"
-                    float colorEvolutionPower = 1
-                    float dampingFactor = 0
-                    float4 endColorA = (0.0013309671, 0.03458923, 1, 1)
-                    float4 endColorB = (0.11386989, 0.0064959256, 0.10626237, 1)
-                    bool isLightingEnabled = 0
-                    float noiseAnimationSpeed = 0
-                    float noiseScale = 0
-                    float noiseStrength = 0
-                    token opacityOverLife = "Constant"
-                    float particleAngle = 0
-                    float particleAngleVariation = 0
-                    float particleAngularVelocity = 0
-                    float particleAngularVelocityVariation = 0
-                    double particleLifeSpan = 0.06
-                    double particleLifeSpanVariation = 0.004
-                    float particleMass = 1
-                    float particleMassVariation = 0
-                    float particleSize = 0.0012
-                    float particleSizeVariation = 0
-                    float3 radialGravityCenter = (0, -3, -3)
-                    float radialGravityStrength = 0
-                    float sizeMultiplierAtEndOfLifespan = 1
-                    float sizeMultiplierAtEndOfLifespanPower = 1
-                    token sortOrder = "IncreasingID"
-                    float spreadingAngle = 1.2
-                    float4 startColorA = (1, 1, 1, 0.42)
-                    float4 startColorB = (1, 1, 1, 1)
-                    float stretchFactor = 0.3
-                    bool useEndColor = 0
-                    bool useEndColorRange = 0
-                    bool useStartColorRange = 0
-                    float3 vortexDirection = (0, 1, 0)
-                    float vortexStrength = 0
                 }
             }
         }
+
+        def RealityKitComponent "SpatialAudio"
+        {
+            float directLevel = 0
+            uniform token info:id = "RealityKit.SpatialAudio"
+        }
     }
 
-    def "Terrarium" (
-        active = true
-        prepend references = @Terrarium.usdz@
-    )
+    def RealityKitAudioFile "Cloud_mp3"
     {
-        float3 xformOp:scale = (0.001, 0.001, 0.001)
-        float3 xformOp:translate = (0, 0, 0)
-        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+        uniform asset file = @Cloud.mp3@
+        uniform bool shouldLoop = 1
+        uniform bool shouldRandomizeStartTime = 1
     }
 }
 

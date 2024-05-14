@@ -16,14 +16,10 @@ struct Garden_Of_MemoryApp: App {
     
     var body: some Scene {
         @State var immersionMode: ImmersionStyle = .progressive
-//        let previewContainer = PreviewContainer([ChatEntry.self])
         
         WindowGroup {
             ContentView()
                 .modelContainer(modelContainer)
-//                .modelContainer(previewContainer.container)
-//            DisplayConversationView()
-                 
         }
         .windowStyle(.plain)
         
@@ -39,10 +35,17 @@ struct Garden_Of_MemoryApp: App {
         }
         .windowStyle(.plain)
         
-        ImmersiveSpace(id: "WaterDrop") {
+//        ImmersiveSpace(id: "WaterDrop") {
+//            WaterView()
+//                .modelContainer(modelContainer)
+//        }
+        
+        WindowGroup(id: "WaterDrop") {
             WaterView()
                 .modelContainer(modelContainer)
         }
+        .windowStyle(.volumetric)
+        
         WindowGroup(id: "diaryObject") {
             ImmersiveDiaryView()
                 .modelContainer(modelContainer)

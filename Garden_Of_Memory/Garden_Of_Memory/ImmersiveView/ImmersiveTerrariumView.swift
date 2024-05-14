@@ -8,6 +8,7 @@
 import SwiftUI
 import RealityKit
 import RealityKitContent
+import AVFoundation
 
 struct ImmersiveTerrariumView: View {
     
@@ -21,29 +22,32 @@ struct ImmersiveTerrariumView: View {
     @State var terrarium = true
     
     private func create3DView () -> Entity? {
-    //Create Sphere
-    let sphere = MeshResource.generateSphere(radius: 1000)
-    //Add material
-    var material = UnlitMaterial()
-    //Add texture
-    do {
-    let texture = try TextureResource.load(named: "farm")
-    material.color = .init(texture: .init(texture))
-    } catch
-    {
-    }
-    let myEntity = Entity()
-    myEntity.components.set(ModelComponent(mesh: sphere, materials: [material]))
-    myEntity.scale *= .init(x: -1, y: 1, z: 1)
-    return myEntity
+        //Create Sphere
+        let sphere = MeshResource.generateSphere(radius: 1000)
+            
+        //Add material
+        var material = UnlitMaterial()
+            
+        //Add texture
+        do {
+            let texture = try TextureResource.load(named: "sunny-immersive")
+            material.color = .init(texture: .init(texture))
+        } catch {
+            
+        }
+        let myEntity = Entity()
+        myEntity.components.set(ModelComponent(mesh: sphere, materials: [material]))
+        myEntity.scale *= .init(x: -1, y: 1, z: 1)
+        return myEntity
+        
     }
     
     
     var body: some View {
         RealityView { content in
-        guard let myEntity = create3DView() else {return}
-        content.add(myEntity)
-        print("ViewOpen")
+            guard let myEntity = create3DView() else {return}
+            content.add(myEntity)
+            print("ViewOpen")
         }
         VStack{
            
