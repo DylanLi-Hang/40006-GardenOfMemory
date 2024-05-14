@@ -28,7 +28,7 @@ struct WaterView: View {
     @State var currentChatEntry: ChatEntry = ChatEntry(date: Date(), mood: 10)
     
     @State var bounceValue: Int = 0
-    @State private var isAvatarButtonActive = false
+    @State private var isAvatarButtonActive = true
     @State private var isMicrophoneButtonActive = false
     @State private var isDiaryButtonActive = false
     @State private var isTerrariumButtonActive = false
@@ -65,6 +65,15 @@ struct WaterView: View {
             }
         } update: { content, _ in
             // Update the RealityKit content when SwiftUI state changes
+            if (isAvatarButtonActive) {
+                if let waterDropEntity {
+                    content.add(waterDropEntity)
+                }
+            } else {
+                if let waterDropEntity {
+                    content.remove(waterDropEntity)
+                    }
+            }
         } attachments: {
             // Attachment 1
             Attachment(id: "StartConversingButton") {
