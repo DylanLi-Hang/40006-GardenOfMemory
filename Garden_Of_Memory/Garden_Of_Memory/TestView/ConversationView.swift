@@ -7,8 +7,15 @@
 
 import SwiftUI
 import SwiftData
+import RealityKit
+import RealityKitContent
 
 struct ConversationView: View {
+    @Environment(\.openImmersiveSpace) var openImmersiveTerrarium
+    @Environment(\.dismissImmersiveSpace) var dismissImmersiveTerrarium
+        
+    @State private var isImmersiveTerrariumViewOpen: Bool = false
+    
     var chatEntry: ChatEntry
     let dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
@@ -18,35 +25,86 @@ struct ConversationView: View {
     }()
     
     var body: some View {
-        ScrollView {
-            VStack(alignment: .leading, spacing: 10) {
-                Text("Date: \(chatEntry.date, formatter: dateFormatter)")
-                Text("Mood: \(chatEntry.mood)")
-                Text("Name: \(chatEntry.name ?? "No Name")")
+        NavigationSplitView {
+                HStack{
+                    //Back Button
+                    Button {
+                        print("Return to diary menu")
+                    } label: {
+                        Image(systemName: "chevron.backward")
+                    }
+                        .padding(0)
+                    Spacer()
+                }
+                .navigationBarHidden(true)
                 
-//                Text("Messages:")
-//                ForEach(chatEntry.messages.indices, id: \.self) { index in
-//                    ForEach(chatEntry.messages[index].keys.sorted(), id: \.self) { key in
-//                        Text("    \(key): \(chatEntry.messages[index][key] ?? "")")
-//                    }
-//                }
+                //Terrarium of the day
+                Model3D(named: "SunnyTerrarium", bundle: realityKitContentBundle, content: { modelPhase in
+                    switch modelPhase {
+                    case .empty:
+                        ProgressView()
+                            .controlSize(.extraLarge)
+                    case .success(let resolvedModel3D):
+                        resolvedModel3D
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .scaleEffect(0.3)
+                    case .failure(let error):
+                        Text("Fail")
+                    }})
                 
-                ForEach(chatEntry.chatMessages) { chatMessage in
-                    if chatMessage.role != .system {
-                        Text("    \(chatMessage.role.rawValue): \(chatMessage.content ?? "")")
+                //Button of immersive terrarium
+                Button("Immersive Terrarium"){
+                    isImmersiveTerrariumViewOpen.toggle()
+                    print(isImmersiveTerrariumViewOpen)
+                }
+                .onChange(of: isImmersiveTerrariumViewOpen) { _, newValue in
+                    Task {
+                        if newValue {
+                            await openImmersiveTerrarium(id: "FullTerrarium")
+                        } else {
+                            await dismissImmersiveTerrarium()
+                        }
                     }
                 }
-                
-                Text("Tags:")
-                ForEach(chatEntry.tags, id: \.self) { tag in
-                    Text("    " + tag)
+            
+        } detail: {
+            ScrollView {
+                VStack(alignment: .leading, spacing: 10) {
+                    Text("Title: \(chatEntry.name ?? "No Name")")
+                        .font(.extraLargeTitle)
+                    Text("Date: \(chatEntry.date, formatter: dateFormatter)")
+                        .font(.title)
+                    Text("Mood: \(chatEntry.mood)")
+                        .font(.title)
+                    
+                    //                Text("Messages:")
+                    //                ForEach(chatEntry.messages.indices, id: \.self) { index in
+                    //                    ForEach(chatEntry.messages[index].keys.sorted(), id: \.self) { key in
+                    //                        Text("    \(key): \(chatEntry.messages[index][key] ?? "")")
+                    //                    }
+                    //                }
+                    Text("Conversation: ")
+                        .font(.title)
+                    
+                    ForEach(chatEntry.chatMessages) { chatMessage in
+                        if chatMessage.role != .system {
+                            Text("    \(chatMessage.role.rawValue): \(chatMessage.content ?? "")")
+                        }
+                    }
+                    
+                    Text("Tags:")
+                    ForEach(chatEntry.tags, id: \.self) { tag in
+                        Text("    " + tag)
+                    }
                 }
+                .padding([.leading, .trailing], 80)
             }
-            .padding(80)
+            .navigationBarHidden(true)
+        }
         }
     }
-}
-
+    
 struct TestView_Previews: PreviewProvider {
     static var previews: some View {
         ConversationView(chatEntry: generateDummyChat())

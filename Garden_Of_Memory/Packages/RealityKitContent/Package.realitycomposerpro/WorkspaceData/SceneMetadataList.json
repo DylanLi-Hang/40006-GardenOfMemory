@@ -4,7 +4,9 @@
       [
         "80BDD26D-7950-405F-AE41-2572C5F11EFA",
         "Root",
-        "sunny_buddy"
+        "sunny_buddy",
+        "Meshes",
+        "Sketchfab_model"
       ],
       {
         "isExpanded" : true,
@@ -22,10 +24,7 @@
       },
       [
         "80BDD26D-7950-405F-AE41-2572C5F11EFA",
-        "Root",
-        "sunny_buddy",
-        "Meshes",
-        "Sketchfab_model"
+        "Root"
       ],
       {
         "isExpanded" : true,
@@ -33,7 +32,8 @@
       },
       [
         "80BDD26D-7950-405F-AE41-2572C5F11EFA",
-        "Root"
+        "Root",
+        "sunny_buddy"
       ],
       {
         "isExpanded" : true,

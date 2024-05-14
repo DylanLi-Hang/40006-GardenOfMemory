@@ -14,7 +14,6 @@ struct ContentView: View {
     @Environment(\.dismissImmersiveSpace) var dismissImmersiveTerrarium
     
     @State var avatarView: Bool = false
-//    @State var terrarium = false
     @State private var isDairyViewOpen: Bool = false
     @State private var isDiaryObjViewOpen: Bool = false
     @State private var isTerraObjViewOpen: Bool = false
@@ -43,11 +42,6 @@ struct ContentView: View {
                 Button{
                     Task{
                         print("OpenAvatar")
-//                        if terrarium{
-//                            await dismissImmersiveTerrarium()
-//                            terrarium = false
-//                        }
-//                        await openImmersiveSpace(id: "WaterDrop")
                         openWindow(id: "WaterDrop")
                         avatarView = true
                     }
