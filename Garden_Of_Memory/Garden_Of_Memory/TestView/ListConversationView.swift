@@ -40,7 +40,6 @@ struct ListConversationView: View {
                         }
                     }
                 }
-
             }
         } detail: {
             Text("View")
