@@ -195,7 +195,7 @@ struct WaterView: View {
                             isMicrophoneButtonActive.toggle()
                             viewModel.recognizationStatus = true
                             viewModel.status = .idle
-                            speechViewModel.isCancelled = false
+                            viewModel.isCancelled = false
                         }) {
                             Image(systemName: "mic")
                                 .resizable()
@@ -210,9 +210,9 @@ struct WaterView: View {
                         Button(action: {
                             isMicrophoneButtonActive.toggle()
                             viewModel.recognizationStatus = false
-                                                        viewModel.status = .notListening
-                                                        currentChatEntry.chatMessages = speechViewModel.messages
-                            speechViewModel.isCancelled = true
+                            viewModel.status = .notListening
+                            currentChatEntry.chatMessages = speechViewModel.messages
+                            viewModel.isCancelled = true
                         }) {
                             Image(systemName: "mic")
                                 .resizable()
