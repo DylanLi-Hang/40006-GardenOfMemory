@@ -13,6 +13,20 @@ import OpenAIKit
 
 struct WaterView: View {
     @Environment(\.modelContext) private var modelContext
+    @Environment(\.openWindow) private var openWindow
+    @Environment(\.dismissWindow) private var dismissWindow
+    
+    @Environment(\.openImmersiveSpace) var openImmersiveSpace
+    @Environment(\.dismissImmersiveSpace) var dismissImmersiveSpace
+    
+    @Environment(\.openImmersiveSpace) var openImmersiveTerrarium
+    @Environment(\.dismissImmersiveSpace) var dismissImmersiveTerrarium
+    
+    @State var avatarView: Bool = false
+    @State private var isDairyViewOpen: Bool = false
+    @State private var isDiaryObjViewOpen: Bool = false
+    @State private var isTerraObjViewOpen: Bool = false
+    
     @Query(sort: \ChatEntry.date, order: .reverse) private var entries: [ChatEntry]
     
     @State var waterDropEntity: Entity? = nil
@@ -233,6 +247,7 @@ struct WaterView: View {
                     // Diary Button
                     Button(action: {
                         isDiaryButtonActive.toggle()
+                        isDairyViewOpen.toggle()
                     }) {
                         Image(systemName: "book")
                             .resizable()
@@ -246,6 +261,33 @@ struct WaterView: View {
                     // Terrarium Button
                     Button(action: {
                         isTerrariumButtonActive.toggle()
+                        isTerraObjViewOpen.toggle()
+                        Task{
+                            print("OpenTerrarium")
+                            if avatarView{
+                                await dismissImmersiveSpace()
+                                avatarView = false
+                            }
+                            if ImmersiveTerrariumState.terrarium{
+                                await dismissImmersiveTerrarium()
+                                ImmersiveTerrariumState.terrarium = false
+                                print(ImmersiveTerrariumState.terrarium)
+                            } else {
+//                                await openImmersiveTerrarium(id:"FullTerrarium")
+//                                ImmersiveTerrariumState.terrarium = true
+                                print(ImmersiveTerrariumState.terrarium)
+                                
+                            }
+                            
+//                            if avatarView{
+//                                await dismissImmersiveSpace()
+//                                avatarView = false
+//                            }
+//                            if !ImmersiveTerrariumState.terrarium{
+//
+//                            }
+                            
+                        }
                     }) {
                         Image(systemName: "tree")
                             .resizable()
@@ -293,6 +335,33 @@ struct WaterView: View {
             }
             if !isloaded {
                 modelContext.insert(self.currentChatEntry)
+            }
+        }
+        .onChange(of: isDairyViewOpen) { _, newValue in
+            Task {
+                if newValue {
+                    openWindow(id: "DairyViewController")
+                } else {
+                    dismissWindow(id: "DairyViewController")
+                }
+            }
+        }
+        .onChange(of: isTerraObjViewOpen) { _, newValue in
+            Task {
+                if newValue {
+                    openWindow(id: "terrariumObject")
+                } else {
+                    dismissWindow(id: "terrariumObject")
+                }
+            }
+        }
+        .onChange(of: isDiaryObjViewOpen) { _, newValue in
+            Task {
+                if newValue {
+                    openWindow(id: "diaryObject")
+                } else {
+                    dismissWindow(id: "diaryObject")
+                }
             }
         }
     }
