@@ -136,12 +136,16 @@ struct WaterView: View {
                         }
                     } else {
                         ScrollView(showsIndicators: true) {
-                            Text(speechViewModel.messages.last?.content ?? "No messages yet")
+                            let lastContent = speechViewModel.messages.last?.content
+                            let greetingMessage = "Hi there! I'm Waterdrop, your friendly companion here to listen and flow alongside your emotions. Tell me, what kind of day has it been for you?"
+
+                            Text(lastContent == Prompt.systemInitPrompt ? greetingMessage : (lastContent ?? greetingMessage))
                                 .padding(.all, 10)
                                 .background(Color.gray.opacity(0.25))
                                 .cornerRadius(20)
                                 .multilineTextAlignment(.leading)
                                 .frame(width: 600, height: 150, alignment: .leading)
+
                         }
                     }
                 }
@@ -223,27 +227,7 @@ struct WaterView: View {
                                 .clipShape(Circle())
     
                         }.buttonStyle(BorderlessButtonStyle())
-//                        Button("Stop Conversing") {
-//                            viewModel.recognizationStatus = false
-//                            viewModel.status = .notListening
-//                            currentChatEntry.chatMessages = speechViewModel.messages
-//                        }
-//                        .padding()
-//                        .glassBackgroundEffect()
                     }
-//                    Button(action: {
-//                        isMicrophoneButtonActive.toggle()
-//                    }) {
-//                        Image(systemName: "mic")
-//                            .resizable()
-//                            .scaledToFit()
-//                            .frame(width: 24, height: 24)
-//                            .padding()
-//                            .background(Circle().fill(!viewModel.status == .notListening ? Color.yellow : Color.white.opacity(0.2)))
-//                            .clipShape(Circle())
-//                        
-//                    }.buttonStyle(BorderlessButtonStyle())
-                    
                     // Diary Button
                     Button(action: {
                         isDiaryButtonActive.toggle()

@@ -18,7 +18,7 @@ struct Prompt {
       ModelContent(role: "user", parts: "Are you AI?"),
       ModelContent(role: "model", parts: "I'm your friend Waterdrop, here to listen. Did anyone share a smile with you today?"),
       ModelContent(role: "user", parts: "What's your name"),
-      ModelContent(role: "model", parts: "My name is Waterdrop! I'm an AI companion here to listen and flow alongside your emotions. How can I help you today?"),
+      ModelContent(role: "model", parts: "My name is Waterdrop! I'm an AI companion here to listen and flow alongside your emotions. How do you feel today?"),
     ]
 
     static let systemSummarizePrompt = "You are an expert who is good at summarize chat history, help me summarize the chat history of what happned today to user."
