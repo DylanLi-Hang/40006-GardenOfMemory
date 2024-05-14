@@ -23,6 +23,12 @@ struct Garden_Of_MemoryApp: App {
         }
         .windowStyle(.plain)
         
+        WindowGroup {
+            NewContentView()
+                .modelContainer(modelContainer)
+        }
+        .windowStyle(.volumetric)
+        
         WindowGroup(id:"terrariumObject") {
             TerrariumObjectView()
                 .modelContainer(modelContainer)

@@ -35,6 +35,7 @@ class SpeechRecognitionViewModel: ObservableObject {
     let viewModel = ViewModel.shared
     
     private var debouncer: AnyCancellable?
+    var isCancelled = false
     
     // For emotion scale retrieval
     private var conversationCount = 0 // Counter to track the number of conversations
@@ -191,6 +192,10 @@ class SpeechRecognitionViewModel: ObservableObject {
             if viewModel.aimodel == .gemini { 
                 let outputContentStream = chat!.sendMessageStream(message)
                 for try await outputContent in outputContentStream {
+                    if self.isCancelled {
+                                        print("Operation cancelled")
+                                        return
+                                    }
                     guard let line = outputContent.text else {
                         return
                     }
@@ -204,6 +209,10 @@ class SpeechRecognitionViewModel: ObservableObject {
                 )
                 
                 for try await result in stream {
+                    if self.isCancelled {
+                                        print("Operation cancelled")
+                                        return
+                                    }
                     if let delta = result.choices[0].delta {
                         DispatchQueue.main.async { [weak self] in
                             guard let self = self else { return }
