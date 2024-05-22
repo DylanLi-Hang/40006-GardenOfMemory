@@ -49,6 +49,9 @@ class TextToSpeechViewModel: NSObject, ObservableObject {
 extension TextToSpeechViewModel: AVSpeechSynthesizerDelegate {
     func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didFinish utterance: AVSpeechUtterance) {
         print("all done")
+        if (viewModel.isCancelled) {
+            return
+        }
         viewModel.status = .idle
         viewModel.recognizationStatus = true
     }

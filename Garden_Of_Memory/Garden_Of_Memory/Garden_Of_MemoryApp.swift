@@ -23,6 +23,12 @@ struct Garden_Of_MemoryApp: App {
         }
         .windowStyle(.plain)
         
+        WindowGroup(id: "WaterDrop") {
+            WaterView()
+                .modelContainer(modelContainer)
+        }
+        .windowStyle(.volumetric)
+        
         WindowGroup(id:"terrariumObject") {
             TerrariumObjectView()
                 .modelContainer(modelContainer)
@@ -39,12 +45,6 @@ struct Garden_Of_MemoryApp: App {
 //            WaterView()
 //                .modelContainer(modelContainer)
 //        }
-        
-        WindowGroup(id: "WaterDrop") {
-            WaterView()
-                .modelContainer(modelContainer)
-        }
-        .windowStyle(.volumetric)
         
         WindowGroup(id: "diaryObject") {
             ImmersiveDiaryView()

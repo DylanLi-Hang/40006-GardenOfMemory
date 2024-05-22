@@ -1,12 +1,34 @@
 {
+  "21A7285A-1FB4-41A1-AB1B-07E2DEB1F63C" : {
+    "objectMetadataList" : [
+      [
+        "21A7285A-1FB4-41A1-AB1B-07E2DEB1F63C",
+        "Root"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      }
+    ]
+  },
+  "33FC1826-8C65-46F4-A95A-944ED2E64EEA" : {
+    "objectMetadataList" : [
+      [
+        "33FC1826-8C65-46F4-A95A-944ED2E64EEA",
+        "Root"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      }
+    ]
+  },
   "80BDD26D-7950-405F-AE41-2572C5F11EFA" : {
     "objectMetadataList" : [
       [
         "80BDD26D-7950-405F-AE41-2572C5F11EFA",
         "Root",
-        "sunny_buddy",
-        "Meshes",
-        "Sketchfab_model"
+        "sunny_buddy"
       ],
       {
         "isExpanded" : true,
@@ -24,7 +46,10 @@
       },
       [
         "80BDD26D-7950-405F-AE41-2572C5F11EFA",
-        "Root"
+        "Root",
+        "sunny_buddy",
+        "Meshes",
+        "Sketchfab_model"
       ],
       {
         "isExpanded" : true,
@@ -32,8 +57,7 @@
       },
       [
         "80BDD26D-7950-405F-AE41-2572C5F11EFA",
-        "Root",
-        "sunny_buddy"
+        "Root"
       ],
       {
         "isExpanded" : true,
@@ -45,6 +69,18 @@
     "objectMetadataList" : [
       [
         "342353B2-E0C0-4535-89D4-6D7F0122EFEA",
+        "Root"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      }
+    ]
+  },
+  "E308D5F6-FB42-4B21-9FB4-B888FF1BBD69" : {
+    "objectMetadataList" : [
+      [
+        "E308D5F6-FB42-4B21-9FB4-B888FF1BBD69",
         "Root"
       ],
       {

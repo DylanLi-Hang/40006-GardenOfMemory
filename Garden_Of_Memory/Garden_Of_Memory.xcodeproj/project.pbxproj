@@ -29,6 +29,7 @@
 		65E4F98F2BC6B66500CECC11 /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65E4F98E2BC6B66500CECC11 /* Secrets.swift */; };
 		65E4F9932BC72EAF00CECC11 /* GlobalVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65E4F9922BC72EAF00CECC11 /* GlobalVariables.swift */; };
 		FC23BB852BE59E6700DF36ED /* EmitterSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC23BB842BE59E6600DF36ED /* EmitterSettings.swift */; };
+		FC27EB222BF318CD003608CA /* NewContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC27EB212BF318CD003608CA /* NewContentView.swift */; };
 		FC33B0B82BBB8977002D4DF8 /* Avatar.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC33B0B72BBB8977002D4DF8 /* Avatar.swift */; };
 		FC33B0BD2BBB8B66002D4DF8 /* ChatEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC33B0BC2BBB8B66002D4DF8 /* ChatEntry.swift */; };
 		FC33B0BF2BBB8F47002D4DF8 /* ListConversationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC33B0BE2BBB8F47002D4DF8 /* ListConversationView.swift */; };
@@ -75,6 +76,7 @@
 		65E4F98E2BC6B66500CECC11 /* Secrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
 		65E4F9922BC72EAF00CECC11 /* GlobalVariables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalVariables.swift; sourceTree = "<group>"; };
 		FC23BB842BE59E6600DF36ED /* EmitterSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = EmitterSettings.swift; path = Garden_Of_Memory/DataModel/EmitterSettings.swift; sourceTree = SOURCE_ROOT; };
+		FC27EB212BF318CD003608CA /* NewContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewContentView.swift; sourceTree = "<group>"; };
 		FC33B0B72BBB8977002D4DF8 /* Avatar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Avatar.swift; sourceTree = "<group>"; };
 		FC33B0BC2BBB8B66002D4DF8 /* ChatEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatEntry.swift; sourceTree = "<group>"; };
 		FC33B0BE2BBB8F47002D4DF8 /* ListConversationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListConversationView.swift; sourceTree = "<group>"; };
@@ -139,6 +141,7 @@
 			children = (
 				3B99F0242BB43A4900322E0E /* Garden_Of_MemoryApp.swift */,
 				3B99F0262BB43A4900322E0E /* ContentView.swift */,
+				FC27EB212BF318CD003608CA /* NewContentView.swift */,
 				FCDBE2192BD3B09100E00301 /* ImmersiveView */,
 				FCDBE21A2BD3B0A400E00301 /* TestView */,
 				FCDBE21B2BD3B18500E00301 /* ServiceModel */,
@@ -343,6 +346,7 @@
 				3B99F0272BB43A4900322E0E /* ContentView.swift in Sources */,
 				FCDBE22D2BD3B38000E00301 /* ViewModel.swift in Sources */,
 				FC33B0C32BBB90A8002D4DF8 /* TestInsertDummyView.swift in Sources */,
+				FC27EB222BF318CD003608CA /* NewContentView.swift in Sources */,
 				FC33B0C52BBB9863002D4DF8 /* PreviewContainer.swift in Sources */,
 				FCDBE2322BD3B39300E00301 /* APIKey.swift in Sources */,
 				FC33B0C12BBB8FBC002D4DF8 /* ConversationView.swift in Sources */,
@@ -483,7 +487,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Garden_Of_Memory/Preview Content\"";
-				DEVELOPMENT_TEAM = 268K47U323;
+				DEVELOPMENT_TEAM = DG38X7YP5S;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "$(TARGET_NAME)/Info.plist";
@@ -494,7 +498,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = DenniUm;
+				PRODUCT_BUNDLE_IDENTIFIER = "-";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "xros xrsimulator";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -511,7 +515,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Garden_Of_Memory/Preview Content\"";
-				DEVELOPMENT_TEAM = 268K47U323;
+				DEVELOPMENT_TEAM = DG38X7YP5S;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "$(TARGET_NAME)/Info.plist";
@@ -522,7 +526,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = DenniUm;
+				PRODUCT_BUNDLE_IDENTIFIER = "-";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "xros xrsimulator";
 				SWIFT_EMIT_LOC_STRINGS = YES;

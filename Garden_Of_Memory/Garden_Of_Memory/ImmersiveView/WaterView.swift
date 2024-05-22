@@ -13,6 +13,20 @@ import OpenAIKit
 
 struct WaterView: View {
     @Environment(\.modelContext) private var modelContext
+    @Environment(\.openWindow) private var openWindow
+    @Environment(\.dismissWindow) private var dismissWindow
+    
+    @Environment(\.openImmersiveSpace) var openImmersiveSpace
+    @Environment(\.dismissImmersiveSpace) var dismissImmersiveSpace
+    
+    @Environment(\.openImmersiveSpace) var openImmersiveTerrarium
+    @Environment(\.dismissImmersiveSpace) var dismissImmersiveTerrarium
+    
+    @State var avatarView: Bool = false
+    @State private var isDairyViewOpen: Bool = false
+    @State private var isDiaryObjViewOpen: Bool = false
+    @State private var isTerraObjViewOpen: Bool = false
+    
     @Query(sort: \ChatEntry.date, order: .reverse) private var entries: [ChatEntry]
     
     @State var waterDropEntity: Entity? = nil
@@ -27,6 +41,12 @@ struct WaterView: View {
     @State private var waterDrop: Entity? = nil
     @State var currentChatEntry: ChatEntry = ChatEntry(date: Date(), mood: 10)
     
+    @State var bounceValue: Int = 0
+    @State private var isAvatarButtonActive = true
+    @State private var isMicrophoneButtonActive = false
+    @State private var isDiaryButtonActive = false
+    @State private var isTerrariumButtonActive = false
+    
     var body: some View {
         RealityView { content, attachments in
             do {
@@ -35,6 +55,7 @@ struct WaterView: View {
                 loadAnimation(animatedEntity: animatedEntity)
                 if let waterDropEntity {
                     content.add(waterDropEntity)
+                    waterDropEntity.position += [0, -0.2, 0.2]
                 }
                 
                 if let water_drop = waterDropEntity {
@@ -49,15 +70,24 @@ struct WaterView: View {
                     }
                 }
                 
-                if let sceneAttachment = attachments.entity(for: "ChangeStatus") {
+                if let sceneAttachment = attachments.entity(for: "ControlCenter") {
                     content.add(sceneAttachment)
-                    sceneAttachment.position += [0, -0.1, 0]
+                    sceneAttachment.position += [0, -0.4, 0.45]
                 }
             } catch {
                 print("Error in RealityView's make: \(error)")
             }
         } update: { content, _ in
             // Update the RealityKit content when SwiftUI state changes
+            if (isAvatarButtonActive) {
+                if let waterDropEntity {
+                    content.add(waterDropEntity)
+                }
+            } else {
+                if let waterDropEntity {
+                    content.remove(waterDropEntity)
+                    }
+            }
         } attachments: {
             // Attachment 1
             Attachment(id: "StartConversingButton") {
@@ -67,22 +97,22 @@ struct WaterView: View {
                     Text("Current Status: \(viewModel.recognizationStatus)")
                         .glassBackgroundEffect()
                     
-                    if viewModel.status == .notListening {
-                        Button("Start Conversing") {
-                            viewModel.recognizationStatus = true
-                            viewModel.status = .idle
-                        }
-                        .padding()
-                        .glassBackgroundEffect()
-                    } else {
-                        Button("Stop Conversing") {
-                            viewModel.recognizationStatus = false
-                            viewModel.status = .notListening
-                            currentChatEntry.chatMessages = speechViewModel.messages
-                        }
-                        .padding()
-                        .glassBackgroundEffect()
-                    }
+//                    if viewModel.status == .notListening {
+//                        Button("Start Conversing") {
+//                            viewModel.recognizationStatus = true
+//                            viewModel.status = .idle
+//                        }
+//                        .padding()
+//                        .glassBackgroundEffect()
+//                    } else {
+//                        Button("Stop Conversing") {
+//                            viewModel.recognizationStatus = false
+//                            viewModel.status = .notListening
+//                            currentChatEntry.chatMessages = speechViewModel.messages
+//                        }
+//                        .padding()
+//                        .glassBackgroundEffect()
+//                    }
                 }
             }
             
@@ -106,12 +136,16 @@ struct WaterView: View {
                         }
                     } else {
                         ScrollView(showsIndicators: true) {
-                            Text(speechViewModel.messages.last?.content ?? "No messages yet")
+                            let lastContent = speechViewModel.messages.last?.content
+                            let greetingMessage = "Hi there! I'm Waterdrop, your friendly companion here to listen and flow alongside your emotions. Tell me, what kind of day has it been for you?"
+
+                            Text(lastContent == Prompt.systemInitPrompt ? greetingMessage : (lastContent ?? greetingMessage))
                                 .padding(.all, 10)
                                 .background(Color.gray.opacity(0.25))
                                 .cornerRadius(20)
                                 .multilineTextAlignment(.leading)
                                 .frame(width: 600, height: 150, alignment: .leading)
+
                         }
                     }
                 }
@@ -133,6 +167,113 @@ struct WaterView: View {
                     }
                 }
                 
+            }
+            
+            Attachment(id: "ControlCenter") {
+                HStack(spacing: 10) {
+                    // Avatar Button
+                    Button(action: {
+                        isAvatarButtonActive.toggle()
+                        bounceValue += 1
+                    }) {
+                        Image(systemName: "drop")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 24, height: 24)
+                            .padding()
+                            .background(Circle().fill(isAvatarButtonActive ? Color.blue : Color.white.opacity(0.2)))
+                            .clipShape(Circle())
+                            .symbolEffect(
+                                .bounce,
+                                options: .repeat(1),
+                                value: bounceValue
+                            )
+                    }
+                    .buttonStyle(BorderlessButtonStyle())
+                    .symbolEffect(.bounce, value: 1)
+                    
+                    // Microphone Button
+                    
+                    if viewModel.status == .notListening {
+                        Button(action: {
+                            isMicrophoneButtonActive.toggle()
+                            viewModel.recognizationStatus = true
+                            viewModel.status = .idle
+                            viewModel.isCancelled = false
+                        }) {
+                            Image(systemName: "mic")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 24, height: 24)
+                                .padding()
+                                .background(Circle().fill(Color.white.opacity(0.2)))
+                                .clipShape(Circle())
+    
+                        }.buttonStyle(BorderlessButtonStyle())
+                    } else {
+                        Button(action: {
+                            isMicrophoneButtonActive.toggle()
+                            viewModel.recognizationStatus = false
+                            viewModel.status = .notListening
+                            currentChatEntry.chatMessages = speechViewModel.messages
+                            viewModel.isCancelled = true
+                        }) {
+                            Image(systemName: "mic")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 24, height: 24)
+                                .padding()
+                                .background(Circle().fill(Color.yellow))
+                                .clipShape(Circle())
+    
+                        }.buttonStyle(BorderlessButtonStyle())
+                    }
+                    // Diary Button
+                    Button(action: {
+                        isDiaryButtonActive.toggle()
+                        isDairyViewOpen.toggle()
+                    }) {
+                        Image(systemName: "book")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 24, height: 24)
+                            .padding()
+                            .background(Circle().fill(isDiaryButtonActive ? Color.red : Color.white.opacity(0.2)))
+                            .clipShape(Circle())
+                    }.buttonStyle(BorderlessButtonStyle())
+                    
+                    // Terrarium Button
+                    Button(action: {
+                        isTerrariumButtonActive.toggle()
+                        isTerraObjViewOpen.toggle()
+                        Task{
+                            print("OpenTerrarium")
+                            if avatarView{
+                                await dismissImmersiveSpace()
+                                avatarView = false
+                            }
+                            if ImmersiveTerrariumState.terrarium{
+                                await dismissImmersiveTerrarium()
+                                ImmersiveTerrariumState.terrarium = false
+                                print(ImmersiveTerrariumState.terrarium)
+                            } else {
+                                print(ImmersiveTerrariumState.terrarium)
+                            }
+                            
+                        }
+                    }) {
+                        Image(systemName: "tree")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 24, height: 24)
+                            .padding()
+                            .background(Circle().fill(isTerrariumButtonActive ? Color.green : Color.white.opacity(0.2)))
+                            .clipShape(Circle())
+                    }.buttonStyle(BorderlessButtonStyle())
+                }
+                .padding()
+                .clipShape(Capsule())
+                .glassBackgroundEffect()
             }
         }
         .onChange(of: speechViewModel.mood, { oldValue, newValue in
@@ -169,6 +310,33 @@ struct WaterView: View {
                 modelContext.insert(self.currentChatEntry)
             }
         }
+        .onChange(of: isDairyViewOpen) { _, newValue in
+            Task {
+                if newValue {
+                    openWindow(id: "DairyViewController")
+                } else {
+                    dismissWindow(id: "DairyViewController")
+                }
+            }
+        }
+        .onChange(of: isTerraObjViewOpen) { _, newValue in
+            Task {
+                if newValue {
+                    openWindow(id: "terrariumObject")
+                } else {
+                    dismissWindow(id: "terrariumObject")
+                }
+            }
+        }
+        .onChange(of: isDiaryObjViewOpen) { _, newValue in
+            Task {
+                if newValue {
+                    openWindow(id: "diaryObject")
+                } else {
+                    dismissWindow(id: "diaryObject")
+                }
+            }
+        }
     }
     
     func dropAnimation() {
@@ -182,6 +350,7 @@ struct WaterView: View {
         if status == .notListening {
             dropAnimation()
             if let unwrappedAnimatedEntity = waterDropEntity {
+                unwrappedAnimatedEntity.components.remove(ParticleEmitterComponent.self)
                 guard let idleAnimation = animationResources.first else { return }
 
                 let controller = unwrappedAnimatedEntity.playAnimation(idleAnimation, transitionDuration: 0.6, startsPaused: false)
@@ -223,20 +392,24 @@ struct WaterView: View {
                 animationControllers.append(controller)
                 DispatchQueue.main.asyncAfter(deadline: .now() + 2.0)
                 {
-                    guard animationResources.count > 2 else { return }
-                    let respondingAnimation = animationResources[2]
-                    let controller = unwrappedAnimatedEntity.playAnimation(respondingAnimation, transitionDuration: 0.6, startsPaused: false)
-                    animationControllers.append(controller)
-                    
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 2.5)
-                    {
-                        dropAnimation()
-                        guard animationResources.count > 0 else { return }
-                        let respondingAnimation = animationResources[0]
+                    if viewModel.status == .responding {
+                        guard animationResources.count > 2 else { return }
+                        let respondingAnimation = animationResources[2]
                         let controller = unwrappedAnimatedEntity.playAnimation(respondingAnimation, transitionDuration: 0.6, startsPaused: false)
                         animationControllers.append(controller)
-                        if let unwrappedAnimatedEntity = waterDropEntity {
-                            unwrappedAnimatedEntity.components.set(componentResources)
+                        
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 2.5)
+                        {
+                            if viewModel.status == .responding {
+                                dropAnimation()
+                                guard animationResources.count > 0 else { return }
+                                let respondingAnimation = animationResources[0]
+                                let controller = unwrappedAnimatedEntity.playAnimation(respondingAnimation, transitionDuration: 0.6, startsPaused: false)
+                                animationControllers.append(controller)
+                                if let unwrappedAnimatedEntity = waterDropEntity {
+                                    unwrappedAnimatedEntity.components.set(componentResources)
+                                }
+                            }
                         }
                     }
                 }
