@@ -49,7 +49,7 @@ class ViewModel {
     var status: AvatarStatus = .notListening
     var recognizationStatus = false
     var isCancelled = true
-    var mood = 5
+    var mood = 4
 
 
     // MARK: - SpeechRecognition & AI

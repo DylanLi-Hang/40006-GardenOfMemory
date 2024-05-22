@@ -20,6 +20,7 @@ struct ImmersiveTerrariumView: View {
     
 //    @State var avatarView = false
     @State var terrarium = true
+    let viewModel = ViewModel.shared
     
     private func create3DView () -> Entity? {
         //Create Sphere
@@ -30,7 +31,7 @@ struct ImmersiveTerrariumView: View {
             
         //Add texture
         do {
-            let texture = try TextureResource.load(named: "sunny-immersive")
+            let texture = try TextureResource.load(named: terrariumSkyboxName(for: viewModel.mood))
             material.color = .init(texture: .init(texture))
         } catch {
             
@@ -42,6 +43,23 @@ struct ImmersiveTerrariumView: View {
         
     }
     
+    private func terrariumSkyboxName(for mood: Int) -> String {
+        // Return the appropriate scene name based on mood
+        switch mood {
+        case 1:
+            return "1A-Thunder"
+        case 2:
+            return "2-Rainy"
+        case 3:
+            return "3-Cloudy"
+        case 4:
+            return "4-Sunny"
+        case 5:
+            return "5-Rainbow"
+        default:
+            return "4-Sunny" // Default scene
+        }
+    }
     
     var body: some View {
         RealityView { content in

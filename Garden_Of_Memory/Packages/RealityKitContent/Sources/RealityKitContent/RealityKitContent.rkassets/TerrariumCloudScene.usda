@@ -16,8 +16,8 @@ def Xform "Root"
         references = @Terrarium.usdz@
     )
     {
-        float3 xformOp:scale = (1, 1, 1)
-        float3 xformOp:translate = (0, -1.0421838, 0)
+        float3 xformOp:scale = (0.1, 0.1, 0.1)
+        float3 xformOp:translate = (0, -0.01, 0)
         uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
 
         over "Meshes"
@@ -90,8 +90,8 @@ def Xform "Root"
     {
         reorder nameChildren = ["Meshes", "Materials", "_materials"]
         quatf xformOp:orient = (0.70710677, 0.70710677, 0, 0)
-        float3 xformOp:scale = (0.3, 0.3, 0.3)
-        float3 xformOp:translate = (0.068591684, 0.49168742, 0.33117265)
+        float3 xformOp:scale = (0.03, 0.03, 0.03)
+        float3 xformOp:translate = (0.0022226684, 0.15306525, 0.033000007)
         uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
 
         over "Materials"
@@ -132,8 +132,8 @@ def Xform "Root"
             bindMaterialAs = "weakerThanDescendants"
         )
         quatf xformOp:orient = (0.70710677, 0.70710677, 0, 0)
-        float3 xformOp:scale = (0.02, 0.02, 0.02)
-        float3 xformOp:translate = (0.047115415, 0.28146112, -0.6228779)
+        float3 xformOp:scale = (0.002, 0.002, 0.002)
+        float3 xformOp:translate = (0.00022266805, 0.13206525, -0.06199999)
         uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
 
         over "Meshes"
@@ -177,8 +177,8 @@ def Xform "Root"
             bindMaterialAs = "weakerThanDescendants"
         )
         quatf xformOp:orient = (0.70710677, 0.70710677, 0, 0)
-        float3 xformOp:scale = (0.01, 0.01, 0.01)
-        float3 xformOp:translate = (-0.34850666, 0.46503294, -0.18012394)
+        float3 xformOp:scale = (0.001, 0.001, 0.001)
+        float3 xformOp:translate = (-0.03977733, 0.15056525, -0.017999995)
         uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
 
         over "Meshes"
@@ -203,8 +203,8 @@ def Xform "Root"
             bindMaterialAs = "weakerThanDescendants"
         )
         quatf xformOp:orient = (-0.12278781, 0.12278777, 0.69636434, -0.69636416)
-        float3 xformOp:scale = (0.01, 0.01, 0.01)
-        float3 xformOp:translate = (0.5149414, 0.4463124, -0.25179464)
+        float3 xformOp:scale = (0.001, 0.001, 0.001)
+        float3 xformOp:translate = (0.04522267, 0.14866525, -0.024999997)
         uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
 
         over "Meshes"
@@ -220,7 +220,7 @@ def Xform "Root"
         active = true
     )
     {
-        float3 xformOp:translate = (-0.027756646, 0.25709534, -0.1637072)
+        float3 xformOp:translate = (-0.02140316, 0.100506164, -0.028179746)
         uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
 
         def RealityKitComponent "VFXEmitter"
@@ -273,19 +273,19 @@ def Xform "Root"
                     bool isAnimated = 1
                     bool isLightingEnabled = 0
                     float noiseAnimationSpeed = 0
-                    float noiseScale = 1
-                    float noiseStrength = 1
+                    float noiseScale = 0.1
+                    float noiseStrength = 0.1
                     token opacityOverLife = "LinearFadeOut"
                     float particleAngle = 0
                     float particleAngleVariation = 0
                     float particleAngularVelocity = 0
                     float particleAngularVelocityVariation = 1
                     asset particleImage = @ParticleEmitterPresetTextures/dustsheet.exr@
-                    double particleLifeSpan = 3
+                    double particleLifeSpan = 0.03
                     double particleLifeSpanVariation = 1
                     float particleMass = 1
                     float particleMassVariation = 0.8
-                    float particleSize = 0.1
+                    float particleSize = 0.01
                     float particleSizeVariation = 0
                     float3 radialGravityCenter = (0, 0, 0)
                     float radialGravityStrength = 0
@@ -300,8 +300,8 @@ def Xform "Root"
                     bool useEndColor = 0
                     bool useEndColorRange = 0
                     bool useStartColorRange = 1
-                    float3 vortexDirection = (0, 0, 0)
-                    float vortexStrength = 0
+                    float3 vortexDirection = (0, 1, 0)
+                    float vortexStrength = 1
                 }
 
                 def RealityKitStruct "spawnedEmitter"
