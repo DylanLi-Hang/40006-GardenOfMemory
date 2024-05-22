@@ -1,15 +1,17 @@
-40006 iOS Studio
+40006 iOS Industry Studio
 
 TEAM: Gardener
 
 Project Brief: Garden of Memory supports user’s mental wellbeing by keeping a mood journal through conversing with an AI companion and visualizing user’s feelings with a terrarium. 
 
-Team Members:
+Team leader:
 
 Sunny Wong
 UX/UI Designer
 3D Animator
 24873236
+
+Team Members:
 
 Grace Solibun 
 Backend Developer
