@@ -3,12 +3,12 @@
     customLayerData = {
         string creator = "Reality Composer Pro Version 1.0 (409.100.15)"
     }
-    defaultPrim = "Root"
+    defaultPrim = "TerrariumThunderScene"
     metersPerUnit = 1
     upAxis = "Y"
 )
 
-def Xform "Root"
+def Xform "TerrariumThunderScene"
 {
     reorder nameChildren = ["Terrarium", "cloud", "cloud2", "cloud3", "cloud3_1", "ParticleEmitter_1", "ParticleEmitter_2", "ParticleEmitter_3", "Mist", "ThunderEmitter", "Thunder_wav", "AmbientThunderEmitter"]
     def "Terrarium" (
@@ -87,7 +87,7 @@ def Xform "Root"
         references = @cloud.usdz@
     )
     {
-        rel material:binding = </Root/cloud2/Materials/_materials/Cloud_2> (
+        rel material:binding = </TerrariumThunderScene/cloud2/Materials/_materials/Cloud_2> (
             bindMaterialAs = "weakerThanDescendants"
         )
         quatf xformOp:orient = (0.70710677, 0.70710677, 0, 0)
@@ -151,7 +151,7 @@ def Xform "Root"
                 {
                     token outputs:mtlx:surface
                     token outputs:realitykit:vertex
-                    token outputs:surface.connect = </Root/cloud2/Materials/_materials/Cloud/Principled_BSDF.outputs:surface>
+                    token outputs:surface.connect = </TerrariumThunderScene/cloud2/Materials/_materials/Cloud/Principled_BSDF.outputs:surface>
 
                     over "Principled_BSDF"
                     {
@@ -167,10 +167,10 @@ def Xform "Root"
                 }
 
                 def Material "Cloud_1" (
-                    references = </Root/cloud2/Materials/_materials/Cloud>
+                    references = </TerrariumThunderScene/cloud2/Materials/_materials/Cloud>
                 )
                 {
-                    token outputs:surface.connect = </Root/cloud2/Materials/_materials/Cloud_1/Principled_BSDF.outputs:surface>
+                    token outputs:surface.connect = </TerrariumThunderScene/cloud2/Materials/_materials/Cloud_1/Principled_BSDF.outputs:surface>
 
                     def Shader "Principled_BSDF"
                     {
@@ -193,10 +193,10 @@ def Xform "Root"
                 }
 
                 def Material "Cloud_2" (
-                    references = </Root/cloud2/Materials/_materials/Cloud>
+                    references = </TerrariumThunderScene/cloud2/Materials/_materials/Cloud>
                 )
                 {
-                    token outputs:surface.connect = </Root/cloud2/Materials/_materials/Cloud_2/Principled_BSDF.outputs:surface>
+                    token outputs:surface.connect = </TerrariumThunderScene/cloud2/Materials/_materials/Cloud_2/Principled_BSDF.outputs:surface>
 
                     def Shader "Principled_BSDF"
                     {
@@ -224,7 +224,7 @@ def Xform "Root"
             prepend apiSchemas = ["MaterialBindingAPI"]
         )
         {
-            rel material:binding = </Root/cloud2/Materials/_materials/Cloud_1> (
+            rel material:binding = </TerrariumThunderScene/cloud2/Materials/_materials/Cloud_1> (
                 bindMaterialAs = "weakerThanDescendants"
             )
         }
@@ -239,7 +239,7 @@ def Xform "Root"
         references = @cloud3.usdz@
     )
     {
-        rel material:binding = </Root/cloud2/Materials/_materials/Cloud> (
+        rel material:binding = </TerrariumThunderScene/cloud2/Materials/_materials/Cloud> (
             bindMaterialAs = "weakerThanDescendants"
         )
         quatf xformOp:orient = (0.70710677, 0.70710677, 0, 0)
@@ -265,7 +265,7 @@ def Xform "Root"
         references = @cloud3.usdz@
     )
     {
-        rel material:binding = </Root/cloud2/Materials/_materials/Cloud_1> (
+        rel material:binding = </TerrariumThunderScene/cloud2/Materials/_materials/Cloud_1> (
             bindMaterialAs = "weakerThanDescendants"
         )
         quatf xformOp:orient = (-0.1227878, 0.12278777, 0.6963643, -0.6963643)
