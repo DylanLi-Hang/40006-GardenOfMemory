@@ -257,19 +257,8 @@ struct WaterView: View {
                                 ImmersiveTerrariumState.terrarium = false
                                 print(ImmersiveTerrariumState.terrarium)
                             } else {
-//                                await openImmersiveTerrarium(id:"FullTerrarium")
-//                                ImmersiveTerrariumState.terrarium = true
                                 print(ImmersiveTerrariumState.terrarium)
-                                
                             }
-                            
-//                            if avatarView{
-//                                await dismissImmersiveSpace()
-//                                avatarView = false
-//                            }
-//                            if !ImmersiveTerrariumState.terrarium{
-//
-//                            }
                             
                         }
                     }) {
