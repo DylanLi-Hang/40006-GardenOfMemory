@@ -25,6 +25,7 @@ class SpeechRecognitionViewModel: ObservableObject {
     @Published var isCompleting: Bool = false
     @Published var mood: Int = 5
     @Published var tags: [String] = []
+    @Published var summarization: String = ""
     
     var lastProcessedLength: Int = 0
     var speechRecognizer: SimpleSpeechRecognizer? = nil
@@ -41,6 +42,7 @@ class SpeechRecognitionViewModel: ObservableObject {
     private let emotionViewModel = EmotionScaleViewModel()
     private let conversationTagsViewModel = ConversationTagsViewModel()
     private let textToSpeechViewModel = TextToSpeechViewModel()
+    private let comprehensiveViewModel = ComprehensiveViewModel()
     
     init() {
         let config = Configuration(
@@ -150,7 +152,7 @@ class SpeechRecognitionViewModel: ObservableObject {
             
             // Increment the conversation count when chatgpt responds
             self.conversationCount += 1
-            if self.conversationCount == 4 { // Check if there have been four conversations
+            if self.conversationCount == 2 { // Check if there have been four conversations
                 //                print("Four conversations have been had. Let's retrieve the emotion state.")
                 
                 // Perform action to retrieve emotion state
@@ -166,6 +168,17 @@ class SpeechRecognitionViewModel: ObservableObject {
                         print("Error retrieving mood:", error)
                     } else {
                         print("No mood data available")
+                    }
+                }
+                
+                comprehensiveViewModel.analyzeChat(latestFourUserMessagesContent) { moodEntry, error in
+                    if let moodEntry = moodEntry {
+                        print("Mood Entry: \(moodEntry)")
+                        self.mood = moodEntry.mood
+                        self.tags = moodEntry.tags
+                        self.summarization = moodEntry.summarization
+                    } else if let error = error {
+                        print("Error: \(error.localizedDescription)")
                     }
                 }
                 

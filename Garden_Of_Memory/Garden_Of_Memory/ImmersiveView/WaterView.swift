@@ -12,6 +12,7 @@ import RealityKitContent
 import OpenAIKit
 
 struct WaterView: View {
+    
     @Environment(\.modelContext) private var modelContext
     @Environment(\.openWindow) private var openWindow
     @Environment(\.dismissWindow) private var dismissWindow
@@ -282,6 +283,9 @@ struct WaterView: View {
         .onChange(of: speechViewModel.tags, { oldValue, newValue in
             currentChatEntry.tags = speechViewModel.tags
         })
+        .onChange(of: speechViewModel.summarization, { oldValue, newValue in
+            currentChatEntry.summarization = speechViewModel.summarization
+        })
         .onChange(of: viewModel.recognizationStatus, { oldValue, newValue in
                 speechViewModel.changeRecognitionStatus()
         })
@@ -295,6 +299,7 @@ struct WaterView: View {
             playAnimation(status: newValue)
         })
         .onAppear() {
+            dismissWindow(id: "StartView")
             var isloaded = false
             if !entries.isEmpty {
                 if let todayEntry = entries.first {

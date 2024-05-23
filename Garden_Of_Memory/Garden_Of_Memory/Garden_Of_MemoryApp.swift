@@ -17,6 +17,13 @@ struct Garden_Of_MemoryApp: App {
     var body: some Scene {
         @State var immersionMode: ImmersionStyle = .progressive
         
+        WindowGroup (id: "StartView") {
+            StartImmersiveView()
+                .modelContainer(modelContainer)
+        }
+        .windowStyle(.volumetric)
+        .defaultSize(width: 5000, height: 800)
+        
         WindowGroup {
             ContentView()
                 .modelContainer(modelContainer)
