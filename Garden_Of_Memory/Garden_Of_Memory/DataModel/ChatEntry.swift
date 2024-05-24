@@ -26,6 +26,7 @@ class ChatEntry {
     var mood: Int // Scale 1 - 10
     var messages: [[String: String]]
     var tags: [String]
+    var summarization: String = ""
     var chatMessages: [ChatMessage] = []
     
     init(date: Date, mood: Int, messages: [[String: String]] = [], tags: [String] = [], name: String = "") {

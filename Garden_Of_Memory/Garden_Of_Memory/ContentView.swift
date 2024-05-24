@@ -17,7 +17,6 @@ struct ContentView: View {
     @State private var isDairyViewOpen: Bool = false
     @State private var isDiaryObjViewOpen: Bool = false
     @State private var isTerraObjViewOpen: Bool = false
-    @StateObject var speechRecognizer = SpeechRecognizer()
     
     var body: some View {
         

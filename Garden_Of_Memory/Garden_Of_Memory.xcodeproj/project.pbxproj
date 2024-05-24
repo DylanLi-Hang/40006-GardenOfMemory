@@ -28,7 +28,10 @@
 		65E4F98D2BC6B32E00CECC11 /* OpenAIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65E4F98C2BC6B32E00CECC11 /* OpenAIService.swift */; };
 		65E4F98F2BC6B66500CECC11 /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65E4F98E2BC6B66500CECC11 /* Secrets.swift */; };
 		65E4F9932BC72EAF00CECC11 /* GlobalVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65E4F9922BC72EAF00CECC11 /* GlobalVariables.swift */; };
+		FC06BDD42BFDBC43006A0A9F /* StartImmersiveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC06BDD32BFDBC43006A0A9F /* StartImmersiveView.swift */; };
+		FC06BDDA2BFEE7E5006A0A9F /* ComprehensiveRetrieval.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC06BDD92BFEE7E5006A0A9F /* ComprehensiveRetrieval.swift */; };
 		FC23BB852BE59E6700DF36ED /* EmitterSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC23BB842BE59E6600DF36ED /* EmitterSettings.swift */; };
+		FC27EB222BF318CD003608CA /* NewContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC27EB212BF318CD003608CA /* NewContentView.swift */; };
 		FC33B0B82BBB8977002D4DF8 /* Avatar.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC33B0B72BBB8977002D4DF8 /* Avatar.swift */; };
 		FC33B0BD2BBB8B66002D4DF8 /* ChatEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC33B0BC2BBB8B66002D4DF8 /* ChatEntry.swift */; };
 		FC33B0BF2BBB8F47002D4DF8 /* ListConversationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC33B0BE2BBB8F47002D4DF8 /* ListConversationView.swift */; };
@@ -75,7 +78,10 @@
 		65E4F98C2BC6B32E00CECC11 /* OpenAIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenAIService.swift; sourceTree = "<group>"; };
 		65E4F98E2BC6B66500CECC11 /* Secrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
 		65E4F9922BC72EAF00CECC11 /* GlobalVariables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalVariables.swift; sourceTree = "<group>"; };
+		FC06BDD32BFDBC43006A0A9F /* StartImmersiveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartImmersiveView.swift; sourceTree = "<group>"; };
+		FC06BDD92BFEE7E5006A0A9F /* ComprehensiveRetrieval.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComprehensiveRetrieval.swift; sourceTree = "<group>"; };
 		FC23BB842BE59E6600DF36ED /* EmitterSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = EmitterSettings.swift; path = Garden_Of_Memory/DataModel/EmitterSettings.swift; sourceTree = SOURCE_ROOT; };
+		FC27EB212BF318CD003608CA /* NewContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewContentView.swift; sourceTree = "<group>"; };
 		FC33B0B72BBB8977002D4DF8 /* Avatar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Avatar.swift; sourceTree = "<group>"; };
 		FC33B0BC2BBB8B66002D4DF8 /* ChatEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatEntry.swift; sourceTree = "<group>"; };
 		FC33B0BE2BBB8F47002D4DF8 /* ListConversationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListConversationView.swift; sourceTree = "<group>"; };
@@ -142,6 +148,7 @@
 				3B99F0242BB43A4900322E0E /* Garden_Of_MemoryApp.swift */,
 				3B99F0262BB43A4900322E0E /* ContentView.swift */,
 				FCB476262BF309690006615C /* NewContentView.swift */,
+				FC06BDD32BFDBC43006A0A9F /* StartImmersiveView.swift */,
 				FCDBE2192BD3B09100E00301 /* ImmersiveView */,
 				FCDBE21A2BD3B0A400E00301 /* TestView */,
 				FCDBE21B2BD3B18500E00301 /* ServiceModel */,
@@ -201,6 +208,7 @@
 		FCDBE21A2BD3B0A400E00301 /* TestView */ = {
 			isa = PBXGroup;
 			children = (
+				FC27EB212BF318CD003608CA /* NewContentView.swift */,
 				FC33B0BE2BBB8F47002D4DF8 /* ListConversationView.swift */,
 				FC33B0C02BBB8FBC002D4DF8 /* ConversationView.swift */,
 				FC33B0C22BBB90A8002D4DF8 /* TestInsertDummyView.swift */,
@@ -221,6 +229,7 @@
 				65E4F98C2BC6B32E00CECC11 /* OpenAIService.swift */,
 				65E4F98E2BC6B66500CECC11 /* Secrets.swift */,
 				657E31C32BE9E8440000E6A6 /* EmotionScaleRetrieval.swift */,
+				FC06BDD92BFEE7E5006A0A9F /* ComprehensiveRetrieval.swift */,
 				657E31C52BE9F4D90000E6A6 /* ConversationTagsRetrieval.swift */,
 				6596F9482BECE11F00AE2CD3 /* TextToSpeech.swift */,
 			);
@@ -347,11 +356,14 @@
 				3B99F0272BB43A4900322E0E /* ContentView.swift in Sources */,
 				FCDBE22D2BD3B38000E00301 /* ViewModel.swift in Sources */,
 				FC33B0C32BBB90A8002D4DF8 /* TestInsertDummyView.swift in Sources */,
+				FC27EB222BF318CD003608CA /* NewContentView.swift in Sources */,
 				FC33B0C52BBB9863002D4DF8 /* PreviewContainer.swift in Sources */,
 				FCDBE2322BD3B39300E00301 /* APIKey.swift in Sources */,
 				FC33B0C12BBB8FBC002D4DF8 /* ConversationView.swift in Sources */,
 				0D20A0292BC6CA9D00899274 /* ImmersiveTerrariumView.swift in Sources */,
 				3B99F0252BB43A4900322E0E /* Garden_Of_MemoryApp.swift in Sources */,
+				FC06BDD42BFDBC43006A0A9F /* StartImmersiveView.swift in Sources */,
+				FC06BDDA2BFEE7E5006A0A9F /* ComprehensiveRetrieval.swift in Sources */,
 				FC33B0B82BBB8977002D4DF8 /* Avatar.swift in Sources */,
 				6593EF782BC663FE00CF644C /* ConversationManager.swift in Sources */,
 			);
@@ -487,7 +499,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Garden_Of_Memory/Preview Content\"";
-				DEVELOPMENT_TEAM = 268K47U323;
+				DEVELOPMENT_TEAM = DG38X7YP5S;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "$(TARGET_NAME)/Info.plist";
@@ -498,7 +510,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = DenniUm;
+				PRODUCT_BUNDLE_IDENTIFIER = "-";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "xros xrsimulator";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -515,7 +527,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Garden_Of_Memory/Preview Content\"";
-				DEVELOPMENT_TEAM = 268K47U323;
+				DEVELOPMENT_TEAM = DG38X7YP5S;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "$(TARGET_NAME)/Info.plist";
@@ -526,7 +538,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = DenniUm;
+				PRODUCT_BUNDLE_IDENTIFIER = "-";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "xros xrsimulator";
 				SWIFT_EMIT_LOC_STRINGS = YES;

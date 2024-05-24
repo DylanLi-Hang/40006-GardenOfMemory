@@ -175,7 +175,7 @@ def Xform "Root"
     {
         quatf xformOp:orient = (1, 0, 0, 0)
         float3 xformOp:scale = (0.1, 0.1, 0.1)
-        float3 xformOp:translate = (0.000077188015, 0.23526596, -0.042329185)
+        float3 xformOp:translate = (0.00007719232, 0.21422245, -0.042329185)
         uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
 
         def RealityKitComponent "VFXEmitter"
@@ -290,40 +290,6 @@ def Xform "Root"
                     bool useStartColorRange = 0
                     float3 vortexDirection = (0, 1, 0)
                     float vortexStrength = 0
-                }
-            }
-        }
-
-        def RealityKitComponent "RigidBody"
-        {
-            uniform token info:id = "RealityKit.RigidBody"
-
-            def RealityKitStruct "massFrame"
-            {
-                def RealityKitStruct "m_pose"
-                {
-                }
-            }
-
-            def RealityKitStruct "material"
-            {
-            }
-        }
-
-        def RealityKitComponent "Collider"
-        {
-            uint group = 1
-            uniform token info:id = "RealityKit.Collider"
-            uint mask = 4294967295
-            token type = "Default"
-
-            def RealityKitStruct "Shape"
-            {
-                float3 extent = (0, 0, 0)
-                token shapeType = "Box"
-
-                def RealityKitStruct "pose"
-                {
                 }
             }
         }
@@ -735,9 +701,11 @@ def Xform "Root"
         {
             bool gravityEnabled = 0
             uniform token info:id = "RealityKit.RigidBody"
+            bool isCCDEnabled = 1
             bool lockRotationX = 1
             bool lockRotationY = 1
             bool lockRotationZ = 1
+            token motionType = "Dynamic"
 
             def RealityKitStruct "massFrame"
             {
@@ -768,6 +736,11 @@ def Xform "Root"
                     float3 position = (0, 172.68994, -0.00007247925)
                 }
             }
+        }
+
+        def RealityKitComponent "InputTarget"
+        {
+            uniform token info:id = "RealityKit.InputTarget"
         }
     }
 

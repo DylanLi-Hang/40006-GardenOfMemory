@@ -25,6 +25,7 @@ class SpeechRecognitionViewModel: ObservableObject {
     @Published var isCompleting: Bool = false
     @Published var mood: Int = 5
     @Published var tags: [String] = []
+    @Published var summarization: String = ""
     
     var lastProcessedLength: Int = 0
     var speechRecognizer: SimpleSpeechRecognizer? = nil
@@ -41,6 +42,7 @@ class SpeechRecognitionViewModel: ObservableObject {
     private let emotionViewModel = EmotionScaleViewModel()
     private let conversationTagsViewModel = ConversationTagsViewModel()
     private let textToSpeechViewModel = TextToSpeechViewModel()
+    private let comprehensiveViewModel = ComprehensiveViewModel()
     
     init() {
         let config = Configuration(
@@ -93,9 +95,9 @@ class SpeechRecognitionViewModel: ObservableObject {
                     }
                 },
                 utteranceChanged: { newUtterance in
-//                    print("Recognized utterance changed: \(newUtterance)")
-//                    print("\(self.recognizedText), length: \(self.lastProcessedLength)")
-                                        
+                    //                    print("Recognized utterance changed: \(newUtterance)")
+                    //                    print("\(self.recognizedText), length: \(self.lastProcessedLength)")
+                    
                     self.viewModel.status = .listening
                     DispatchQueue.main.async {
                         self.updateRecognizedText(newUtterance)
@@ -107,7 +109,7 @@ class SpeechRecognitionViewModel: ObservableObject {
             speechRecognizer?.stop()
         } else if (speechRecognizer != nil && self.recognizationStatus == false) {
             speechRecognizer?.start()
-//            self.lastProcessedLength = 0
+            //            self.lastProcessedLength = 0
         }
     }
     
@@ -128,6 +130,10 @@ class SpeechRecognitionViewModel: ObservableObject {
                             let endIndex = recognizedText.endIndex
                             let newText = String(recognizedText[startIndex..<endIndex])
                             Task {
+                                if self.viewModel.isCancelled {
+                                    print("Operation cancelled")
+                                    return
+                                }
                                 print("Value not updated for 5 seconds with value: \(newText)")
                                 await self.sendMessage(newText)
                                 self.lastProcessedLength = currentLength
@@ -146,8 +152,8 @@ class SpeechRecognitionViewModel: ObservableObject {
             
             // Increment the conversation count when chatgpt responds
             self.conversationCount += 1
-            if self.conversationCount == 4 { // Check if there have been four conversations
-//                print("Four conversations have been had. Let's retrieve the emotion state.")
+            if self.conversationCount == 2 { // Check if there have been four conversations
+                //                print("Four conversations have been had. Let's retrieve the emotion state.")
                 
                 // Perform action to retrieve emotion state
                 
@@ -155,30 +161,41 @@ class SpeechRecognitionViewModel: ObservableObject {
                 let latestFourUserMessages = Array(userMessages.suffix(4))
                 let latestFourUserMessagesContent = latestFourUserMessages.compactMap { $0.content }
                 
-//                emotionViewModel.retrieveEmotionScale(latestFourUserMessagesContent) { mood, error in
-//                    if let mood = mood {
-//                        self.mood = mood
-//                    } else if let error = error {
-//                        print("Error retrieving mood:", error)
-//                    } else {
-//                        print("No mood data available")
-//                    }
-//                }
+                emotionViewModel.retrieveEmotionScale(latestFourUserMessagesContent) { mood, error in
+                    if let mood = mood {
+                        self.mood = mood
+                    } else if let error = error {
+                        print("Error retrieving mood:", error)
+                    } else {
+                        print("No mood data available")
+                    }
+                }
                 
-                emotionViewModel.retrieveEmotionScale(latestFourUserMessagesContent)
+                comprehensiveViewModel.analyzeChat(latestFourUserMessagesContent) { moodEntry, error in
+                    if let moodEntry = moodEntry {
+                        print("Mood Entry: \(moodEntry)")
+                        self.mood = moodEntry.mood
+                        self.tags = moodEntry.tags
+                        self.summarization = moodEntry.summarization
+                    } else if let error = error {
+                        print("Error: \(error.localizedDescription)")
+                    }
+                }
                 
-//                conversationTagsViewModel.retrieveConversationTags(latestFourUserMessagesContent) { tag, error in
-//                    if let tag = tag {
-//                        print("Conversation Tag:", tag)
-//                        self.tags = tag
-//                    } else if let error = error {
-//                        print("Error retrieving tag:", error)
-//                    } else {
-//                        print("No tag data available")
-//                    }
-//                }
+//                emotionViewModel.retrieveEmotionScale(latestFourUserMessagesContent)
                 
-                conversationTagsViewModel.retrieveConversationTags(latestFourUserMessagesContent)
+                conversationTagsViewModel.retrieveConversationTags(latestFourUserMessagesContent) { tag, error in
+                    if let tag = tag {
+                        print("Conversation Tag:", tag)
+                        self.tags = tag
+                    } else if let error = error {
+                        print("Error retrieving tag:", error)
+                    } else {
+                        print("No tag data available")
+                    }
+                }
+                
+//                conversationTagsViewModel.retrieveConversationTags(latestFourUserMessagesContent)
                 
                 // Reset the conversation count to 0 after processing four conversations
                 self.conversationCount = 0
@@ -188,9 +205,13 @@ class SpeechRecognitionViewModel: ObservableObject {
             self.responseText = ""
             self.viewModel.status = .responding
             
-            if viewModel.aimodel == .gemini { 
+            if viewModel.aimodel == .gemini {
                 let outputContentStream = chat!.sendMessageStream(message)
                 for try await outputContent in outputContentStream {
+                    if self.viewModel.isCancelled {
+                        print("Operation cancelled")
+                        return
+                    }
                     guard let line = outputContent.text else {
                         return
                     }
@@ -204,6 +225,10 @@ class SpeechRecognitionViewModel: ObservableObject {
                 )
                 
                 for try await result in stream {
+                    if self.viewModel.isCancelled {
+                        print("Operation cancelled")
+                        return
+                    }
                     if let delta = result.choices[0].delta {
                         DispatchQueue.main.async { [weak self] in
                             guard let self = self else { return }

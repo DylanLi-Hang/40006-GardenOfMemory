@@ -17,11 +17,24 @@ struct Garden_Of_MemoryApp: App {
     var body: some Scene {
         @State var immersionMode: ImmersionStyle = .progressive
         
+        WindowGroup (id: "StartView") {
+            StartImmersiveView()
+                .modelContainer(modelContainer)
+        }
+        .windowStyle(.volumetric)
+        .defaultSize(width: 5000, height: 800)
+        
         WindowGroup {
             ContentView()
                 .modelContainer(modelContainer)
         }
         .windowStyle(.plain)
+        
+        WindowGroup(id: "WaterDrop") {
+            WaterView()
+                .modelContainer(modelContainer)
+        }
+        .windowStyle(.volumetric)
         
         WindowGroup(id:"terrariumObject") {
             TerrariumObjectView()
@@ -39,12 +52,6 @@ struct Garden_Of_MemoryApp: App {
 //            WaterView()
 //                .modelContainer(modelContainer)
 //        }
-        
-        WindowGroup(id: "WaterDrop") {
-            WaterView()
-                .modelContainer(modelContainer)
-        }
-        .windowStyle(.volumetric)
         
         WindowGroup(id: "diaryObject") {
             ImmersiveDiaryView()
