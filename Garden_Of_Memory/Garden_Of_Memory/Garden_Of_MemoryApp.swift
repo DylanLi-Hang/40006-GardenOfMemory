@@ -18,7 +18,7 @@ struct Garden_Of_MemoryApp: App {
         @State var immersionMode: ImmersionStyle = .progressive
         
         WindowGroup (id: "StartView") {
-            StartImmersiveView()
+            StartView()
                 .modelContainer(modelContainer)
         }
         .windowStyle(.volumetric)

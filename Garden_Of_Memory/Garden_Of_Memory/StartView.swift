@@ -9,7 +9,7 @@ import SwiftUI
 import RealityKit
 import RealityKitContent
 
-struct StartImmersiveView: View {
+struct StartView: View {
     
     @Environment(\.openWindow) private var openWindow
     @Environment(\.dismissWindow) private var dismissWindow
@@ -39,11 +39,8 @@ struct StartImmersiveView: View {
                     .preferredSurroundingsEffect(.systemDark)
                 
                 Spacer()
-//                    .frame(height:200)
                 
                 Button {
-//                    dismiss()
-//                    dismissWindow(id: "StartView")
                     openWindow(id: "WaterDrop")
                 } label: {
                     Text("Meet Your Companion")
@@ -72,5 +69,5 @@ struct StartImmersiveView: View {
 }
 
 #Preview {
-    StartImmersiveView()
+    StartView()
 }

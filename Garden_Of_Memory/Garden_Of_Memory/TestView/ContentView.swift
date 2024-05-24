@@ -18,6 +18,8 @@ struct ContentView: View {
     @State private var isDiaryObjViewOpen: Bool = false
     @State private var isTerraObjViewOpen: Bool = false
     
+    let viewModel = ViewModel.shared
+    
     var body: some View {
         
         VStack(alignment: .center) {
@@ -69,10 +71,10 @@ struct ContentView: View {
                         await dismissImmersiveSpace()
                         avatarView = false
                     }
-                    if !ImmersiveTerrariumState.terrarium{
+                    if !viewModel.terrarium{
                         await openImmersiveTerrarium(id:"FullTerrarium")
-                        ImmersiveTerrariumState.terrarium = true
-                        print(ImmersiveTerrariumState.terrarium)
+                        viewModel.terrarium = true
+                        print(viewModel.terrarium)
                     }
                 }
             } label: {
@@ -97,10 +99,10 @@ struct ContentView: View {
                         await dismissImmersiveSpace()
                         avatarView = false
                     }
-                    if ImmersiveTerrariumState.terrarium{
+                    if viewModel.terrarium{
                         await dismissImmersiveTerrarium()
-                        ImmersiveTerrariumState.terrarium = false
-                        print(ImmersiveTerrariumState.terrarium)
+                        viewModel.terrarium = false
+                        print(viewModel.terrarium)
                     }
                 }
             }

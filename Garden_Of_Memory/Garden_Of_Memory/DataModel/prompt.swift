@@ -32,7 +32,7 @@ struct Prompt {
     static let comprehensivePrompt = """
 Based on the chat history from today, you are to perform a detailed analysis and provide a summary, mood rating, and identify the main themes (tags) of the discussions.
 
-1. Summarize the chat history concisely, capturing the key events or discussions that occurred.
+1. Summarize the chat history concisely, capturing the key events or discussions that occurred. You should use "I did something", as if you are the user.
 2. Evaluate the mood of the user throughout these conversations on a scale from 1 to 5:
    - 1 (Horrible): The user felt very negative and distressed.
    - 2 (Sad): The user experienced sadness or mild discomfort.

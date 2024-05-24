@@ -79,9 +79,9 @@ struct ConversationView: View {
             
             //Button of immersive terrarium
             Button("Immersive Terrarium"){
-                ImmersiveTerrariumState.terrarium.toggle()
-                isImmersiveTerrariumViewOpen = ImmersiveTerrariumState.terrarium
-                print(ImmersiveTerrariumState.terrarium)
+                viewModel.terrarium.toggle()
+                isImmersiveTerrariumViewOpen = viewModel.terrarium
+                print(viewModel.terrarium)
             }
             .onChange(of: isImmersiveTerrariumViewOpen) { _, newValue in
                 Task {

@@ -253,12 +253,12 @@ struct WaterView: View {
                                 await dismissImmersiveSpace()
                                 avatarView = false
                             }
-                            if ImmersiveTerrariumState.terrarium{
+                            if viewModel.terrarium{
                                 await dismissImmersiveTerrarium()
-                                ImmersiveTerrariumState.terrarium = false
-                                print(ImmersiveTerrariumState.terrarium)
+                                viewModel.terrarium = false
+                                print(viewModel.terrarium)
                             } else {
-                                print(ImmersiveTerrariumState.terrarium)
+                                print(viewModel.terrarium)
                             }
                             
                         }

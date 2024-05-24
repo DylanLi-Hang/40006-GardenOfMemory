@@ -161,15 +161,15 @@ class SpeechRecognitionViewModel: ObservableObject {
                 let latestFourUserMessages = Array(userMessages.suffix(4))
                 let latestFourUserMessagesContent = latestFourUserMessages.compactMap { $0.content }
                 
-                emotionViewModel.retrieveEmotionScale(latestFourUserMessagesContent) { mood, error in
-                    if let mood = mood {
-                        self.mood = mood
-                    } else if let error = error {
-                        print("Error retrieving mood:", error)
-                    } else {
-                        print("No mood data available")
-                    }
-                }
+//                emotionViewModel.retrieveEmotionScale(latestFourUserMessagesContent) { mood, error in
+//                    if let mood = mood {
+//                        self.mood = mood
+//                    } else if let error = error {
+//                        print("Error retrieving mood:", error)
+//                    } else {
+//                        print("No mood data available")
+//                    }
+//                }
                 
                 comprehensiveViewModel.analyzeChat(latestFourUserMessagesContent) { moodEntry, error in
                     if let moodEntry = moodEntry {
@@ -184,16 +184,16 @@ class SpeechRecognitionViewModel: ObservableObject {
                 
 //                emotionViewModel.retrieveEmotionScale(latestFourUserMessagesContent)
                 
-                conversationTagsViewModel.retrieveConversationTags(latestFourUserMessagesContent) { tag, error in
-                    if let tag = tag {
-                        print("Conversation Tag:", tag)
-                        self.tags = tag
-                    } else if let error = error {
-                        print("Error retrieving tag:", error)
-                    } else {
-                        print("No tag data available")
-                    }
-                }
+//                conversationTagsViewModel.retrieveConversationTags(latestFourUserMessagesContent) { tag, error in
+//                    if let tag = tag {
+//                        print("Conversation Tag:", tag)
+//                        self.tags = tag
+//                    } else if let error = error {
+//                        print("Error retrieving tag:", error)
+//                    } else {
+//                        print("No tag data available")
+//                    }
+//                }
                 
 //                conversationTagsViewModel.retrieveConversationTags(latestFourUserMessagesContent)
                 

@@ -46,6 +46,7 @@ class ViewModel {
     static let shared = ViewModel()
     
     // MARK: - Avatar
+    var terrarium = false
     var status: AvatarStatus = .notListening
     var recognizationStatus = false
     var isCancelled = true

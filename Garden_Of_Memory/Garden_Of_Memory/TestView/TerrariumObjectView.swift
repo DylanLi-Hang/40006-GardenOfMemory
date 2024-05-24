@@ -119,7 +119,7 @@ struct TerrariumObjectView: View {
                         await openImmersiveTerrarium(id: "FullTerrarium")
                         dismissWindow(id: "terrariumObject")
                         isTerraObjViewOpen = false
-                        ImmersiveTerrariumState.terrarium = true
+                        viewModel.terrarium = true
                         print("Opened immersive terrarium and dismissed window")
                     }
                 })
