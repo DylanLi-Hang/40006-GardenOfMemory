@@ -3,12 +3,12 @@
     customLayerData = {
         string creator = "Reality Composer Pro Version 1.0 (409.100.15)"
     }
-    defaultPrim = "Root"
+    defaultPrim = "TerrariumSunnyScene"
     metersPerUnit = 1
     upAxis = "Y"
 )
 
-def Xform "Root"
+def Xform "TerrariumSunnyScene"
 {
     reorder nameChildren = ["Terrarium", "sunny_buddy", "sunshine", "Sunny_mp3"]
     def "Terrarium" (

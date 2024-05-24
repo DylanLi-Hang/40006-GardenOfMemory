@@ -18,6 +18,8 @@ class EmotionScaleViewModel: ObservableObject {
     
     var responseText: String = ""
     
+    let viewModel = ViewModel.shared
+    
     // Initilaise another open ai, for your emotion tag retrieval
     init() {
         let config = Configuration(
@@ -58,6 +60,7 @@ class EmotionScaleViewModel: ObservableObject {
                         // Convert the trimmed mood string to an integer
                         if let mood = Int(trimmedMoodString) {
                             print("Mood:", mood)
+                            self.viewModel.mood = mood
                             completion(mood, nil)
                             return
                         }

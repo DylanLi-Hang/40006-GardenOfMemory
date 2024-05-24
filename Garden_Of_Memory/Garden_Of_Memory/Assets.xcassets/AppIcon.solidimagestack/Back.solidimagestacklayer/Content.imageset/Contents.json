@@ -1,6 +1,7 @@
 {
   "images" : [
     {
+      "filename" : "back-layer.png",
       "idiom" : "vision",
       "scale" : "2x"
     }

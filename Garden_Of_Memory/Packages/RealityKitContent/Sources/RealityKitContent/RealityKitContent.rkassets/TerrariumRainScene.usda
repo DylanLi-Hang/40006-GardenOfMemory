@@ -3,12 +3,12 @@
     customLayerData = {
         string creator = "Reality Composer Pro Version 1.0 (409.100.15)"
     }
-    defaultPrim = "Root"
+    defaultPrim = "TerrariumRainScene"
     metersPerUnit = 1
     upAxis = "Y"
 )
 
-def Xform "Root"
+def Xform "TerrariumRainScene"
 {
     reorder nameChildren = ["Terrarium", "cloud", "cloud2", "cloud3", "cloud3_1", "Rain"]
     float3 xformOp:scale = (1, 1, 1)
@@ -23,7 +23,7 @@ def Xform "Root"
         references = @cloud.usdz@
     )
     {
-        rel material:binding = </Root/cloud2/Materials/_materials/Cloud> (
+        rel material:binding = </TerrariumRainScene/cloud2/Materials/_materials/Cloud> (
             bindMaterialAs = "weakerThanDescendants"
         )
         quatf xformOp:orient = (0.70710677, 0.70710677, 0, 0)
@@ -87,7 +87,7 @@ def Xform "Root"
                 {
                     token outputs:mtlx:surface
                     token outputs:realitykit:vertex
-                    token outputs:surface.connect = </Root/cloud2/Materials/_materials/Cloud/Principled_BSDF.outputs:surface>
+                    token outputs:surface.connect = </TerrariumRainScene/cloud2/Materials/_materials/Cloud/Principled_BSDF.outputs:surface>
 
                     over "Principled_BSDF"
                     {
@@ -108,7 +108,7 @@ def Xform "Root"
             prepend apiSchemas = ["MaterialBindingAPI"]
         )
         {
-            rel material:binding = </Root/cloud2/Materials/_materials/Cloud> (
+            rel material:binding = </TerrariumRainScene/cloud2/Materials/_materials/Cloud> (
                 bindMaterialAs = "weakerThanDescendants"
             )
         }
@@ -123,7 +123,7 @@ def Xform "Root"
         references = @cloud3.usdz@
     )
     {
-        rel material:binding = </Root/cloud2/Materials/_materials/Cloud> (
+        rel material:binding = </TerrariumRainScene/cloud2/Materials/_materials/Cloud> (
             bindMaterialAs = "weakerThanDescendants"
         )
         quatf xformOp:orient = (0.70710677, 0.70710677, 0, 0)
@@ -149,7 +149,7 @@ def Xform "Root"
         references = @cloud3.usdz@
     )
     {
-        rel material:binding = </Root/cloud2/Materials/_materials/Cloud> (
+        rel material:binding = </TerrariumRainScene/cloud2/Materials/_materials/Cloud> (
             bindMaterialAs = "weakerThanDescendants"
         )
         quatf xformOp:orient = (-0.1227878, 0.12278777, 0.6963643, -0.6963643)
@@ -685,7 +685,7 @@ def Xform "Root"
 
     def "Terrarium" (
         active = true
-        prepend references = @Terrarium.usdz@
+        references = @Terrarium.usdz@
     )
     {
         float3 xformOp:scale = (0.001, 0.001, 0.001)

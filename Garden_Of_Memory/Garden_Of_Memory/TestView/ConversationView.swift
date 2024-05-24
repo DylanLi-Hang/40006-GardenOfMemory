@@ -13,8 +13,10 @@ import RealityKitContent
 struct ConversationView: View {
     @Environment(\.openImmersiveSpace) var openImmersiveTerrarium
     @Environment(\.dismissImmersiveSpace) var dismissImmersiveTerrarium
-        
+    
     @State private var isImmersiveTerrariumViewOpen: Bool = false
+    
+    let viewModel = ViewModel.shared
     
     var chatEntry: ChatEntry
     let dateFormatter: DateFormatter = {
@@ -26,48 +28,70 @@ struct ConversationView: View {
     
     var body: some View {
         NavigationSplitView {
-                HStack{
-                    //Back Button
-                    Button {
-                        print("Return to diary menu")
-                    } label: {
-                        Image(systemName: "chevron.backward")
+            HStack{
+                //Back Button
+                Button {
+                    print("Return to diary menu")
+                } label: {
+                    Image(systemName: "chevron.backward")
+                }
+                .padding(0)
+                Spacer()
+            }
+            .navigationBarHidden(true)
+            
+            
+//            //Terrarium of the day
+//            Model3D(named: "SunnyTerrarium", bundle: realityKitContentBundle, content: { modelPhase in
+//                switch modelPhase {
+//                case .empty:
+//                    ProgressView()
+//                        .controlSize(.extraLarge)
+//                case .success(let resolvedModel3D):
+//                    resolvedModel3D
+//                        .resizable()
+//                        .aspectRatio(contentMode: .fit)
+//                        .scaleEffect(0.3)
+//                case .failure(let error):
+//                    Text("Fail")
+//                }})
+            
+            
+            // Terrarium of the day
+            Model3D(named: terrariumModelName(for: viewModel.mood), bundle: realityKitContentBundle, content: { modelPhase in
+                switch modelPhase {
+                case .empty:
+                    ProgressView()
+                        .controlSize(.extraLarge)
+                case .success(let resolvedModel3D):
+                    resolvedModel3D
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .scaleEffect(0.3)
+                case .failure(let error):
+                    Text("Fail")
+                }
+            })
+            .onChange(of: viewModel.mood) { newMood in
+                print("Mood changed to: \(newMood), updating terrarium model")
+            }
+            
+            
+            //Button of immersive terrarium
+            Button("Immersive Terrarium"){
+                ImmersiveTerrariumState.terrarium.toggle()
+                isImmersiveTerrariumViewOpen = ImmersiveTerrariumState.terrarium
+                print(ImmersiveTerrariumState.terrarium)
+            }
+            .onChange(of: isImmersiveTerrariumViewOpen) { _, newValue in
+                Task {
+                    if newValue {
+                        await openImmersiveTerrarium(id: "FullTerrarium")
+                    } else {
+                        await dismissImmersiveTerrarium()
                     }
-                        .padding(0)
-                    Spacer()
                 }
-                .navigationBarHidden(true)
-                
-                //Terrarium of the day
-                Model3D(named: "SunnyTerrarium", bundle: realityKitContentBundle, content: { modelPhase in
-                    switch modelPhase {
-                    case .empty:
-                        ProgressView()
-                            .controlSize(.extraLarge)
-                    case .success(let resolvedModel3D):
-                        resolvedModel3D
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .scaleEffect(0.3)
-                    case .failure(let error):
-                        Text("Fail")
-                    }})
-                
-                //Button of immersive terrarium
-                Button("Immersive Terrarium"){
-                    ImmersiveTerrariumState.terrarium.toggle()
-                    isImmersiveTerrariumViewOpen = ImmersiveTerrariumState.terrarium
-                    print(ImmersiveTerrariumState.terrarium)
-                }
-                .onChange(of: isImmersiveTerrariumViewOpen) { _, newValue in
-                    Task {
-                        if newValue {
-                            await openImmersiveTerrarium(id: "FullTerrarium")
-                        } else {
-                            await dismissImmersiveTerrarium()
-                        }
-                    }
-                }
+            }
             
         } detail: {
             ScrollView {
@@ -103,9 +127,26 @@ struct ConversationView: View {
             }
             .navigationBarHidden(true)
         }
-        }
     }
     
+    private func terrariumModelName(for mood: Int) -> String {
+        switch mood {
+        case 1:
+            return "TerrariumThunderScene"
+        case 2:
+            return "TerrariumRainScene"
+        case 3:
+            return "TerrariumCloudScene"
+        case 4:
+            return "TerrariumSunnyScene"
+        case 5:
+            return "TerrariumRainbowScene"
+        default:
+            return "TerrariumSunnyScene" // Default scene
+        }
+    }
+}
+
 struct TestView_Previews: PreviewProvider {
     static var previews: some View {
         ConversationView(chatEntry: generateDummyChat())

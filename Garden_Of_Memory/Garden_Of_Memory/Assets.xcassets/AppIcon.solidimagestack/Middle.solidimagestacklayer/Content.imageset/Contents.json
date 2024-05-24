@@ -1,6 +1,7 @@
 {
   "images" : [
     {
+      "filename" : "leaf-front-layer.png",
       "idiom" : "vision",
       "scale" : "2x"
     }
