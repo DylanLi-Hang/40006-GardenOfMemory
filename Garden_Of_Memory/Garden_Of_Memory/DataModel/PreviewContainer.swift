@@ -1,3 +1,5 @@
+// This is for swift data preview, but not used since preview function is not good in visionOS.
+
 import Foundation
 import SwiftData
 

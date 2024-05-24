@@ -4,6 +4,7 @@
 //
 //  Created by Yu Ching Wong on 9/4/2024.
 //
+//  Defines WaterView, with avatar hosted and main functions for our app. Used SwiftUI view for managing various states and interactions of water drop entity using RealityKit, handling animations, speech recognition, and immersive space controls
 
 import SwiftUI
 import SwiftData

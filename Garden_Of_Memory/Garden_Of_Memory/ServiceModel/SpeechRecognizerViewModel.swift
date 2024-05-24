@@ -4,6 +4,7 @@
 //
 //  Created by Dylan on 20/4/2024.
 //
+//  Defines a `SpeechRecognitionViewModel` class to manage speech recognition, handle text-to-speech functionalities, and interact with OpenAI and Google Generative AI models for processing and responding to user inputs. It will also monitor when should send the text and get response. It will be used in WaterView.
 
 
 import Foundation

@@ -4,6 +4,7 @@
 //
 //  Created by Dylan on 22/5/2024.
 //
+// This code defines the `StartView` SwiftUI view for the "Garden of Memory" app, as a start screen with animated text and a button to open a avatar, providing an immersive and visually engaging introduction.
 
 import SwiftUI
 import RealityKit

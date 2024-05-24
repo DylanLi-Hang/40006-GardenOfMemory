@@ -1,3 +1,5 @@
+// Initializes a SwiftUI application for managing various immersive and volumetric window views, using a `ModelContainer` to handle data models for Swift Data initialize.
+
 import SwiftUI
 import SwiftData
 

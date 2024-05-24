@@ -4,6 +4,7 @@
 //
 //  Created by Dylan on 2/4/2024.
 //
+// This code defines a `ChatEntry` model class to store chat entries with various attributes and functions for generating dummy chat data and formatting dates. This is the major file for persisting data into Swift Data database!
 
 /*
  Variables:

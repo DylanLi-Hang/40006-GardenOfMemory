@@ -4,6 +4,7 @@
 //
 //  Created by Grace on 23/5/2024.
 //
+//  This code defines a `ComprehensiveViewModel` class to analyze user chat messages using AI, extracting mood, tags, and summarization from the responses and decoding them into a `MoodEntry` object. This will be send back to WaterView for storing.
 
 import Foundation
 import Foundation
@@ -21,8 +22,8 @@ class ComprehensiveViewModel: ObservableObject {
     
     @Published var moodEntry: MoodEntry?
     var chatPrompts: [ChatMessage] = []
-    
     var gemini: GenerativeModel
+    let viewModel = ViewModel.shared
     
     init() {
         let config = Configuration(
@@ -73,6 +74,7 @@ class ComprehensiveViewModel: ObservableObject {
                     
                     do {
                         let moodEntry = try decoder.decode(MoodEntry.self, from: jsonData)
+                        self.viewModel.mood = moodEntry.mood
                         completion(moodEntry, nil)
                     } catch {
                         completion(nil, error)

@@ -4,6 +4,7 @@
 //
 //  Created by Dylan on 20/4/2024.
 //
+//  this is a central host of prompts we are using, making it easy to change and adjust.
 
 import Foundation
 import GoogleGenerativeAI

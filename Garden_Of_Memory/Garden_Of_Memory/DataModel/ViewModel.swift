@@ -4,6 +4,7 @@
 //
 //  Created by Dylan on 20/4/2024.
 //
+//  This code defines two enums, `AvatarStatus` and `AIModel`, to manage the states of an avatar and the types of AI models used, respectively. It also defines an observable `ViewModel` class to manage application state related to avatar status, speech recognition, and AI model configuration. ViewModel is used in multiple files, sicne it's observed, it can update many views.
 
 import Foundation
 

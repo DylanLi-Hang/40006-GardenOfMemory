@@ -4,6 +4,7 @@
 //
 //  Created by Grace on 9/5/2024.
 //
+//  This is TTS function of our app, provide audio feedback.
 
 import Foundation
 import AVFoundation

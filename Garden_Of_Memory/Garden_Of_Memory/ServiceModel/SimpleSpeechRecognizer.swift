@@ -4,6 +4,7 @@
 //
 //  Created by Dylan on 19/4/2024.
 //
+//  defines a SimpleSpeechRecognizer struct to manage speech recognition using SwiftSpeechRecognizer, handling authorization status, recognition status, and recognized utterances. This is used in SpeechRecognizerViewModel.
 
 import Foundation
 import Speech
