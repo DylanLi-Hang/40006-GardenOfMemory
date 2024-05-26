@@ -5,7 +5,6 @@
 //  Created by Yu Ching Wong on 22/4/2024.
 //
 
-
 import SwiftUI
 import SwiftData
 import RealityKit
@@ -101,18 +100,62 @@ struct TerrariumObjectView: View {
                 currentScene = scene
                 print("Added new scene: \(scene.name) for mood: \(currentMood)")
                 
-                guard let resource = try? AudioFileResource.load(named: "/Root/Sunny_mp3",
-                                                                 from: "TerrariumSunnyScene.usda",
-                                                                 in: RealityKitContent.realityKitContentBundle) else {
-                    print("Failed to load audio resource")
-                    return
-                }
-                let audioPlaybackController = scene.prepareAudio(resource)
-                audioPlaybackController.play()
-                print("Playing audio for scene: \(scene.name)")
+                loadAndPlayAudio(for: sceneName, in: scene)
             }
         } else {
             print("Failed to load scene: \(sceneName) for mood: \(currentMood)")
         }
+    }
+
+    private func loadAndPlayAudio(for sceneName: String, in scene: Entity) {
+        let audioFileName: String
+        switch sceneName {
+        case "TerrariumThunderScene":
+            audioFileName = "Thunder.mp3"
+        case "TerrariumRainScene":
+            audioFileName = "Rain.mp3"
+        case "TerrariumCloudScene":
+            audioFileName = "Cloud.mp3"
+        case "TerrariumSunnyScene":
+            audioFileName = "Sunny.mp3"
+        case "TerrariumRainbowScene":
+            audioFileName = "Rainbow.mp3"
+        default:
+            audioFileName = "Sunny.mp3"
+        }
+
+        print("Attempting to load audio resource named: \(audioFileName)")
+        
+        let bundle = Bundle.main
+        
+        guard let resourceURL = bundle.url(forResource: audioFileName, withExtension: nil) else {
+            print("Failed to find URL for resource \(audioFileName) in \(bundle.bundlePath)")
+            
+            // Print bundle path and its contents for debugging
+            print("Bundle path: \(bundle.bundlePath)")
+            if let resourcePath = bundle.resourcePath {
+                print("Bundle resource path: \(resourcePath)")
+                do {
+                    let files = try FileManager.default.contentsOfDirectory(atPath: resourcePath)
+                    print("Files in resource path: \(files)")
+                } catch {
+                    print("Error listing files in resource path: \(error)")
+                }
+            }
+            
+            return
+        }
+        
+        print("Resource URL for \(audioFileName): \(resourceURL)")
+        
+        guard let resource = try? AudioFileResource.load(contentsOf: resourceURL) else {
+            print("Failed to load audio resource from \(resourceURL).")
+            return
+        }
+        
+        print("Audio resource \(audioFileName) loaded successfully from \(resourceURL)")
+        let audioPlaybackController = scene.prepareAudio(resource)
+        audioPlaybackController.play()
+        print("Playing audio \(audioFileName) for scene: \(scene.name)")
     }
 }
