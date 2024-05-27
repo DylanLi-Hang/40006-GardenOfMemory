@@ -42,6 +42,7 @@
 		FC33B0C32BBB90A8002D4DF8 /* TestInsertDummyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC33B0C22BBB90A8002D4DF8 /* TestInsertDummyView.swift */; };
 		FC33B0C52BBB9863002D4DF8 /* PreviewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC33B0C42BBB9863002D4DF8 /* PreviewContainer.swift */; };
 		FC6ED9A32BC792E1006B2363 /* CatImmersiveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC6ED9A22BC792E1006B2363 /* CatImmersiveView.swift */; };
+		FCAD61002C041ACB00C7E2A7 /* StartSound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FCAD60FF2C041ACB00C7E2A7 /* StartSound.mp3 */; };
 		FCDBE2202BD3B2C800E00301 /* SwiftSpeechCombine in Frameworks */ = {isa = PBXBuildFile; productRef = FCDBE21F2BD3B2C800E00301 /* SwiftSpeechCombine */; };
 		FCDBE2222BD3B2C800E00301 /* SwiftSpeechRecognizer in Frameworks */ = {isa = PBXBuildFile; productRef = FCDBE2212BD3B2C800E00301 /* SwiftSpeechRecognizer */; };
 		FCDBE2242BD3B2C800E00301 /* SwiftSpeechRecognizerDependency in Frameworks */ = {isa = PBXBuildFile; productRef = FCDBE2232BD3B2C800E00301 /* SwiftSpeechRecognizerDependency */; };
@@ -94,6 +95,7 @@
 		FC33B0C22BBB90A8002D4DF8 /* TestInsertDummyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestInsertDummyView.swift; sourceTree = "<group>"; };
 		FC33B0C42BBB9863002D4DF8 /* PreviewContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewContainer.swift; sourceTree = "<group>"; };
 		FC6ED9A22BC792E1006B2363 /* CatImmersiveView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CatImmersiveView.swift; sourceTree = "<group>"; };
+		FCAD60FF2C041ACB00C7E2A7 /* StartSound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = StartSound.mp3; sourceTree = "<group>"; };
 		FCDBE2282BD3B30600E00301 /* SimpleSpeechRecognizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleSpeechRecognizer.swift; sourceTree = "<group>"; };
 		FCDBE22A2BD3B35A00E00301 /* SpeechRecognizerViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpeechRecognizerViewModel.swift; sourceTree = "<group>"; };
 		FCDBE22C2BD3B38000E00301 /* ViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
@@ -124,7 +126,13 @@
 		3B30D16F2BE0E64300A030C0 /* SoundEffects */ = {
 			isa = PBXGroup;
 			children = (
+				FCAD60FF2C041ACB00C7E2A7 /* StartSound.mp3 */,
 				3B30D1742BE0E92E00A030C0 /* DiarySoundEffect.wav */,
+				656B54212C0372A700326797 /* Sunny.mp3 */,
+				656B54112C036EA000326797 /* Cloud.mp3 */,
+				656B541B2C03713000326797 /* Rain.mp3 */,
+				656B541D2C03713600326797 /* Thunder.mp3 */,
+				656B54252C03768900326797 /* Rainbow.mp3 */,
 			);
 			path = SoundEffects;
 			sourceTree = "<group>";
@@ -132,11 +140,6 @@
 		3B99F0142BB43A4900322E0E = {
 			isa = PBXGroup;
 			children = (
-				656B54212C0372A700326797 /* Sunny.mp3 */,
-				656B54112C036EA000326797 /* Cloud.mp3 */,
-				656B541B2C03713000326797 /* Rain.mp3 */,
-				656B541D2C03713600326797 /* Thunder.mp3 */,
-				656B54252C03768900326797 /* Rainbow.mp3 */,
 				3B99F01F2BB43A4900322E0E /* Garden_Of_Memory */,
 				3B99F0202BB43A4900322E0E /* Packages */,
 				3B99F01E2BB43A4900322E0E /* Products */,
@@ -340,6 +343,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				656B541C2C03713000326797 /* Rain.mp3 in Resources */,
+				FCAD61002C041ACB00C7E2A7 /* StartSound.mp3 in Resources */,
 				3B99F02D2BB43A4B00322E0E /* Assets.xcassets in Resources */,
 				3B30D1752BE0E92E00A030C0 /* DiarySoundEffect.wav in Resources */,
 				3B99F0302BB43A4B00322E0E /* Preview Assets.xcassets in Resources */,

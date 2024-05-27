@@ -9,6 +9,7 @@
 import SwiftUI
 import RealityKit
 import RealityKitContent
+import AVFoundation
 
 struct StartView: View {
     
@@ -65,6 +66,13 @@ struct StartView: View {
             .preferredSurroundingsEffect(.systemDark)
             .onAppear {
                 self.isVisible = true
+                guard let url = Bundle.main.url(forResource: "StartSound", withExtension: "mp3") else {
+                    print("Audio file not found.")
+                    return
+                }
+                let player = AVPlayer(url: url)
+                player.play()
+                print("play")
             }
         }
 }

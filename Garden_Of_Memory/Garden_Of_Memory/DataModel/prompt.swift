@@ -35,11 +35,11 @@ Based on the chat history from today, you are to perform a detailed analysis and
 
 1. Summarize the chat history concisely, capturing the key events or discussions that occurred. You should use "I did something", as if you are the user.
 2. Evaluate the mood of the user throughout these conversations on a scale from 1 to 5:
-   - 1 (Horrible): The user felt very negative and distressed.
+   - 1 (Very Sad): The user felt very negative and distressed.
    - 2 (Sad): The user experienced sadness or mild discomfort.
    - 3 (Neutral): The user's mood was balanced or indifferent.
    - 4 (Happy): The user felt positive and content.
-   - 5 (Ecstatic): The user was extremely happy and enthusiastic.
+   - 5 (Vert Happy): The user was quite happy.
 3. Identify the main themes (one-word descriptions) of the conversations, such as 'Study', 'Hiking', etc.
 
 Provide your response in the following JSON format:
