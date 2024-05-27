@@ -22,34 +22,34 @@ struct TerrariumGridView: View {
     
     var body: some View {
         VStack {
-            // Removed the title text here
-
             ScrollView {
                 LazyVGrid(columns: columns, spacing: 20) {
                     ForEach(chats) { chat in
-                        VStack {
-                            Model3D(named: terrariumModelName(for: chat.mood), bundle: realityKitContentBundle, content: { modelPhase in
-                                switch modelPhase {
-                                case .empty:
-                                    ProgressView()
-                                        .controlSize(.large)
-                                case .success(let resolvedModel3D):
-                                    resolvedModel3D
-                                        .resizable()
-                                        .aspectRatio(contentMode: .fit)
-                                        .scaleEffect(0.3)
-                                case .failure(let error):
-                                    Text("Fail")
-                                }
-                            })
-                            .frame(width: 100, height: 100)
-                            Text("\(chat.getStringDate())")
-                                .font(.title) // Increased font size for the date
+                        NavigationLink(destination: ConversationView(chatEntry: chat)) {
+                            VStack {
+                                Model3D(named: terrariumModelName(for: chat.mood), bundle: realityKitContentBundle, content: { modelPhase in
+                                    switch modelPhase {
+                                    case .empty:
+                                        ProgressView()
+                                            .controlSize(.large)
+                                    case .success(let resolvedModel3D):
+                                        resolvedModel3D
+                                            .resizable()
+                                            .aspectRatio(contentMode: .fit)
+                                            .scaleEffect(0.3)
+                                    case .failure(let error):
+                                        Text("Fail")
+                                    }
+                                })
+                                .frame(width: 100, height: 100)
+                                Text("\(chat.getStringDate())")
+                                    .font(.title) // Increased font size for the date
+                            }
+                            .padding()
+                            .background(RoundedRectangle(cornerRadius: 10)
+                                            .fill(Color(.systemGray6)))
+                            .shadow(radius: 5)
                         }
-                        .padding()
-                        .background(RoundedRectangle(cornerRadius: 10)
-                                        .fill(Color(.systemGray6)))
-                        .shadow(radius: 5)
                     }
                 }
                 .padding()
