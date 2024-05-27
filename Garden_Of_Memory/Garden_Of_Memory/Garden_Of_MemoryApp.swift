@@ -48,7 +48,7 @@ struct Garden_Of_MemoryApp: App {
             TerrariumGridView()
                 .modelContainer(modelContainer)
         }
-        .windowStyle(.volumetric)
+        .windowStyle(.plain)
         
 
         

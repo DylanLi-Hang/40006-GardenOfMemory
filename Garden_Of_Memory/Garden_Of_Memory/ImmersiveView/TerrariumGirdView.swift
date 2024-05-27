@@ -7,8 +7,6 @@
 
 import SwiftUI
 import SwiftData
-import RealityKit
-import RealityKitContent
 
 struct TerrariumGridView: View {
     @Environment(\.modelContext) private var modelContext
@@ -28,21 +26,10 @@ struct TerrariumGridView: View {
                         ForEach(chats) { chat in
                             NavigationLink(destination: ConversationView(chatEntry: chat)) {
                                 VStack {
-                                    Model3D(named: terrariumModelName(for: chat.mood), bundle: realityKitContentBundle, content: { modelPhase in
-                                        switch modelPhase {
-                                        case .empty:
-                                            ProgressView()
-                                                .controlSize(.large)
-                                        case .success(let resolvedModel3D):
-                                            resolvedModel3D
-                                                .resizable()
-                                                .aspectRatio(contentMode: .fit)
-                                                .scaleEffect(0.3)
-                                        case .failure(let error):
-                                            Text("Fail")
-                                        }
-                                    })
-                                    .frame(width: 100, height: 100)
+                                    Image(terrariumImageName(for: chat.mood)) // Displaying the terrarium image
+                                        .resizable()
+                                        .aspectRatio(contentMode: .fit)
+                                        .frame(width: 100, height: 100)
                                     Text("\(chat.getStringDate())")
                                         .font(.title) // Increased font size for the date
                                 }
@@ -61,20 +48,20 @@ struct TerrariumGridView: View {
         }
     }
 
-    private func terrariumModelName(for mood: Int) -> String {
+    private func terrariumImageName(for mood: Int) -> String {
         switch mood {
         case 1:
-            return "TerrariumThunderScene" // Replace with your actual image names
+            return "Thunderstorm" // Replace with your actual image names
         case 2:
-            return "TerrariumRainScene"
+            return "Rainy"
         case 3:
-            return "TerrariumCloudScene"
+            return "Cloudy"
         case 4:
-            return "TerrariumSunnyScene"
+            return "Sunny"
         case 5:
-            return "TerrariumRainbowScene"
+            return "Rainbow"
         default:
-            return "TerrariumSunnyScene" // Default scene
+            return "Sunny" // Default scene
         }
     }
 
