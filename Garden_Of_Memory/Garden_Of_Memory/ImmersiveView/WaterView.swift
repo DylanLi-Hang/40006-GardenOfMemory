@@ -319,7 +319,7 @@ struct WaterView: View {
         .onChange(of: isDairyViewOpen) { _, newValue in
             Task {
                 if newValue {
-                    openWindow(id: "GirdController")
+                    openWindow(id: "GridController")
                 } else {
                     dismissWindow(id: "GridController")
                 }

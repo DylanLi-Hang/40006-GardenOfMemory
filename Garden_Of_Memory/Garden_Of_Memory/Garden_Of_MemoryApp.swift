@@ -26,12 +26,6 @@ struct Garden_Of_MemoryApp: App {
         .windowStyle(.volumetric)
         .defaultSize(width: 5000, height: 800)
         
-        WindowGroup {
-            ContentView()
-                .modelContainer(modelContainer)
-        }
-        .windowStyle(.plain)
-        
         WindowGroup(id: "WaterDrop") {
             WaterView()
                 .modelContainer(modelContainer)
@@ -50,7 +44,7 @@ struct Garden_Of_MemoryApp: App {
         }
         .windowStyle(.plain)
         
-        WindowGroup(id: "GirdController") {
+        WindowGroup(id: "GridController") {
             TerrariumGridView()
                 .modelContainer(modelContainer)
         }
