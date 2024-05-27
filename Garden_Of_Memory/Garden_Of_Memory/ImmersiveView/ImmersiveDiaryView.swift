@@ -4,25 +4,39 @@
 //
 //  Created by Denni O on 4/23/24.
 //
-
 import SwiftUI
-import SwiftData
 import RealityKit
 import RealityKitContent
 import AVFoundation
 
 struct ImmersiveDiaryView: View {
+    @State private var navigateToGrid = false
+
     var body: some View {
-        RealityView { content in
-            // Add the initial RealityKit content
-            if let scene = try? await Entity(named: "Diary", in: realityKitContentBundle) {
-                content.add(scene)
+        NavigationStack {
+            ZStack {
+                RealityView { content in
+                    // Add the initial RealityKit content
+                    if let scene = try? await Entity(named: "Diary", in: realityKitContentBundle) {
+                        content.add(scene)
+                        scene.generateCollisionShapes(recursive: true)
+                    }
+                } update: { content in
+
+                }
+                .onAppear {
+                    AudioPlayer.playAudio()
+                }
+                .onTapGesture {
+                    // Handle tap gesture to navigate
+                    navigateToGrid = true
+                }
+
+                NavigationLink(destination: TerrariumGridView(), isActive: $navigateToGrid) {
+                    EmptyView()
+                }
             }
-        } update: { content in
-           
-        }
-        .onAppear() {
-            AudioPlayer.playAudio()
+            .navigationTitle("Immersive Diary")
         }
     }
 }
@@ -38,6 +52,9 @@ struct AudioPlayer {
     }
 }
 
-#Preview {
-    ImmersiveDiaryView()
+struct ImmersiveDiaryView_Previews: PreviewProvider {
+    static var previews: some View {
+        ImmersiveDiaryView()
+    }
 }
+

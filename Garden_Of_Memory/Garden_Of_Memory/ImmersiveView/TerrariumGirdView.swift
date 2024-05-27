@@ -11,13 +11,13 @@ import SwiftData
 struct TerrariumGridView: View {
     @Environment(\.modelContext) private var modelContext
     @Query var chats: [ChatEntry]
-    
+
     let columns = [
         GridItem(.flexible()),
         GridItem(.flexible()),
         GridItem(.flexible())
     ]
-    
+
     var body: some View {
         NavigationStack {
             VStack {
@@ -39,6 +39,13 @@ struct TerrariumGridView: View {
                                 .shadow(radius: 5)
                             }
                             .buttonStyle(PlainButtonStyle()) // Apply PlainButtonStyle to remove default button styling
+                            .contextMenu {
+                                Button(role: .destructive) {
+                                    modelContext.delete(chat)
+                                } label: {
+                                    Label("Delete", systemImage: "trash")
+                                }
+                            }
                         }
                     }
                     .padding()
@@ -79,7 +86,7 @@ struct TerrariumGridView_Previews: PreviewProvider {
         }
         let previewContainer = PreviewContainer([ChatEntry.self])
         previewContainer.add(items: sampleChats)
-        
+
         return NavigationStack {
             TerrariumGridView()
                 .modelContainer(previewContainer.container)

@@ -57,11 +57,11 @@ struct Garden_Of_MemoryApp: App {
 //                .modelContainer(modelContainer)
 //        }
         
-        WindowGroup(id: "diaryObject") {
+        /*WindowGroup(id: "diaryObject") {
             ImmersiveDiaryView()
                 .modelContainer(modelContainer)
         }.windowStyle(.volumetric)
-        
+        */
         ImmersiveSpace(id: "FullTerrarium"){
             ImmersiveTerrariumView()
                 .modelContainer(modelContainer)
