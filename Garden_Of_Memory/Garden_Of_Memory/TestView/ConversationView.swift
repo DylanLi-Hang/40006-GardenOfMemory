@@ -70,6 +70,8 @@ struct ConversationView: View {
                 Task {
                     if newValue {
                         await openImmersiveTerrarium(id: "FullTerrarium")
+                        let sceneName = terrariumModelName(for: viewModel.mood)
+                        playAudioForScene(sceneName: sceneName)
                     } else {
                         await dismissImmersiveTerrarium()
                     }
@@ -139,6 +141,27 @@ struct ConversationView: View {
         default:
             return "TerrariumSunnyScene" // Default scene
         }
+    }
+    
+    private func playAudioForScene(sceneName: String) {
+        let audioFileName: String
+        switch sceneName {
+            case "TerrariumThunderScene":
+                audioFileName = "Thunder.mp3"
+            case "TerrariumRainScene":
+                audioFileName = "Rain.mp3"
+            case "TerrariumCloudScene":
+                audioFileName = "Cloud.mp3"
+            case "TerrariumSunnyScene":
+                audioFileName = "Sunny.mp3"
+            case "TerrariumRainbowScene":
+                audioFileName = "Rainbow.mp3"
+            default:
+                audioFileName = "Sunny.mp3"
+        }
+
+        print("Attempting to play audio named: \(audioFileName)")
+        AudioManager.shared.playAudio(named: audioFileName)
     }
 }
 
