@@ -42,7 +42,7 @@ struct ConversationView: View {
             
             
             // Terrarium of the day
-            Model3D(named: terrariumModelName(for: viewModel.mood), bundle: realityKitContentBundle, content: { modelPhase in
+            Model3D(named: terrariumModelName(for: chatEntry.mood), bundle: realityKitContentBundle, content: { modelPhase in
                 switch modelPhase {
                 case .empty:
                     ProgressView()
