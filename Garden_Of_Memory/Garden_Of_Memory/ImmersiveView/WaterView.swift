@@ -331,6 +331,9 @@ struct WaterView: View {
                     openWindow(id: "terrariumObject")
                 } else {
                     dismissWindow(id: "terrariumObject")
+                    
+                    print("Stop playing audio")
+                    AudioManager.shared.stopAudio()
                 }
             }
         }

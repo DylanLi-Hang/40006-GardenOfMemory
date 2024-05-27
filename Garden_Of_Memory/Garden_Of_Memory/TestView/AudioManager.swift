@@ -13,6 +13,20 @@ class AudioManager {
     private var audioPlayer: AVAudioPlayer?
 
     private init() {}
+    
+    func playStartAudio(named fileName: String) {
+        guard let url = Bundle.main.url(forResource: fileName, withExtension: nil) else {
+            print("Audio file \(fileName) not found")
+            return
+        }
+
+        do {
+            audioPlayer = try AVAudioPlayer(contentsOf: url)
+            audioPlayer?.play()
+        } catch {
+            print("Error playing audio: \(error.localizedDescription)")
+        }
+    }
 
     func playAudio(named fileName: String) {
         guard let url = Bundle.main.url(forResource: fileName, withExtension: nil) else {
