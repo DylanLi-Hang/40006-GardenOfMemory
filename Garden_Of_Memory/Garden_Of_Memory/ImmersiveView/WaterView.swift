@@ -319,9 +319,9 @@ struct WaterView: View {
         .onChange(of: isDairyViewOpen) { _, newValue in
             Task {
                 if newValue {
-                    openWindow(id: "DairyViewController")
+                    openWindow(id: "GirdController")
                 } else {
-                    dismissWindow(id: "DairyViewController")
+                    dismissWindow(id: "GridController")
                 }
             }
         }

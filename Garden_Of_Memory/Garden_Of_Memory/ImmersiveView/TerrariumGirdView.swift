@@ -21,42 +21,44 @@ struct TerrariumGridView: View {
     ]
     
     var body: some View {
-        VStack {
-            ScrollView {
-                LazyVGrid(columns: columns, spacing: 20) {
-                    ForEach(chats) { chat in
-                        NavigationLink(destination: ConversationView(chatEntry: chat)) {
-                            VStack {
-                                Model3D(named: terrariumModelName(for: chat.mood), bundle: realityKitContentBundle, content: { modelPhase in
-                                    switch modelPhase {
-                                    case .empty:
-                                        ProgressView()
-                                            .controlSize(.large)
-                                    case .success(let resolvedModel3D):
-                                        resolvedModel3D
-                                            .resizable()
-                                            .aspectRatio(contentMode: .fit)
-                                            .scaleEffect(0.3)
-                                    case .failure(let error):
-                                        Text("Fail")
-                                    }
-                                })
-                                .frame(width: 100, height: 100)
-                                Text("\(chat.getStringDate())")
-                                    .font(.title) // Increased font size for the date
+        NavigationStack {
+            VStack {
+                ScrollView {
+                    LazyVGrid(columns: columns, spacing: 20) {
+                        ForEach(chats) { chat in
+                            NavigationLink(destination: ConversationView(chatEntry: chat)) {
+                                VStack {
+                                    Model3D(named: terrariumModelName(for: chat.mood), bundle: realityKitContentBundle, content: { modelPhase in
+                                        switch modelPhase {
+                                        case .empty:
+                                            ProgressView()
+                                                .controlSize(.large)
+                                        case .success(let resolvedModel3D):
+                                            resolvedModel3D
+                                                .resizable()
+                                                .aspectRatio(contentMode: .fit)
+                                                .scaleEffect(0.3)
+                                        case .failure(let error):
+                                            Text("Fail")
+                                        }
+                                    })
+                                    .frame(width: 100, height: 100)
+                                    Text("\(chat.getStringDate())")
+                                        .font(.title) // Increased font size for the date
+                                }
+                                .padding()
+                                .background(RoundedRectangle(cornerRadius: 10)
+                                                .fill(Color(.systemGray6)))
+                                .shadow(radius: 5)
                             }
-                            .padding()
-                            .background(RoundedRectangle(cornerRadius: 10)
-                                            .fill(Color(.systemGray6)))
-                            .shadow(radius: 5)
+                            .buttonStyle(PlainButtonStyle()) // Apply PlainButtonStyle to remove default button styling
                         }
-                        .buttonStyle(PlainButtonStyle()) // Apply PlainButtonStyle to remove default button styling
                     }
+                    .padding()
                 }
-                .padding()
             }
+            .navigationTitle("Terrarium Record")
         }
-        .navigationTitle("Terrarium Record")
     }
 
     private func terrariumModelName(for mood: Int) -> String {
@@ -83,14 +85,17 @@ struct TerrariumGridView: View {
     }()
 }
 
-#Preview {
-    let preview = PreviewContainer([ChatEntry.self])
-    
-    var chats = [generateDummyChat(), generateDummyChat()]
-    preview.add(items: chats)
-                                                         
-    return NavigationStack {
-        TerrariumGridView()
-            .modelContainer(preview.container)
+struct TerrariumGridView_Previews: PreviewProvider {
+    static var previews: some View {
+        let sampleChats = (1...8).map { index in
+            generateDummyChat()
+        }
+        let previewContainer = PreviewContainer([ChatEntry.self])
+        previewContainer.add(items: sampleChats)
+        
+        return NavigationStack {
+            TerrariumGridView()
+                .modelContainer(previewContainer.container)
+        }
     }
 }
