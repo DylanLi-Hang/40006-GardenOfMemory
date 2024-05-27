@@ -52,6 +52,14 @@ struct TerrariumGridView: View {
                                     }
                                 }
                             }
+                            .buttonStyle(PlainButtonStyle()) // Apply PlainButtonStyle to remove default button styling
+                            .contextMenu {
+                                Button(role: .destructive) {
+                                    modelContext.delete(chat)
+                                } label: {
+                                    Label("Delete", systemImage: "trash")
+                                }
+                            }
                         }
                     }
                     .padding()
