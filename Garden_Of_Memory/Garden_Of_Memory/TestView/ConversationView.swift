@@ -28,33 +28,17 @@ struct ConversationView: View {
     
     var body: some View {
         NavigationSplitView {
-            HStack{
-                //Back Button
-                Button {
-                    print("Return to diary menu")
-                } label: {
-                    Image(systemName: "chevron.backward")
-                }
-                .padding(0)
-                Spacer()
-            }
-            .navigationBarHidden(true)
-            
-            
-//            //Terrarium of the day
-//            Model3D(named: "SunnyTerrarium", bundle: realityKitContentBundle, content: { modelPhase in
-//                switch modelPhase {
-//                case .empty:
-//                    ProgressView()
-//                        .controlSize(.extraLarge)
-//                case .success(let resolvedModel3D):
-//                    resolvedModel3D
-//                        .resizable()
-//                        .aspectRatio(contentMode: .fit)
-//                        .scaleEffect(0.3)
-//                case .failure(let error):
-//                    Text("Fail")
-//                }})
+//            HStack{
+//                //Back Button
+//                Button {
+//                    print("Return to diary menu")
+//                } label: {
+//                    Image(systemName: "chevron.backward")
+//                }
+//                .padding(0)
+//                Spacer()
+//            }
+//            .navigationBarHidden(true)
             
             
             // Terrarium of the day
@@ -109,8 +93,20 @@ struct ConversationView: View {
                     //                        Text("    \(key): \(chatEntry.messages[index][key] ?? "")")
                     //                    }
                     //                }
+                    
+                    Spacer()
+                    
+                    Text("Highlights of the Day: ")
+                        .font(.title)
+                    Text(chatEntry.summarization)
+                    
+                    Spacer()
+                    
                     Text("Conversation: ")
                         .font(.title)
+                    
+                    
+                    
                     
                     ForEach(chatEntry.chatMessages) { chatMessage in
                         if chatMessage.role != .system {
