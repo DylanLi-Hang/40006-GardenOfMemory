@@ -29,7 +29,7 @@ struct ConversationView: View {
     var body: some View {
         NavigationSplitView {
             HStack{
-                //Back Button
+                // Back Button
                 Button {
                     print("Return to diary menu")
                 } label: {
@@ -39,24 +39,7 @@ struct ConversationView: View {
                 Spacer()
             }
             .navigationBarHidden(true)
-            
-            
-//            //Terrarium of the day
-//            Model3D(named: "SunnyTerrarium", bundle: realityKitContentBundle, content: { modelPhase in
-//                switch modelPhase {
-//                case .empty:
-//                    ProgressView()
-//                        .controlSize(.extraLarge)
-//                case .success(let resolvedModel3D):
-//                    resolvedModel3D
-//                        .resizable()
-//                        .aspectRatio(contentMode: .fit)
-//                        .scaleEffect(0.3)
-//                case .failure(let error):
-//                    Text("Fail")
-//                }})
-            
-            
+
             // Terrarium of the day
             Model3D(named: terrariumModelName(for: viewModel.mood), bundle: realityKitContentBundle, content: { modelPhase in
                 switch modelPhase {
@@ -76,9 +59,8 @@ struct ConversationView: View {
                 print("Mood changed to: \(newMood), updating terrarium model")
             }
             
-            
-            //Button of immersive terrarium
-            Button("Immersive Terrarium"){
+            // Button for immersive terrarium
+            Button("Immersive Terrarium") {
                 viewModel.terrarium.toggle()
                 isImmersiveTerrariumViewOpen = viewModel.terrarium
                 print(viewModel.terrarium)
@@ -87,6 +69,8 @@ struct ConversationView: View {
                 Task {
                     if newValue {
                         await openImmersiveTerrarium(id: "FullTerrarium")
+                        let sceneName = terrariumModelName(for: viewModel.mood)
+                        playAudioForScene(sceneName: sceneName)
                     } else {
                         await dismissImmersiveTerrarium()
                     }
@@ -102,13 +86,7 @@ struct ConversationView: View {
                         .font(.title)
                     Text("Mood: \(chatEntry.mood)")
                         .font(.title)
-                    
-                    //                Text("Messages:")
-                    //                ForEach(chatEntry.messages.indices, id: \.self) { index in
-                    //                    ForEach(chatEntry.messages[index].keys.sorted(), id: \.self) { key in
-                    //                        Text("    \(key): \(chatEntry.messages[index][key] ?? "")")
-                    //                    }
-                    //                }
+
                     Text("Conversation: ")
                         .font(.title)
                     
@@ -144,6 +122,27 @@ struct ConversationView: View {
         default:
             return "TerrariumSunnyScene" // Default scene
         }
+    }
+    
+    private func playAudioForScene(sceneName: String) {
+        let audioFileName: String
+        switch sceneName {
+            case "TerrariumThunderScene":
+                audioFileName = "Thunder.mp3"
+            case "TerrariumRainScene":
+                audioFileName = "Rain.mp3"
+            case "TerrariumCloudScene":
+                audioFileName = "Cloud.mp3"
+            case "TerrariumSunnyScene":
+                audioFileName = "Sunny.mp3"
+            case "TerrariumRainbowScene":
+                audioFileName = "Rainbow.mp3"
+            default:
+                audioFileName = "Sunny.mp3"
+        }
+
+        print("Attempting to play audio named: \(audioFileName)")
+        AudioManager.shared.playAudio(named: audioFileName)
     }
 }
 
