@@ -47,7 +47,15 @@ class ViewModel {
     static let shared = ViewModel()
     
     // MARK: - Avatar
-    var terrarium = false
+    var terrarium = false {
+        didSet {
+            if terrarium == false {
+                print("Stop playing audio")
+                AudioManager.shared.stopAudio()
+            }
+        }
+    }
+    
     var status: AvatarStatus = .notListening
     var recognizationStatus = false
     var isCancelled = true
