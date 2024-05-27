@@ -50,6 +50,7 @@ struct TerrariumGridView: View {
                                             .fill(Color(.systemGray6)))
                             .shadow(radius: 5)
                         }
+                        .buttonStyle(PlainButtonStyle()) // Apply PlainButtonStyle to remove default button styling
                     }
                 }
                 .padding()
