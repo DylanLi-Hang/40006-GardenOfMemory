@@ -28,35 +28,19 @@ struct ConversationView: View {
     
     var body: some View {
         NavigationSplitView {
-            HStack{
-                //Back Button
-                Button {
-                    print("Return to diary menu")
-                } label: {
-                    Image(systemName: "chevron.backward")
-                }
-                .padding(0)
-                Spacer()
-            }
-            .navigationBarHidden(true)
-            
-            
-//            //Terrarium of the day
-//            Model3D(named: "SunnyTerrarium", bundle: realityKitContentBundle, content: { modelPhase in
-//                switch modelPhase {
-//                case .empty:
-//                    ProgressView()
-//                        .controlSize(.extraLarge)
-//                case .success(let resolvedModel3D):
-//                    resolvedModel3D
-//                        .resizable()
-//                        .aspectRatio(contentMode: .fit)
-//                        .scaleEffect(0.3)
-//                case .failure(let error):
-//                    Text("Fail")
-//                }})
-            
-            
+            // Removed the back button and the HStack that contained it
+            // HStack {
+            //     //Back Button
+            //     Button {
+            //         print("Return to diary menu")
+            //     } label: {
+            //         Image(systemName: "chevron.backward")
+            //     }
+            //     .padding(0)
+            //     Spacer()
+            // }
+            // .navigationBarHidden(true)
+
             // Terrarium of the day
             Model3D(named: terrariumModelName(for: viewModel.mood), bundle: realityKitContentBundle, content: { modelPhase in
                 switch modelPhase {
@@ -76,9 +60,8 @@ struct ConversationView: View {
                 print("Mood changed to: \(newMood), updating terrarium model")
             }
             
-            
-            //Button of immersive terrarium
-            Button("Immersive Terrarium"){
+            // Button for immersive terrarium
+            Button("Immersive Terrarium") {
                 viewModel.terrarium.toggle()
                 isImmersiveTerrariumViewOpen = viewModel.terrarium
                 print(viewModel.terrarium)
@@ -92,7 +75,6 @@ struct ConversationView: View {
                     }
                 }
             }
-            
         } detail: {
             ScrollView {
                 VStack(alignment: .leading, spacing: 10) {
@@ -103,12 +85,6 @@ struct ConversationView: View {
                     Text("Mood: \(chatEntry.mood)")
                         .font(.title)
                     
-                    //                Text("Messages:")
-                    //                ForEach(chatEntry.messages.indices, id: \.self) { index in
-                    //                    ForEach(chatEntry.messages[index].keys.sorted(), id: \.self) { key in
-                    //                        Text("    \(key): \(chatEntry.messages[index][key] ?? "")")
-                    //                    }
-                    //                }
                     Text("Conversation: ")
                         .font(.title)
                     
