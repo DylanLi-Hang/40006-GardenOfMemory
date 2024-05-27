@@ -196,6 +196,7 @@
 		FC263DD32C0070C400D162DF /* archive */ = {
 			isa = PBXGroup;
 			children = (
+				654A8A292C04229800C0B081 /* AudioManager.swift */,
 				65E4F9922BC72EAF00CECC11 /* GlobalVariables.swift */,
 				6593EF752BC6625E00CF644C /* SpeechRecognizer.swift */,
 				6593EF772BC663FE00CF644C /* ConversationManager.swift */,
@@ -233,7 +234,9 @@
 				0D54D1582BC567B100B84E78 /* WaterView.swift */,
 				0D20A0282BC6CA9D00899274 /* ImmersiveTerrariumView.swift */,
 				3B57A7D82BD75D4800ABAEFD /* ImmersiveDiaryView.swift */,
+				FC33B0C02BBB8FBC002D4DF8 /* ConversationView.swift */,
 				3B1833EE2C03A8C000FCA892 /* TerrariumGirdView.swift */,
+				0D9A6AB42BD6359500CC6BF3 /* TerrariumObjectView.swift */,
 			);
 			path = ImmersiveView;
 			sourceTree = "<group>";
@@ -244,11 +247,8 @@
 				3B99F0262BB43A4900322E0E /* ContentView.swift */,
 				FC27EB212BF318CD003608CA /* NewContentView.swift */,
 				FC33B0BE2BBB8F47002D4DF8 /* ListConversationView.swift */,
-				FC33B0C02BBB8FBC002D4DF8 /* ConversationView.swift */,
 				FC33B0C22BBB90A8002D4DF8 /* TestInsertDummyView.swift */,
-				0D9A6AB42BD6359500CC6BF3 /* TerrariumObjectView.swift */,
 				FCF740562BDE798A008BD066 /* GeminiPlayground.playground */,
-				654A8A292C04229800C0B081 /* AudioManager.swift */,
 			);
 			path = TestView;
 			sourceTree = "<group>";
