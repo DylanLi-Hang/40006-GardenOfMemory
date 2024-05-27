@@ -18,11 +18,7 @@ struct Garden_Of_MemoryApp: App {
     
     var body: some Scene {
         @State var immersionMode: ImmersionStyle = .progressive
-        WindowGroup(id: "GirdController") {
-            TerrariumGridView()
-                .modelContainer(modelContainer)
-        }
-        .windowStyle(.volumetric)
+
         WindowGroup (id: "StartView") {
             StartView()
                 .modelContainer(modelContainer)
@@ -53,6 +49,12 @@ struct Garden_Of_MemoryApp: App {
                 .modelContainer(modelContainer)
         }
         .windowStyle(.plain)
+        
+        WindowGroup(id: "GirdController") {
+            TerrariumGridView()
+                .modelContainer(modelContainer)
+        }
+        .windowStyle(.volumetric)
         
 
         

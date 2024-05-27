@@ -28,19 +28,19 @@ struct ConversationView: View {
     
     var body: some View {
         NavigationSplitView {
-            // Removed the back button and the HStack that contained it
-            // HStack {
-            //     //Back Button
-            //     Button {
-            //         print("Return to diary menu")
-            //     } label: {
-            //         Image(systemName: "chevron.backward")
-            //     }
-            //     .padding(0)
-            //     Spacer()
-            // }
-            // .navigationBarHidden(true)
-
+//            HStack{
+//                //Back Button
+//                Button {
+//                    print("Return to diary menu")
+//                } label: {
+//                    Image(systemName: "chevron.backward")
+//                }
+//                .padding(0)
+//                Spacer()
+//            }
+//            .navigationBarHidden(true)
+            
+            
             // Terrarium of the day
             Model3D(named: terrariumModelName(for: viewModel.mood), bundle: realityKitContentBundle, content: { modelPhase in
                 switch modelPhase {
@@ -85,8 +85,26 @@ struct ConversationView: View {
                     Text("Mood: \(chatEntry.mood)")
                         .font(.title)
                     
+                    //                Text("Messages:")
+                    //                ForEach(chatEntry.messages.indices, id: \.self) { index in
+                    //                    ForEach(chatEntry.messages[index].keys.sorted(), id: \.self) { key in
+                    //                        Text("    \(key): \(chatEntry.messages[index][key] ?? "")")
+                    //                    }
+                    //                }
+                    
+                    Spacer()
+                    
+                    Text("Highlights of the Day: ")
+                        .font(.title)
+                    Text(chatEntry.summarization)
+                    
+                    Spacer()
+                    
                     Text("Conversation: ")
                         .font(.title)
+                    
+                    
+                    
                     
                     ForEach(chatEntry.chatMessages) { chatMessage in
                         if chatMessage.role != .system {
@@ -95,6 +113,7 @@ struct ConversationView: View {
                     }
                     
                     Text("Tags:")
+                        .bold()
                     ForEach(chatEntry.tags, id: \.self) { tag in
                         Text("    " + tag)
                     }
