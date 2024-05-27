@@ -94,10 +94,10 @@ struct WaterView: View {
             // Attachment 1
             Attachment(id: "StartConversingButton") {
                 VStack {
-                    Text("Current Status: \(viewModel.status)")
-                        .glassBackgroundEffect()
-                    Text("Current Status: \(viewModel.recognizationStatus)")
-                        .glassBackgroundEffect()
+//                    Text("Current Status: \(viewModel.status)")
+//                        .glassBackgroundEffect()
+//                    Text("Current Status: \(viewModel.recognizationStatus)")
+//                        .glassBackgroundEffect()
                     
 //                    if viewModel.status == .notListening {
 //                        Button("Start Conversing") {
