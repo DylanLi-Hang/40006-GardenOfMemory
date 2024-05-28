@@ -539,6 +539,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "$(TARGET_NAME)/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Garden of Memory";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "We need access to the microphone to enable speech recognition.";
 				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "So we can process your conversation in real-time.";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -567,6 +568,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "$(TARGET_NAME)/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Garden of Memory";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "We need access to the microphone to enable speech recognition.";
 				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "So we can process your conversation in real-time.";
 				LD_RUNPATH_SEARCH_PATHS = (
