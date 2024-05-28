@@ -188,6 +188,7 @@ struct TerrariumObjectView: View {
             RealityView { content in
                 if let scene = currentScene {
                     content.add(scene)
+                    scene.position += [0, -0.4, 0.2]
                     print("RealityView: Added scene \(scene.name)")
                 }
             }

@@ -96,8 +96,8 @@ class SpeechRecognitionViewModel: ObservableObject {
                     }
                 },
                 utteranceChanged: { newUtterance in
-                    //                    print("Recognized utterance changed: \(newUtterance)")
-                    //                    print("\(self.recognizedText), length: \(self.lastProcessedLength)")
+                    print("Recognized utterance changed: \(newUtterance)")
+                    print("\(self.recognizedText), length: \(self.lastProcessedLength)")
                     
                     self.viewModel.status = .listening
                     DispatchQueue.main.async {

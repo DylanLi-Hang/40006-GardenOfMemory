@@ -94,10 +94,10 @@ struct WaterView: View {
             // Attachment 1
             Attachment(id: "StartConversingButton") {
                 VStack {
-//                    Text("Current Status: \(viewModel.status)")
-//                        .glassBackgroundEffect()
-//                    Text("Current Status: \(viewModel.recognizationStatus)")
-//                        .glassBackgroundEffect()
+                    Text("Current Status: \(viewModel.status)")
+                        .glassBackgroundEffect()
+                    Text("Current Status: \(viewModel.recognizationStatus)")
+                        .glassBackgroundEffect()
                     
 //                    if viewModel.status == .notListening {
 //                        Button("Start Conversing") {
@@ -139,7 +139,7 @@ struct WaterView: View {
                     } else {
                         ScrollView(showsIndicators: true) {
                             let lastContent = speechViewModel.messages.last?.content
-                            let greetingMessage = "Hi there! I'm Waterdrop, your friendly companion here to listen and flow alongside your emotions. Tell me, what kind of day has it been for you?"
+                            let greetingMessage = "Hi there! I'm Aqua, your friendly companion here to listen and flow alongside your emotions. Tell me, what kind of day has it been for you?"
 
                             Text(lastContent == Prompt.systemInitPrompt ? greetingMessage : (lastContent ?? greetingMessage))
                                 .padding(.all, 10)
@@ -282,10 +282,10 @@ struct WaterView: View {
             currentChatEntry.mood = speechViewModel.mood
         })
         .onChange(of: speechViewModel.tags, { oldValue, newValue in
-            currentChatEntry.tags = speechViewModel.tags
+            currentChatEntry.tags += speechViewModel.tags
         })
         .onChange(of: speechViewModel.summarization, { oldValue, newValue in
-            currentChatEntry.summarization = speechViewModel.summarization
+            currentChatEntry.summarization += "\n" + speechViewModel.summarization
         })
         .onChange(of: viewModel.recognizationStatus, { oldValue, newValue in
                 speechViewModel.changeRecognitionStatus()

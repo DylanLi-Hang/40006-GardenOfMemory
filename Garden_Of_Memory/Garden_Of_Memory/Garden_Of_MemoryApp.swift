@@ -9,7 +9,8 @@ struct Garden_Of_MemoryApp: App {
         
     init() {
         do {
-            modelContainer = try ModelContainer(for: ChatEntry.self)
+            let modelConfiguration = ModelConfiguration(isStoredInMemoryOnly: false)
+            modelContainer = try ModelContainer(for: ChatEntry.self, configurations: modelConfiguration)
         } catch {
             fatalError("Could not initialize ModelContainer")
         }

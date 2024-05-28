@@ -52,6 +52,7 @@ struct ConversationView: View {
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                         .scaleEffect(0.3)
+//                        .position(x: 1, y: 1)
                 case .failure(let error):
                     Text("Fail")
                 }
@@ -59,6 +60,8 @@ struct ConversationView: View {
             .onChange(of: viewModel.mood) { newMood in
                 print("Mood changed to: \(newMood), updating terrarium model")
             }
+            
+            Spacer()
             
             // Button for immersive terrarium
             Button("Immersive Terrarium") {
@@ -77,6 +80,7 @@ struct ConversationView: View {
                     }
                 }
             }
+            Spacer()
         } detail: {
             ScrollView {
                 VStack(alignment: .leading, spacing: 10) {
