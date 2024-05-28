@@ -84,8 +84,8 @@ struct ConversationView: View {
         } detail: {
             ScrollView {
                 VStack(alignment: .leading, spacing: 10) {
-                    Text("Title: \(chatEntry.name ?? "No Name")")
-                        .font(.extraLargeTitle)
+//                    Text("Title: \(chatEntry.name ?? "No Name")")
+//                        .font(.extraLargeTitle)
                     Text("Date: \(chatEntry.date, formatter: dateFormatter)")
                         .font(.title)
                     Text("Mood: \(chatEntry.mood)")
@@ -176,7 +176,7 @@ struct TestView_Previews: PreviewProvider {
     
     static func generateDummyChat() -> ChatEntry {
         let date = Date()
-        let mood = Int.random(in: 1...10)
+        let mood = Int.random(in: 1...5)
         let messages: [[String: String]] = [
             ["role": "system", "content": "You are a helpful assistant."],
             ["role": "user", "content": "What's the weather like today?"],

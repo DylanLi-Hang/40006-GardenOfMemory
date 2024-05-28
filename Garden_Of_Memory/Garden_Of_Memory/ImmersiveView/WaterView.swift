@@ -41,7 +41,7 @@ struct WaterView: View {
     let viewModel = ViewModel.shared
     @State private var count: Int = 1
     @State private var waterDrop: Entity? = nil
-    @State var currentChatEntry: ChatEntry = ChatEntry(date: Date(), mood: 10)
+    @State var currentChatEntry: ChatEntry = ChatEntry(date: Date(), mood: 5)
     
     @State var bounceValue: Int = 0
     @State private var isAvatarButtonActive = true
@@ -94,10 +94,10 @@ struct WaterView: View {
             // Attachment 1
             Attachment(id: "StartConversingButton") {
                 VStack {
-                    Text("Current Status: \(viewModel.status)")
-                        .glassBackgroundEffect()
-                    Text("Current Status: \(viewModel.recognizationStatus)")
-                        .glassBackgroundEffect()
+//                    Text("Current Status: \(viewModel.status)")
+//                        .glassBackgroundEffect()
+//                    Text("Current Status: \(viewModel.recognizationStatus)")
+//                        .glassBackgroundEffect()
                     
 //                    if viewModel.status == .notListening {
 //                        Button("Start Conversing") {
